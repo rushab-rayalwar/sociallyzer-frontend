@@ -1,4 +1,23 @@
 body{
     height : 100vh;
-    background-image: linear-gradient();
+    background-image: linear-gradient(to bottom right, #1B262C, #0F4C75, #00B7C2);
+}
+.title{  
+    font-family: "Poiret One", sans-serif;
+    font-weight: 600;
+    font-style:bold;
+    font-size: 5rem;;
+    color: white;
+    margin-top: 10rem;
+}
+.main{
+    width : 70%;
+    margin : auto;
+}
+.tag{  
+    font-family: "Poiret One", sans-serif;
+    font-weight: 600;
+    font-style:bold;
+    color: white;
+    margin-top: 10rem;
 }
