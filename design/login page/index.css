@@ -1,3 +1,9 @@
+/*utility*/
+.preWhiteSpace{
+    white-space: pre-wrap;
+    font-family: "Audiowide", sans-serif;
+}
+
 body{
     height : 100vh;
     background-image: linear-gradient(to bottom right, #1B262C, #0F4C75, #00B7C2);
@@ -6,9 +12,11 @@ body{
     font-family: "Poiret One", sans-serif;
     font-weight: 600;
     font-style:bold;
-    font-size: 5rem;;
+    font-size: 3.5rem;;
     color: white;
-    margin-top: 10rem;
+    margin : 10rem 0 0rem 0;
+    animation: intro-slide 0.6s ease-out forwards;
+    letter-spacing: 1rem;;
 }
 .main{
     width : 70%;
@@ -19,5 +27,27 @@ body{
     font-weight: 600;
     font-style:bold;
     color: white;
-    margin-top: 10rem;
+    margin: 0.9rem 0 0 0;
+    animation: intro-slide 1.5s ease-out 0.8s backwards;
+    letter-spacing: 0.5rem;
+}
+.description {
+    margin : 10rem 0 0 0;
+    color : white;
+    font-size: 1.5rem;
+}
+.headingCtaButtons{
+    display: flex;
+}
+
+@keyframes intro-slide {
+    0% {
+        opacity : 0;
+        transform : translateX(-3%);
+    }
+    100% {
+        opacity:1;
+        transform: translateX(0);
+    }
+
 }
