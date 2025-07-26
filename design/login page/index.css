@@ -6,6 +6,7 @@
 body{
     background-image: linear-gradient(to bottom right, #1B262C, #0F4C75, #00B7C2);
     min-height: 100vh;
+    /* overflow-y: hidden; */
 }
 .title{
     margin : 10rem 0 0rem 0;
@@ -17,12 +18,15 @@ body{
     font-style:bold;
     font-size: 3.5rem;
     color: white;
-    letter-spacing: 1rem;;
+    letter-spacing: 1rem;
+    position: relative;
 }
-.title > svg {
-    position : relative;
-    transform:scale(0.7);
-    
+.title > span > svg {
+    position : absolute;
+    transform:scale(0.5);
+    left : -7%;
+    top : -30%;
+    animation : glow 0.7s ease-in-out 0.6s infinite alternate backwards;
 }
 .main{
     width : 70%;
@@ -44,7 +48,7 @@ body{
     animation : fade-in 0.5s ease-out 0.3s backwards;
 }
 .headingCtaButtons{
-    margin-top: 2rem;
+    margin-top: 4rem;
     display: flex;
     animation : fade-in 0.5s ease-out 0.5s backwards;
 }
@@ -54,16 +58,48 @@ body{
     /* background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.218)); */
     border-radius : 0.5rem;
     margin-right :0.5rem;
+    position:relative;
 }
 .login{
-
+    
+}
+.login:hover > .glass{
+    cursor:pointer;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.078) 0% 60%, rgba(255, 255, 255, 0.242));
+}
+.glass{
+    position:absolute;
+    top:0;
+    right:0;
+    height:100%;
+    width : 100%;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.058) 0% 60%, rgba(255, 255, 255, 0.118));
+    border-width: 2px 0 0 1px;
+    border-left-color: rgba(255, 255, 255, 0.145);
+    border-top-color: rgba(255, 255, 255, 0.111);
+    border-style: solid;
+    box-sizing: border-box;
 }
 .createAccount{
     background-color: rgba(0, 162, 255, 0.771);
+    display: flex;
+    align-items: center;
 }
 .createAccount:hover{
     background-color: rgb(0, 162, 255);
     cursor: pointer;
+}
+.createAccount > svg {
+    margin-left:0.2rem;
+    height:1rem;
+    width:1rem;
+    opacity : 0;
+}
+.createAccount > .glass {
+    opacity:0;
+}
+.createAccount:hover > .glass {
+    opacity:100;
 }
 @keyframes intro-slide {
     0% {
@@ -82,5 +118,13 @@ body{
     }
     100%{
         opacity:1;
+    }
+}
+@keyframes glow {
+    0%{
+        transform : scale(0.6);
+    }
+    100%{
+        transform : scale(0.5);
     }
 }
