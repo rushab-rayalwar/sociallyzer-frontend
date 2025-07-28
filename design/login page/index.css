@@ -28,7 +28,7 @@ body{
     letter-spacing: 1rem;
     position: relative;
 }
-.title > span > svg {
+.title > span > img {
     position : absolute;
     transform:scale(0.5);
     left : -7%;
@@ -38,6 +38,8 @@ body{
 .main{
     width : 65rem;
     margin : auto;
+    position:relative;
+    height: 100vh;
 }
 .tag{  
     font-family: "Poiret One", sans-serif;
@@ -49,22 +51,22 @@ body{
     letter-spacing: 0.3rem;
 }
 .description {
-    margin : 7rem 0 0 0;
+    margin : 8rem 0 0 0;
     color : white;
     font-size: 1.8rem;
     animation : fade-in 0.5s ease-out 0.3s backwards;
 }
 .headingCtaButtons{
-    margin-top: 4rem;
+    margin-top: 5rem;
     display: flex;
     animation : fade-in 0.5s ease-out 0.5s backwards;
 }
 .ctaButton{
     color : white;
-    padding : 0.5rem;
+    padding : 0.4rem;
     /* background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.218)); */
     border-radius : 0.5rem;
-    margin-right :0.5rem;
+    margin-right :1rem;
     position:relative;
     font-size: 1.1rem;
     overflow: hidden;
@@ -75,6 +77,7 @@ body{
 }
 .login:hover, .createAccount:hover{    
     text-shadow: 0 0 4px white; /*rgba(0, 162, 255, 0.771)*/
+    cursor: pointer;
 }
 .glass{
     position:absolute;
@@ -99,9 +102,8 @@ body{
 }
 .createAccount:hover{
     background-color: rgb(0, 162, 255);
-    cursor: pointer;
 }
-.createAccount > svg {
+.createAccount > img {
     margin-left:0.2rem;
     height:1rem;
     width:1rem;
@@ -116,28 +118,27 @@ body{
     z-index: 2;
     position: relative;
 }
-.createAccount:hover > .glass {
-    opacity:100;
-}
 .buttonHoverBG{
-    background: radial-gradient(circle,
-    hsl(55deg 100% 50%) 0%,
-    hsl(48deg 100% 50%) 8%,
-    hsl(40deg 100% 50%) 17%,
-    hsl(30deg 100% 55%) 25%,
-    hsl(17deg 100% 59%) 33%,
-    hsl(3deg 95% 61%) 42%,
-    hsl(346deg 83% 51%) 50%,
-    hsl(336deg 100% 41%) 58%,
-    hsl(329deg 100% 36%) 67%,
-    hsl(319deg 100% 30%) 75%,
-    hsl(304deg 100% 23%) 83%,
-    hsl(281deg 100% 21%) 92%,
-    hsl(240deg 100% 20%) 100%
-    );
-    width:100%;
-    height:100%;
-    position : absolute;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+19,003cad+49,00a2e1+80 */
+    background: radial-gradient(circle at center,  rgb(0, 0, 0) 0%,rgb(0, 0, 0) 15%,rgba(0,60,173,1) 49%,rgba(0,162,225,1) 80%); 
+    width:20rem;
+    height:20rem;
     z-index: 1;
     right : 0;
+    border-radius: 50%;
+    transform : translate(10rem, -10rem) scale(0);
+    position : absolute;
+    right : 25%; top:50%;
+    transition : transform 0s ease-out;
+}
+.createAccount:hover > .buttonHoverBG {
+    transform: translate(10rem, -10rem) scale(1.4);
+    transition-duration: 0.6s;
+}
+
+.bgAnimations{
+    background-color: #a700b0;
+    width:50%; height:100vh;
+    position:absolute;
+    right:0; top:0;
 }
