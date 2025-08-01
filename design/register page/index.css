@@ -4,6 +4,9 @@ body{
     height: 100vh;
     /* overflow-y: hidden; */
 }
+input::placeholder{
+    color:rgba(255, 255, 255, 0.381);    
+}
 
 /*utility*/
 .glass{
@@ -23,11 +26,11 @@ body{
 
 .main{
     margin: auto;
-    width : 65rem; height: 100%;
-    display: flex; align-items: center; justify-content: center;
+    width : 20rem; height: 100%;
+    display: flex; align-items: center; justify-content: center;flex-direction: column;
 }
 .main > form {
-    height:fit-content; width:40rem;
+    height:fit-content; width:20rem;
     border-radius: 1rem;
     box-shadow: 0 0 2rem 0 rgba(0, 46, 46, 0.1);
     position:relative; z-index: 2;
@@ -38,6 +41,27 @@ body{
     height : 10rem; width:10rem; background-color: #ff00a2;
     z-index: 1;position: absolute;
     top:70%; right:50%;
+}
+
+/*title*/
+.title{
+    position: relative;
+    transform: scale(0.4);
+}
+.title > span{  
+    font-family: "Poiret One", sans-serif;
+    font-weight: 600;
+    font-style:bold;
+    font-size: 3.5rem;
+    color: white;
+    letter-spacing: 1rem;
+    position: relative;
+}
+.title > img {
+    position : absolute;
+    transform:scale(0.5);
+    left : -7%;
+    top : -30%;
 }
 
 /*form*/
@@ -56,8 +80,12 @@ body{
     border-radius: 0.5rem;
     outline : none; border : none;
     padding-left: 0.5rem;
-    background-color: #0F4C75;
-    background-color:rgba(255,255,255,0.13);
+    background-color:rgba(255,255,255,0.11);
+    color:white;
+}
+.field > input:focus {
+    /* box-shadow: 0 0 0px 0 rgba(255, 255, 255, 0.712); */
+    outline : 1px solid rgba(255, 255, 255, 0.564);
 }
 .submitButton{
     color : white;
