@@ -30,12 +30,12 @@ input::placeholder{
     display: flex; align-items: center; justify-content: center;flex-direction: column;
 }
 .main > form {
-    height:fit-content; width:20rem;
+    height:fit-content; width:23rem;
     border-radius: 1rem;
     box-shadow: 0 0 2rem 0 rgba(0, 46, 46, 0.1);
     position:relative; z-index: 2;
     display:flex; justify-content: center; align-items: center;
-    padding: 1rem;
+    padding: 0.8rem;
 }
 .reference{
     height : 10rem; width:10rem; background-color: #ff00a2;
@@ -72,7 +72,7 @@ input::placeholder{
     display: flex; flex-direction: column;
     font-family: 'Poppins';
     color:white;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 .field > input {
     height:2rem;
@@ -128,4 +128,13 @@ input::placeholder{
     position : absolute;
     right : 25%; top:50%;
     transition : transform 0s ease-out;
+}
+
+/*LOGIN LINK*/
+.loginLink {
+    font-family: 'Poppins';
+    color : rgba(255, 255, 255, 0.673);
+    font-size: 0.9rem;
+    margin-top : 1rem;
+    font-weight: 200;
 }
