@@ -138,3 +138,10 @@ input::placeholder{
     margin-top : 1rem;
     font-weight: 200;
 }
+.loginLink > span > a {
+    color : rgba(0,221,255,1);
+}
+.loginLink > span > a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
