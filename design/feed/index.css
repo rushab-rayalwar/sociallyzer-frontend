@@ -1,0 +1,25 @@
+body{
+    background-color: black;
+}
+footer{
+    position : fixed; bottom:0; left:0;
+    height : 3rem; width:100%;
+    display : flex; justify-content: space-around; align-items: center;
+    background-color: aqua;
+    position : fixed;
+}
+footer > img {
+    position : absolute; left : 0;
+    margin-left : 1rem;
+}
+
+/*FOOTER*/
+.filterOptions{
+    display: flex; align-items: center; justify-content:space-between;
+    max-width : 50rem; height : 100%;
+    background-color: bisque;
+}
+.filter {
+    font-family: 'Work Sans';
+    display: inline-block;
+}
