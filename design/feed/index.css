@@ -1,23 +1,97 @@
 body{
     background-color: black;
+    margin : 0; padding : 0;
+    /* width: 100dvw; */
 }
+
+/*fonst imported
+Poiret One
+Open Sans
+Poppins
+Work Sans
+
+/* header */
+header{
+    position : fixed; top:0; left : 0;
+    height:4rem;
+    /* background-color: rgb(61, 2, 69); */
+    width:100%;
+    display : flex; align-items: center; justify-content: space-between;
+    padding : 0 4rem 0 4rem;
+    box-sizing: border-box;
+}
+.headerContainer{
+}
+.userName > span {
+    color:white;
+}
+.userName{
+    width: fit-content; font-family: "Work Sans";
+}
+.title > span{
+    font-family: "Poiret One", sans-serif;
+    font-weight: 600;
+    font-style:bold;
+    font-size: 1.5rem;
+    color: white;
+    letter-spacing: 0.478rem; /* 0.28rem 0.428rem*/
+    position: relative;
+    display: flex;
+}
+.title > span > img {
+    margin-right:0.5rem;
+}
+.title{
+}
+
+/*LEFT ASIDE*/
+.navOptions {
+    display : flex; flex-direction: column; justify-content: center;
+    position: fixed; left : 0;
+    height : 100dvh; width : 3rem;
+    /* background-color:aquamarine; */
+}
+.leftSideOption{
+    color:white;
+    font-size: 1.3rem;
+    margin: 1rem;
+    cursor: pointer;
+    transition : transform 0.3s linear;
+}
+.leftSideOption:hover{
+    transform: scale(1.2);
+}
+.selected {
+    color: #00f2ff !important;
+    cursor: default;
+    backdrop-filter: drop-shadow(10px 10px 10px #00f2ff86);
+  }
+
+/*FOOTER*/
 footer{
     position : fixed; bottom:0; left:0;
     height : 3rem; width:100%;
-    display : flex; justify-content: space-around; align-items: center;
-    background-color: aqua;
+    display : flex; justify-content: center; align-items: center;
+    /* background-color: aqua; */
     position : fixed;
 }
 footer > img {
     position : absolute; left : 0;
     margin-left : 1rem;
+    transition : transform 0.3s linear;
 }
-
-/*FOOTER*/
+footer > img:hover {
+    transform : scale(1.2);
+    cursor: pointer;
+}
 .filterOptions{
     display: flex; align-items: center; justify-content:space-between;
-    max-width : 50rem; height : 100%;
-    background-color: bisque;
+    width : 60rem; height : 100%;
+    /* background-color: bisque; */
+    color : white;
+    opacity : 0;
+    background-color: grey;
+    transition: opacity 0.2s ease-out;
 }
 .filter {
     font-family: 'Work Sans';
