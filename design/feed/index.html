@@ -43,49 +43,57 @@
         </div>
     </aside>
     <section class="feed">
-        
+        <div class="prePosts"></div>
+        <div class="posts">
+            <div class="post">
+                
+            </div>
+        </div>
     </section>
     <footer>
         <img src="./filter.svg" id="filterIcon">
-        <!-- <div class="filterOptions">
-            <div class="filter" style="font-family: 'Poppins' ">General</div>
-            <div class="filter" style="font-family: 'Work Sans' ">Close Friends</div>
-            <div class="filter" style="font-family: 'Source Sans 3' ">Inner Circle</div>
-            <div class="filter" style="font-family: 'Open Sans' ">Hot Girls</div>
-        </div> -->
-        <div class="filterOptions">
-            <div class="filter">General</div>
-            <div class="filter">Close Friends</div>
-            <div class="filter">Inner Circle</div>
+        <div class="filterOptionsContainer">
+            <div class="filterOptions">
+                <div class="filter">
+                    <span>General</span>
+                    <div class="statusContainer">
+                        
+                    </div>
+                </div>
+                <div class="filter">
+                    <span>Close Friends</span>
+                </div>
+                <div class="filter">
+                    <span>Inner Circle</span>
+                </div>
+            </div>
         </div>
     </footer>
-    <script>
-        let visible = false, hovering = false;
-        let bottomBar = document.querySelector(".filterOptions");
-        let filterIcon = document.querySelector("#filterIcon");
-        filterIcon.addEventListener('mouseenter',showFilterOptions);
-        bottomBar.addEventListener('mouseleave',hideFilterOptions);
-        bottomBar.addEventListener('mouseenter',setMouseHovering);
+    <!-- <script>
 
-        function showFilterOptions (){
-            bottomBar.style.opacity = 1;
-            visible = true;
+        let hovering = false, visible = false;
+
+        let filterOptionsContainer = document.querySelector(".filterOptionsContainer");
+        let filterIcon = document.querySelector("#filterIcon");
+
+        filterIcon.addEventListener('mouseenter', showFilterOptions);
+        filterOptionsContainer.addEventListener('mouseleave', hideFilterOptions);
+        filterOptionsContainer.addEventListener('mouseenter', mouseHovering);
+
+        function showFilterOptions(){
+            filterOptionsContainer.style.opacity = 1;
+            hovering = true;
         }
         function hideFilterOptions(){
-            if(visible && !hovering){
-                setTimeout(()=>{
-                    bottomBar.style.opacity = 0;
-                    visible = false;
-                },500);
-            } else {
-                return;
-            }
+            hovering = false;
+            setTimeout(()=>{
+                if(!hovering){
+                    filterOptionsContainer.style.opacity = 0;
+                }
+            },500)
         }
-        function setMouseHovering(){
-            if(){
-
-            }
+        function mouseHovering(){
+            hovering = true;
         }
-
-    </script>
+    </script> -->
 </body> 
