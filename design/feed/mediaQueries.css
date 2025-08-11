@@ -1,0 +1,12 @@
+@media (max-width : 65rem) {
+    /* html{
+        font-size: 30px;;
+    } */
+    body{
+        width : 100vw;
+    }
+    .feed{
+        width : 100vw;
+        background-color: bisque;
+    }
+}
