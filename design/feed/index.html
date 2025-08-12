@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Sociallyzer</title>
     <link href="./index.css" type="text/css" rel="stylesheet">
     <link href="./mediaQueries.css" type="text/css" rel="stylesheet">
@@ -62,12 +64,18 @@
 
                     </div>
                 </div>
+                <div class="description">
+                    This is my first post on this platform
+                </div>
                 <div class="postPic">
                     <img src="./Screenshot 2024-02-15 013817.jpg" class="mainPic">
                     <img src="./Screenshot 2024-02-15 013817.jpg" class="shadowPic">
                 </div>
                 <div class="postFooter">
-
+                    <div class="postActions">
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </div>
                 </div>
             </div>
             <div class="post">
@@ -86,6 +94,48 @@
                 <div class="postPic">
                     <img src="./Screenshot 2024-03-20 002014.jpg" class="mainPic">
                     <img src="./Screenshot 2024-03-20 002014.jpg" class="shadowPic">
+                </div>
+                <div class="postFooter">
+
+                </div>
+            </div>
+            <div class="post">
+                <div class="postHeader">
+                    <div class="userProfilePicContainer">
+                        <img src="./zdzszgh.png" class="userProfilePic">
+                    </div>
+                    <div class="postNameAndTime">
+                        <span class="postUserName">Rohan Rayalwar</span>
+                        <span class="timePosted">22:00 Monday 12/12/2025</span>
+                    </div>
+                    <div class="bookmarkOption">
+
+                    </div>
+                </div>
+                <div class="postPic">
+                    <img src="./zdzszgh.png" class="mainPic">
+                    <img src="./zdzszgh.png" class="shadowPic">
+                </div>
+                <div class="postFooter">
+
+                </div>
+            </div>
+            <div class="post">
+                <div class="postHeader">
+                    <div class="userProfilePicContainer">
+                        <img src="./dth.png" class="userProfilePic">
+                    </div>
+                    <div class="postNameAndTime">
+                        <span class="postUserName">Rohan Rayalwar</span>
+                        <span class="timePosted">22:00 Monday 12/12/2025</span>
+                    </div>
+                    <div class="bookmarkOption">
+
+                    </div>
+                </div>
+                <div class="postPic">
+                    <img src="./dth.png" class="mainPic">
+                    <img src="./dth.png" class="shadowPic">
                 </div>
                 <div class="postFooter">
 
@@ -139,7 +189,7 @@
                 if(!hovering){
                     filterOptionsContainer.style.opacity = 0;
                 }
-            },500)
+            },1000)
         }
         function mouseHovering(){
             hovering = true;
