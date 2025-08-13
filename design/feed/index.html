@@ -53,92 +53,104 @@
         <div class="posts">
             <div class="post">
                 <div class="postHeader">
-                    <div class="userProfilePicContainer">
-                        <img src="./Screenshot 2024-02-15 013817.jpg" class="userProfilePic">
+                    <div class="postInfo">
+                        <div class="userProfilePicContainer">
+                            <img src="./Screenshot 2024-02-15 013817.jpg" class="userProfilePic">
+                        </div>
+                        <div class="postNameAndTime">
+                            <span class="postUserName">Rushab Rayalwar</span>
+                            <span class="timePosted">03:30 Thursday 12/12/2025</span>
+                        </div>
                     </div>
-                    <div class="postNameAndTime">
-                        <span class="postUserName">Rushab Rayalwar</span>
-                        <span class="timePosted">03:30 Thursday 12/12/2025</span>
-                    </div>
-                    <div class="bookmarkOption">
-
+                    <div class="friendLevel">
+                        <span>General   </span>
                     </div>
                 </div>
-                <div class="description">
+                <!-- <div class="description">
                     This is my first post on this platform
-                </div>
+                </div> -->
                 <div class="postPic">
                     <img src="./Screenshot 2024-02-15 013817.jpg" class="mainPic">
                     <img src="./Screenshot 2024-02-15 013817.jpg" class="shadowPic">
                 </div>
                 <div class="postFooter">
                     <div class="postActions">
-                        <i class="fa-solid fa-message"></i>
-                        <i class="fa-solid fa-thumbs-up"></i>
+                        <div class="likeAndComment">
+                            <i class="fa-regular fa-thumbs-up postOption"></i>
+                            <i class="fa-regular fa-comment postOption"></i>
+                        </div>
+                        <div class="bookmark">
+                            <i class="fa-regular fa-bookmark postOption"></i>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="post">
                 <div class="postHeader">
-                    <div class="userProfilePicContainer">
-                        <img src="./Screenshot 2024-03-20 002014.jpg" class="userProfilePic">
+                    <div class="postInfo">
+                        <div class="userProfilePicContainer">
+                            <img src="./Screenshot 2024-03-20 002014.jpg" class="userProfilePic">
+                        </div>
+                        <div class="postNameAndTime">
+                            <span class="postUserName">Rohan Rayalwar</span>
+                            <span class="timePosted">22:34 Sunday 12/08/2025</span>
+                        </div>
                     </div>
-                    <div class="postNameAndTime">
-                        <span class="postUserName">Rohan Rayalwar</span>
-                        <span class="timePosted">22:00 Monday 12/12/2025</span>
-                    </div>
-                    <div class="bookmarkOption">
-
+                    <div class="friendLevel">
+                        <span>Close Friend</span>
                     </div>
                 </div>
+                <!-- <div class="description">
+                    This is my first post on this platform
+                </div> -->
                 <div class="postPic">
                     <img src="./Screenshot 2024-03-20 002014.jpg" class="mainPic">
                     <img src="./Screenshot 2024-03-20 002014.jpg" class="shadowPic">
                 </div>
                 <div class="postFooter">
-
+                    <div class="postActions">
+                        <div class="likeAndComment">
+                            <i class="fa-regular fa-thumbs-up postOption"></i>
+                            <i class="fa-regular fa-comment postOption"></i>
+                        </div>
+                        <div class="bookmark">
+                            <i class="fa-regular fa-bookmark postOption"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="post">
                 <div class="postHeader">
-                    <div class="userProfilePicContainer">
-                        <img src="./zdzszgh.png" class="userProfilePic">
+                    <div class="postInfo">
+                        <div class="userProfilePicContainer">
+                            <img src="./zdzszgh.png" class="userProfilePic">
+                        </div>
+                        <div class="postNameAndTime">
+                            <span class="postUserName">Rohan Rayalwar</span>
+                            <span class="timePosted">22:34 Sunday 12/08/2025</span>
+                        </div>
                     </div>
-                    <div class="postNameAndTime">
-                        <span class="postUserName">Rohan Rayalwar</span>
-                        <span class="timePosted">22:00 Monday 12/12/2025</span>
-                    </div>
-                    <div class="bookmarkOption">
-
+                    <div class="friendLevel">
+                        <span>Inner Circle </span>
                     </div>
                 </div>
+                <!-- <div class="description">
+                    This is my first post on this platform
+                </div> -->
                 <div class="postPic">
                     <img src="./zdzszgh.png" class="mainPic">
                     <img src="./zdzszgh.png" class="shadowPic">
                 </div>
                 <div class="postFooter">
-
-                </div>
-            </div>
-            <div class="post">
-                <div class="postHeader">
-                    <div class="userProfilePicContainer">
-                        <img src="./dth.png" class="userProfilePic">
+                    <div class="postActions">
+                        <div class="likeAndComment">
+                            <i class="fa-regular fa-thumbs-up postOption"></i>
+                            <i class="fa-regular fa-comment postOption"></i>
+                        </div>
+                        <div class="bookmark">
+                            <i class="fa-regular fa-bookmark postOption"></i>
+                        </div>
                     </div>
-                    <div class="postNameAndTime">
-                        <span class="postUserName">Rohan Rayalwar</span>
-                        <span class="timePosted">22:00 Monday 12/12/2025</span>
-                    </div>
-                    <div class="bookmarkOption">
-
-                    </div>
-                </div>
-                <div class="postPic">
-                    <img src="./dth.png" class="mainPic">
-                    <img src="./dth.png" class="shadowPic">
-                </div>
-                <div class="postFooter">
-
                 </div>
             </div>
         </div>
@@ -175,12 +187,18 @@
         let filterOptionsContainer = document.querySelector(".filterOptionsContainer");
         let filterIcon = document.querySelector("#filterIcon");
 
+        let footer = document.querySelector("footer"); //
+
         filterIcon.addEventListener('mouseenter', showFilterOptions);
         filterOptionsContainer.addEventListener('mouseleave', hideFilterOptions);
         filterOptionsContainer.addEventListener('mouseenter', mouseHovering);
 
         function showFilterOptions(){
-            filterOptionsContainer.style.opacity = 1;
+            filterOptionsContainer.style.display = 'flex'; // 
+            setTimeout(()=>{
+                filterOptionsContainer.style.opacity = 1;
+            },0);
+            footer.style.width = "100%"; // 
             hovering = true;
         }
         function hideFilterOptions(){
@@ -188,6 +206,11 @@
             setTimeout(()=>{
                 if(!hovering){
                     filterOptionsContainer.style.opacity = 0;
+                    setTimeout(()=>{
+                        filterOptionsContainer.style.display = 'none'; // 
+                        footer.style.width = 'fit-content';
+                    }, 250);
+                        
                 }
             },1000)
         }

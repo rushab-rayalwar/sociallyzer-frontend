@@ -50,7 +50,7 @@ header{
     display : flex; align-items: center; justify-content: space-between;
     padding : 0 4rem 0 4rem;
     box-sizing: border-box;
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(2rem);
     /* background: linear-gradient(to bottom, rgba(49,49,49,0.78),rgba(255,255,255,0.06) ); */
     background-color: rgba(26,26,26,0.78);
 
@@ -128,7 +128,10 @@ header{
     margin-top: 2rem;
 }
 .postHeader {
-    display: flex; align-items: center; margin-bottom: 0.8rem;
+    display: flex; align-items: center; margin-bottom: 0.8rem; justify-content: space-between;
+}
+.postInfo{
+    display: flex; align-items: center;
 }
 .description{
     font-family: 'Open Sans';
@@ -152,11 +155,21 @@ header{
 .postUserName{
     font-family: 'Work Sans';
     font-weight: 300;
+
 }
 .timePosted {
     color : rgba(255, 255, 255, 0.568);
     font-size: 0.8rem;
     font-family: 'Open Sans';
+}
+.friendLevel{
+    font-family: 'Poppins';
+    letter-spacing: 0.1rem;
+    /* font-weight: 600; */
+    color: rgba(255, 255, 255, 0.681);
+    /* filter: drop-shadow(0 0 0.5rem white) */
+    text-shadow: 0 0 2rem rgba(255, 255, 255, 0.053);
+    font-size: 0.8rem;
 }
 .postPic {
     /* width : 28.5rem; height : 38rem; */
@@ -169,27 +182,45 @@ header{
     object-fit: cover;
     position : absolute; left : 0; top:0;
     z-index : 2;
+    border-radius: 0.3rem;
 }
 .postPic > img.shadowPic {
-    filter : blur(1.5rem); opacity : 0.2;
+    filter : blur(4rem); opacity : 0.4;
     position : absolute; right: -1rem;
     z-index: 1;
+}
+.postActions{
+    display: flex;
+    justify-content: space-between;
+    margin-top : 0.5rem;
+}
+.postOption{
+    font-size: 1.3rem;
+    margin : 0.8rem;
+    transform : scale(1);
+    transition : transform 0.2s ease-out;
+}
+.postOption:hover{
+    cursor: pointer;
+    /* font-size: 1.5rem; */    
+    transform : scale(1.2);
 }
 
 /*FOOTER*/
 footer{
     position : fixed; bottom:0; left:0;
-    height : 3rem; width:100%;
-    /* background-color: aqua; */
+    height : 3rem;
+    /* width:100%; */
+    width : fit-content; /**/
     z-index: 3;
 }
-footer > img {
+#filterIcon {
     position : absolute; left : 0; top : 0.5rem;
     margin-left : 1rem;
     transition : transform 0.3s linear;
     z-index: 2;
 }
-footer > img:hover {
+#filterIcon:hover {
     transform : scale(1.2);
     cursor: pointer;
 }
@@ -201,10 +232,12 @@ footer > img:hover {
 }
 .filterOptionsContainer{
     width:100%; height : 100%;
-    display : flex; justify-content: center; align-items: center;
+    /* display : flex;  */
+    display: none; /**/
+    justify-content: center; align-items: center;
     position : relative; left:0; top:0;
     z-index : 1;
-    transition: opacity 0.3s ease-out;
+    transition: opacity 0.2s ease-out;
     opacity : 0;
     backdrop-filter: blur(1rem);
     box-shadow: 0 0 0.5rem 0 rgba(0,0,0,0.2);
