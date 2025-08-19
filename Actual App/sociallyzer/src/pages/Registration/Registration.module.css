@@ -1,0 +1,151 @@
+/*tags*/
+body{
+    background-image: linear-gradient(to bottom right, #1B262C, #0F4C75, #00B7C2);
+    height: 100vh;
+    /* overflow-y: hidden; */
+}
+input::placeholder{
+    color:rgba(255, 255, 255, 0.381);    
+}
+
+#root{
+    height:100vh;
+}
+
+/*utility*/
+.glass{
+    /* position:absolute; top:0; right:0;
+    height:100%; width : 100%; */
+    border-width: 2px 0 0 1px;
+    border-left-color: rgba(255, 255, 255, 0.09);
+    border-top-color: #00b8c208; /* */
+    border-style:solid;
+    box-sizing: border-box;
+    /* z-index: 3; */
+
+    border-radius : 1rem;
+    background: linear-gradient(to bottom right, rgba(0,0,0,0), rgba(255, 255, 255, 0.065), rgba(0,0,0,0));
+    backdrop-filter: blur(3rem);
+}
+
+.main{
+    margin: auto;
+    width : 20rem; height: 100%;
+    display: flex; align-items: center; justify-content: center;flex-direction: column;
+}
+.main > form {
+    height:fit-content; width:23rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem 0 rgba(0, 46, 46, 0.1);
+    position:relative; z-index: 2;
+    display:flex; justify-content: center; align-items: center;
+    padding: 0.8rem;
+}
+.reference{
+    height : 10rem; width:10rem; background-color: #ff00a2;
+    z-index: 1;position: absolute;
+    top:70%; right:50%;
+}
+
+/*title*/
+.title{
+    position: relative;
+    transform: scale(0.4);
+}
+.title > span{  
+    font-family: "Poiret One", sans-serif;
+    font-weight: 600;
+    font-style:bold;
+    font-size: 3.5rem;
+    color: white;
+    letter-spacing: 1rem;
+    position: relative;
+}
+.title > img {
+    position : absolute;
+    transform:scale(0.5);
+    left : -7%;
+    top : -30%;
+}
+
+/*form*/
+.formElements{
+    width:100%; height:100%;
+}
+.field{
+    display: flex; flex-direction: column;
+    font-family: 'Poppins';
+    color:white;
+    margin-bottom: 1.5rem;
+}
+.field > input {
+    height:2rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    outline : none; border : none;
+    padding-left: 0.5rem;
+    background-color:rgba(255,255,255,0.11);
+    color:white;
+}
+.field > input:focus {
+    /* box-shadow: 0 0 0px 0 rgba(255, 255, 255, 0.712); */
+    outline : 1px solid rgba(255, 255, 255, 0.564);
+}
+.submitButton{
+    color : white;
+    padding : 0.4rem;
+    /* background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.218)); */
+    border-radius : 0.5rem;
+    font-size: 1.1rem;
+    overflow: hidden;
+    font-family: 'Poppins';
+
+    background-color: rgba(0, 162, 255, 0.55);
+    display: flex;
+    align-items: center;
+    transition : radial-gradient 1s ease-out;
+    position: relative;
+    width :fit-content;
+
+    margin:auto;
+}
+.submitButton:hover{
+    background-color: rgb(0, 162, 255);
+    cursor:pointer;
+}
+.submitButton:hover > .buttonHoverBG {
+    transform: translate(10rem, -10rem) scale(0.7);
+    transition-duration: 0.6s;
+}
+.submitButton > span {
+    position: relative; z-index: 2;
+}
+.buttonHoverBG{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+19,003cad+49,00a2e1+80 */
+    background: radial-gradient(circle at center,  rgb(0, 0, 0) 0%,rgb(0, 0, 0) 15%,rgba(0,60,173,1) 49%,rgba(0,162,225,1) 80%); 
+    width:20rem;
+    height:20rem;
+    z-index: 1;
+    right : 0;
+    border-radius: 50%;
+    transform : translate(10rem, -10rem) scale(0);
+    position : absolute;
+    right : 25%; top:50%;
+    transition : transform 0s ease-out;
+}
+
+/*LOGIN LINK*/
+.loginLink {
+    font-family: 'Poppins';
+    color : rgba(255, 255, 255, 0.673);
+    font-size: 0.9rem;
+    margin-top : 1rem;
+    font-weight: 200;
+}
+.loginLink > span > a {
+    color : rgba(0,221,255,1);
+}
+.loginLink > span > a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

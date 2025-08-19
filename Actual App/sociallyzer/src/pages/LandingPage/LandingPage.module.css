@@ -1,0 +1,173 @@
+/*utility*/
+.preWhiteSpace{
+    white-space: 'pre-wrap';
+}
+
+/* tags */
+body{
+    background-image: linear-gradient(to bottom right, #1B262C, #0F4C75, #00B7C2);
+    min-height: 100vh;
+    /* overflow-y: hidden; */
+}
+
+/* classes */
+#reference{ z-index: 1;
+    position: absolute; height:9rem; width: 19rem; background-color: #1B262C; top:50%; left:50%; transform: translate(-50%, -50%);
+    /* background-image: radial-gradient(circle, rgb(255, 183, 0) 0% 27%, rgb(118, 0, 154) 39% 60%, rgba(0, 162, 255, 0.771) 72% 100%); */
+}
+.title{
+    margin : 9rem 0 0rem 0;
+    animation: intro-slide 0.6s ease-out forwards;
+}
+.title > span{  
+    font-family: "Poiret One", sans-serif;
+    font-weight: 600;
+    font-style:bold;
+    font-size: 3.5rem;
+    color: white;
+    letter-spacing: 1rem;
+    position: relative;
+}
+.title > span > img {
+    position : absolute;
+    transform:scale(0.5);
+    left : -7%;
+    top : -30%;
+    animation : glow 0.7s ease-in-out 0.6s infinite alternate backwards;
+}
+.main{
+    width : 65rem;
+    margin : auto;
+    position:relative;
+    height: 100vh;
+}
+.tag{  
+    font-family: "Poiret One", sans-serif;
+    font-weight: 600;
+    font-style:bold;
+    color: white;
+    /* margin: 0.9rem 0 0 0; */
+    animation: intro-slide 0.6s ease-out 0.8s backwards;
+    letter-spacing: 0.3rem;
+}
+.description {
+    margin : 8rem 0 0 0;
+    color : white;
+    font-size: 1.8rem;
+    font-family: 'Source Sans 3';
+    animation : fade-in 0.5s ease-out 0.3s backwards;
+}
+.headingCtaButtons{
+    margin-top: 5rem;
+    display: flex;
+    animation : fade-in 0.5s ease-out 0.5s backwards;
+}
+.ctaButton{
+    color : white;
+    padding : 0.4rem;
+    /* background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.218)); */
+    border-radius : 0.5rem;
+    margin-right :1rem;
+    position:relative;
+    font-size: 1.1rem;
+    overflow: hidden;
+}
+.login, .createAccount{
+    transition : text-shadow 0.3s ease-out;
+    text-shadow: 0 0 0px rgba(127, 243, 183, 0.579);
+}
+.login:hover, .createAccount:hover{    
+    text-shadow: 0 0 4px white; /*rgba(0, 162, 255, 0.771)*/
+    cursor: pointer;
+}
+.glass{
+    position:absolute;
+    top:0;
+    right:0;
+    height:100%;
+    width : 100%;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.058) 0% 60%, rgba(255, 255, 255, 0.118));
+    border-width: 2px 0 0 1px;
+    border-left-color: rgba(255, 255, 255, 0.09);
+    border-top-color: rgba(255, 255, 255, 0.111);
+    border-style: solid;
+    box-sizing: border-box;
+    z-index: 3;
+}
+.createAccount{
+    background-color: rgba(0, 162, 255, 0.771);
+    display: flex;
+    align-items: center;
+    transition : radial-gradient 1s ease-out;
+    position: relative;
+}
+.createAccount:hover{
+    background-color: rgb(0, 162, 255);
+}
+.createAccount > img {
+    margin-left:0.2rem;
+    height:1rem;
+    width:1rem;
+    opacity : 100;
+    z-index: 2;
+    position: relative;
+}
+.createAccount > .glass {
+    opacity:0;
+}
+.createAccount > span {
+    z-index: 2;
+    position: relative;
+}
+.buttonHoverBG{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+19,003cad+49,00a2e1+80 */
+    background: radial-gradient(circle at center,  rgb(0, 0, 0) 0%,rgb(0, 0, 0) 15%,rgba(0,60,173,1) 49%,rgba(0,162,225,1) 80%); 
+    width:20rem;
+    height:20rem;
+    z-index: 1;
+    right : 0;
+    border-radius: 50%;
+    transform : translate(10rem, -10rem) scale(0);
+    position : absolute;
+    right : 25%; top:50%;
+    transition : transform 0s ease-out;
+}
+.createAccount:hover > .buttonHoverBG {
+    transform: translate(10rem, -10rem) scale(1.4);
+    transition-duration: 0.6s;
+}
+
+.bgAnimations{
+    background-color: #a700b0;
+    width:50%; height:100vh;
+    position:absolute;
+    right:0; top:0;
+}
+
+@keyframes intro-slide {
+    0% {
+        opacity : 0;
+        transform : translateX(-3%);
+    }
+    100% {
+        opacity:1;
+        transform: translateX(0);
+        filter : blur(0);
+    }
+}
+@keyframes fade-in {
+    0% {
+        opacity : 0;
+    }
+    100%{
+        opacity:1;
+    }
+}
+@keyframes glow {
+    0%{
+        transform : scale(0.6);
+    }
+    100%{
+        transform : scale(0.5);
+    }
+}
