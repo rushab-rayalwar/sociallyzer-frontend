@@ -1,40 +1,71 @@
+// third party imports
+import { useRef } from "react";
+import axios from "axios";
 
 // local imports
 import logoSVG from "../../assets/icons/logo.svg";
 import styles from "./Registration.module.css";
 
 export default function Registration(){
+
+    const backendURL = import.meta.env.VITE_BACKEND_URL; // NOTE THIS
+    console.log(backendURL, "Backend URL");
+
+    const name = useRef();
+    const email = useRef();
+    const password = useRef();
+
+    // event handlers
+    async function onSubmit(){
+        let data = {
+            name : name.current.value,
+            email : email.current.value,
+            password : password.current.value
+        };
+        await axios.post(  // NOTE THIS
+            backendURL+"/api/users/signup",
+            data,
+            {
+                withCredentials:true,
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            }
+        )
+    }
     return(
         <>
+        <div className={styles.background}>
             <div className={styles.main}>
                 <div className={styles.title}>
                     <img src={logoSVG} alt="logo"></img>
                     <span>SOCIALLYZER</span>
                 </div>
                 <form className={styles.glass}>
-                    <div className={styles.formElement}>
+                    <div className={styles.formElements}>
                         <div className={`${styles.field} ${styles.name}`}>
-                            <label for="name">Name</label>
-                            <input type="string" name="name" placeholder="John Doe"></input>
+                            <label htmlFor="name">Name</label>
+                            <input type="string" id="name" placeholder="John Doe" ref={name}></input>
                         </div>
                         <div className={`${styles.field} ${styles.email}`}>
-                            <label for="email">Email</label>
-                            <input type="string" name="email" placeholder="johndoe@xyz.com"></input>
+                            <label htmlFor="email">Email</label>
+                            <input type="string" id="email" placeholder="johndoe@xyz.com" ref={email}></input>
                         </div>
                         <div className={`${styles.field} ${styles.password}`}>
-                            <label for="password">Password</label>
-                            <input type="password" name="password" placeholder="Password Here"></input>
+                            <label htmlFor="password">Password</label>
+                            <input type="password" id="password" placeholder="Password Here" ref={password}></input>
                         </div>
-                        <div className={styles.submitButton}>
+                        <div className={styles.submitButton} onClick={onSubmit}>
                             <span>Register</span>
                         
-                            <div className="buttonHoverBG"></div>
+                            <div className={styles.buttonHoverBG}></div>
                         </div>
                     </div>
                 </form>
                 <div className={styles.loginLink}>
                     <span>Already have an account? <a>Login</a> </span>
                 </div>
+            </div>
             </div>
         </>
     )

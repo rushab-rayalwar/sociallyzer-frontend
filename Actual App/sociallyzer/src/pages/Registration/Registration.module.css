@@ -1,15 +1,11 @@
 /*tags*/
-body{
+.background{ /*body */
     background-image: linear-gradient(to bottom right, #1B262C, #0F4C75, #00B7C2);
     height: 100vh;
     /* overflow-y: hidden; */
 }
 input::placeholder{
     color:rgba(255, 255, 255, 0.381);    
-}
-
-#root{
-    height:100vh;
 }
 
 /*utility*/
@@ -30,7 +26,7 @@ input::placeholder{
 
 .main{
     margin: auto;
-    width : 20rem; height: 100%;
+    width : 20rem; height: 100vh;
     display: flex; align-items: center; justify-content: center;flex-direction: column;
 }
 .main > form {

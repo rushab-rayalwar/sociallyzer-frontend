@@ -1,6 +1,7 @@
 // third party imports
 import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 // local imports
 import logoSVG from "../../assets/icons/logo.svg";
@@ -19,19 +20,24 @@ export default function LandingPage(){
     }
     function gotoLogin(){
         console.log("Login Clicked");
-        useNavigate("/login");
+        navigate("/login");
     }
 
     return(
         <>
-            <section className={styles.main}>
+        <div className={styles.background}>
+            <motion.section className={styles.main}
+            initial={{opacity:1, scale:1}}
+            exit={{opacity:0, scale:0.5}}
+            transition={{duration:0.3, ease:'easeOut'}}
+            >
                 <div className={styles.heading}>
-                    <h1 className={styles.title}>
+                    <div className={styles.title}>
                         <span>
                             <img src={logoSVG} alt="logo"></img>
                             SOCIALLYZER
                         </span>
-                    </h1>
+                    </div>
                     <h2 className={styles.tag}>Your Social Companion</h2>
                 </div>
                 <div className={`${styles.description} ${styles.preWhiteSpace}`}>Welcome to Sociallyzer!<br></br>
@@ -51,7 +57,8 @@ export default function LandingPage(){
                         
                     </div>
                 </div>
-            </section>
+            </motion.section>
+            </div>
         </>
     )
 }
