@@ -1,5 +1,6 @@
 // thir party libraries
 import { useState, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 // fontawesome imports
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -21,11 +22,20 @@ export default function Home(){
     const [visible, setVisible] = useState(false);
     
     const filterOptionsContainer = useRef();
-    const filterIcon = useRef();
+    const filterIconRef = useRef();
     const footer = useRef();
 
     function showFilterOptions(){
-        setHovering(true);
+        if(!visible){
+            setVisible(true);
+        }
+    }
+    function hideFilterOptions(){
+        setTimeout(()=>{
+            if(!hovering){
+                setHovering(false);
+            }
+        },1000);
     }
     // // let hovering = false, visible = false;
 
@@ -125,13 +135,13 @@ export default function Home(){
                         <div className={styles.postActions}>
                             <div className={styles.likeAndComment}>
                                 {/* <i className="fa-regular fa-thumbs-up postOption"></i> */}
-                                <FontAwesomeIcon icon={faThumbsUp}></FontAwesomeIcon>
+                                <FontAwesomeIcon className={styles.postOption} icon={faThumbsUp}></FontAwesomeIcon>
                                 {/* <i className="fa-regular fa-comment postOption"></i> */}
-                                <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
+                                <FontAwesomeIcon className={styles.postOption} icon={faComment}></FontAwesomeIcon>
                             </div>
                             <div className={styles.bookmark}>
                                 {/* <i className="fa-regular fa-bookmark postOption"></i> */}
-                                <FontAwesomeIcon icon={bookmarkRegular}></FontAwesomeIcon>
+                                <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
                             </div>
                         </div>
                     </div>
@@ -159,13 +169,13 @@ export default function Home(){
                         <div className={styles.postActions}>
                             <div className={styles.likeAndComment}>
                                 {/* <i className="fa-regular fa-thumbs-up postOption"></i> */}
-                                <FontAwesomeIcon icon={faThumbsUp}></FontAwesomeIcon>
+                                <FontAwesomeIcon className={styles.postOption} icon={faThumbsUp}></FontAwesomeIcon>
                                 {/* <i className="fa-regular fa-comment postOption"></i> */}
-                                <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
+                                <FontAwesomeIcon className={styles.postOption} icon={faComment}></FontAwesomeIcon>
                             </div>
                             <div className={styles.bookmark}>
                                 {/* <i className="fa-regular fa-bookmark postOption"></i> */}
-                                <FontAwesomeIcon icon={bookmarkRegular}></FontAwesomeIcon>
+                                <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
                             </div>
                         </div>
                     </div>
@@ -207,28 +217,36 @@ export default function Home(){
             </div>
         </section>
         <footer className={styles.footer}>
-            <img src={filterIcon} className={styles.filterIcon} ref={filterIcon} onMouseEnter={showFilterOptions}}></img>
-            <div className={styles.filterOptionsContainer}>
-                <div className={styles.filterOptions}>
-                    <div className={styles.filter}>
-                        <span>General</span>
-                        <div className={styles.statusContainer}>
-                            <div className={styles.dot}></div>
+            <img src={filterIcon} className={styles.filterIcon} ref={filterIconRef} onMouseEnter={showFilterOptions}></img>
+            <AnimatePresence>
+                {hovering && visible && <motion.div className={styles.filterOptionsContainer}
+                initial={{opacity:0, y:"4.0%", filter:"blur(0.3rem)"}}
+                animate={{opacity:1, y:"0%", filter:"blur(0)", transition:{duration:0.2, ease:"easeOut"}}}
+                exit={{opacity:0, y:"4.0%", filter:"blur(0.3rem)", transition:{duration:0.2, ease:"easeIn"}}}
+                onMouseLeave={hideFilterOptions}
+                onHoverStart={showFilterOptions}
+                >
+                    <div className={styles.filterOptions}>
+                        <div className={styles.filter}>
+                            <span>General</span>
+                            <div className={styles.statusContainer}>
+                                <div className={styles.dot}></div>
+                            </div>
+                        </div>
+                        <div className={styles.filter}>
+                            <span>Close Friends</span>
+                            <div className={styles.statusContainer}>
+                                <div className={styles.dot}></div>
+                            </div>
+                        </div>
+                        <div className={styles.filter}>
+                            <span>Inner Circle</span>
+                            <div className={styles.statusContainer}>
+                            </div>
                         </div>
                     </div>
-                    <div className={styles.filter}>
-                        <span>Close Friends</span>
-                        <div className={styles.statusContainer}>
-                            <div className={styles.dot}></div>
-                        </div>
-                    </div>
-                    <div className={styles.filter}>
-                        <span>Inner Circle</span>
-                        <div className={styles.statusContainer}>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </motion.div>}
+            </AnimatePresence>
         </footer>
         </div>
         </>
