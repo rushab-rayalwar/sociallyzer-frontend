@@ -17,25 +17,27 @@ import postIMG3 from "../../assets/dummyPosts/zdzszgh.png";
 import filterIcon from "../../assets/icons/filter.svg";
 
 
-export default function Home(){
-    const [hovering, setHovering] = useState(false);
+export default function Home(){ // NOTE the state logic here
+    const hovering = useRef(false);
+    const timeout = useRef(null);
     const [visible, setVisible] = useState(false);
     
-    const filterOptionsContainer = useRef();
     const filterIconRef = useRef();
-    const footer = useRef();
 
-    function showFilterOptions(){
-        if(!visible){
-            setVisible(true);
-        }
+    function cursorEntered(){
+        console.log("enter");
+        hovering.current = true;
+        if(timeout) clearTimeout(timeout.current);
+        setVisible(true);
     }
-    function hideFilterOptions(){
-        setTimeout(()=>{
-            if(!hovering){
-                setHovering(false);
+    function cursorLeft(){
+        console.log("leave");
+        hovering.current = false;
+        timeout.current = setTimeout(()=>{
+            if(!hovering.current){
+                setVisible(false);
             }
-        },1000);
+        }, 600);
     }
     // // let hovering = false, visible = false;
 
@@ -217,14 +219,14 @@ export default function Home(){
             </div>
         </section>
         <footer className={styles.footer}>
-            <img src={filterIcon} className={styles.filterIcon} ref={filterIconRef} onMouseEnter={showFilterOptions}></img>
+            <img src={filterIcon} className={styles.filterIcon} ref={filterIconRef} onMouseEnter={cursorEntered} onMouseLeave={cursorLeft}></img>
             <AnimatePresence>
-                {hovering && visible && <motion.div className={styles.filterOptionsContainer}
+                {visible && <motion.div className={styles.filterOptionsContainer}
                 initial={{opacity:0, y:"4.0%", filter:"blur(0.3rem)"}}
                 animate={{opacity:1, y:"0%", filter:"blur(0)", transition:{duration:0.2, ease:"easeOut"}}}
                 exit={{opacity:0, y:"4.0%", filter:"blur(0.3rem)", transition:{duration:0.2, ease:"easeIn"}}}
-                onMouseLeave={hideFilterOptions}
-                onHoverStart={showFilterOptions}
+                onMouseLeave={cursorLeft}
+                onMouseEnter={cursorEntered}
                 >
                     <div className={styles.filterOptions}>
                         <div className={styles.filter}>
