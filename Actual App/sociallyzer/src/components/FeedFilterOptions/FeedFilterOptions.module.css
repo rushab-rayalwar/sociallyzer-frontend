@@ -1,0 +1,47 @@
+.filterOptionsContainer{
+    width:100%; height : 100%;
+    display : flex; 
+    /* display: none;  */
+    justify-content: center; align-items: center;
+    position : relative; left:0; top:0;
+    z-index : 1;
+    /* transition: opacity 0.2s ease-out; */
+    backdrop-filter: blur(1rem);
+    box-shadow: 0 0 0.5rem 0 rgba(0,0,0,0.2);
+    /* background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0)); */
+    background: linear-gradient(to bottom,rgba(63,63,63,0.5) , rgba(40,40,40,1));
+}
+.filterOptions{
+    display: flex; align-items: center; justify-content:space-between;
+    width : 60rem; height : 100%;
+    /* background-color: bisque; */
+    color : white;
+}
+.filter {
+    font-family: 'Poppins';
+    display: flex; align-items: center;
+    cursor: default;
+    display: flex;
+    /* background-color: grey; */
+    height:100%;
+    padding : 0 1rem 0 1rem;
+    border-radius: 1rem;
+}
+.filter:hover{
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.158), rgba(255, 255, 255, 0.237));
+}
+.filter:active{
+    background-color: #00f2ff67;
+}
+.statusContainer{
+    height:0.7rem; width:0.7rem;
+    border-radius: 50%;
+    border : 1px solid rgba(255, 255, 255, 0.584);
+    margin-left : 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+}
+.dot{
+    height:60%; width:60%;
+    background-color: #00f2ff;
+    border-radius: 50%;
+}

@@ -1,13 +1,13 @@
-// thir party libraries
+// external imports
 import { useState, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-// fontawesome imports
+import { AnimatePresence } from "framer-motion";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faHouse, faUser, faUsers, faBookmark as bookmarkSolid} from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
-// locale imports
+
+// local imports
 import styles from "./HomePage.module.css";
+import FeedFilterOptions from "../../components/FeedFilterOptions/FeedFilterOptions.jsx";
+import Navbar from "../../components/Navbar/Navbar.jsx";
 
 // images / svgs
 import icon from "../../assets/icons/icon.svg";
@@ -39,41 +39,6 @@ export default function Home(){ // NOTE the state logic here
             }
         }, 600);
     }
-    // // let hovering = false, visible = false;
-
-    // let filterOptionsContainer = document.querySelector(".filterOptionsContainer");
-    // let filterIcon = document.querySelector("#filterIcon");
-
-    // let footer = document.querySelector("footer"); //
-
-    // filterIcon.addEventListener('mouseenter', showFilterOptions);
-    // filterOptionsContainer.addEventListener('mouseleave', hideFilterOptions);
-    // filterOptionsContainer.addEventListener('mouseenter', mouseHovering);
-
-    // function showFilterOptions(){
-    //     filterOptionsContainer.style.display = 'flex'; // 
-    //     setTimeout(()=>{
-    //         filterOptionsContainer.style.opacity = 1;
-    //     },0);
-    //     footer.style.width = "100%"; // 
-    //     hovering = true;
-    // }
-    // function hideFilterOptions(){
-    //     hovering = false;
-    //     setTimeout(()=>{
-    //         if(!hovering){
-    //             filterOptionsContainer.style.opacity = 0;
-    //             setTimeout(()=>{
-    //                 filterOptionsContainer.style.display = 'none'; // 
-    //                 footer.style.width = 'fit-content';
-    //             }, 250);
-                    
-    //         }
-    //     },1000)
-    // }
-    // function mouseHovering(){
-    //     hovering = true;
-    // }
     return (
         <>
         <div className={styles.background}>
@@ -93,24 +58,7 @@ export default function Home(){ // NOTE the state logic here
                 <span>Rushab Rayalwar</span>
             </div>
         </header>
-        <aside className={styles.navOptions}>
-            <div className={`${styles.leftSideOption} ${styles.selected}`}>
-                {/* <i className="fa-solid fa-house"></i> */}
-                <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
-            </div>
-            <div className={styles.leftSideOption}>
-                {/* <i className="fa-solid fa-user"></i> */}
-                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-            </div>
-            <div className={styles.leftSideOption}>
-                {/* <i className="fa-solid fa-users"></i> */}
-                <FontAwesomeIcon icon={faUsers}></FontAwesomeIcon>
-            </div>
-            <div className={styles.leftSideOption}>
-                {/* <i className="fa-solid fa-bookmark"></i> */}
-                <FontAwesomeIcon icon={bookmarkSolid}></FontAwesomeIcon>
-            </div>
-        </aside>
+        <Navbar/>
         <section className={styles.feed}>
             <div className={styles.prePosts}></div>
             <div className={styles.posts}>
@@ -221,33 +169,7 @@ export default function Home(){ // NOTE the state logic here
         <footer className={styles.footer}>
             <img src={filterIcon} className={styles.filterIcon} ref={filterIconRef} onMouseEnter={cursorEntered} onMouseLeave={cursorLeft}></img>
             <AnimatePresence>
-                {visible && <motion.div className={styles.filterOptionsContainer}
-                initial={{opacity:0, y:"4.0%", filter:"blur(0.3rem)"}}
-                animate={{opacity:1, y:"0%", filter:"blur(0)", transition:{duration:0.2, ease:"easeOut"}}}
-                exit={{opacity:0, y:"4.0%", filter:"blur(0.3rem)", transition:{duration:0.2, ease:"easeIn"}}}
-                onMouseLeave={cursorLeft}
-                onMouseEnter={cursorEntered}
-                >
-                    <div className={styles.filterOptions}>
-                        <div className={styles.filter}>
-                            <span>General</span>
-                            <div className={styles.statusContainer}>
-                                <div className={styles.dot}></div>
-                            </div>
-                        </div>
-                        <div className={styles.filter}>
-                            <span>Close Friends</span>
-                            <div className={styles.statusContainer}>
-                                <div className={styles.dot}></div>
-                            </div>
-                        </div>
-                        <div className={styles.filter}>
-                            <span>Inner Circle</span>
-                            <div className={styles.statusContainer}>
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>}
+                {visible && <FeedFilterOptions visible={visible} cursorLeft={cursorLeft} cursorEntered={cursorEntered}/>} {/* NOTE THIS */}
             </AnimatePresence>
         </footer>
         </div>
