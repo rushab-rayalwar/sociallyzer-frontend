@@ -102,7 +102,7 @@ header (top) : 4
     margin-top: 2rem;
     border-radius: 0.4rem;
     /* background-color: rgba(255, 255, 255, 0.03); */
-    background: linear-gradient(to right, rgba(255,255,255,0.02), rgba(255,255,255,0.03m), rgba(255,255,255,0.02));
+    background: linear-gradient(to right, rgba(255,255,255,0.03), rgba(255,255,255,0.04), rgba(255,255,255,0.03));
     backdrop-filter: blur(3rem);
     overflow: hidden;
 }

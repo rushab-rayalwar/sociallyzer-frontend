@@ -8,6 +8,7 @@ import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortaweso
 import styles from "./HomePage.module.css";
 import FeedFilterOptions from "../../components/FeedFilterOptions/FeedFilterOptions.jsx";
 import Navbar from "../../components/Navbar/Navbar.jsx";
+import FriendSuggestions from "../../components/FriendSuggestions/FriendSuggestions.jsx";
 
 // images / svgs
 import icon from "../../assets/icons/icon.svg";
@@ -59,6 +60,7 @@ export default function Home(){ // NOTE the state logic here
             </div>
         </header>
         <Navbar/>
+        <FriendSuggestions/>
         <section className={styles.feed}>
             <div className={styles.prePosts}></div>
             <div className={styles.posts}>
