@@ -9,6 +9,7 @@ import styles from "./HomePage.module.css";
 import FeedFilterOptions from "../../components/FeedFilterOptions/FeedFilterOptions.jsx";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import FriendSuggestions from "../../components/FriendSuggestions/FriendSuggestions.jsx";
+import Post from "../../components/Post/Post.jsx";
 
 // images / svgs
 import icon from "../../assets/icons/icon.svg";
@@ -98,7 +99,7 @@ export default function Home(){ // NOTE the state logic here
                         </div>
                     </div>
                 </div>
-                <div className={styles.post}>
+                {/* <div className={styles.post}>
                     <div className={styles.postHeader}>
                         <div className={styles.postInfo}>
                             <div className={styles.userProfilePicContainer}>
@@ -120,18 +121,16 @@ export default function Home(){ // NOTE the state logic here
                     <div className={styles.postFooter}>
                         <div className={styles.postActions}>
                             <div className={styles.likeAndComment}>
-                                {/* <i className="fa-regular fa-thumbs-up postOption"></i> */}
                                 <FontAwesomeIcon className={styles.postOption} icon={faThumbsUp}></FontAwesomeIcon>
-                                {/* <i className="fa-regular fa-comment postOption"></i> */}
                                 <FontAwesomeIcon className={styles.postOption} icon={faComment}></FontAwesomeIcon>
                             </div>
                             <div className={styles.bookmark}>
-                                {/* <i className="fa-regular fa-bookmark postOption"></i> */}
                                 <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
+                <Post/>
                 <div className={styles.post}>
                     <div className={styles.postHeader}>
                         <div className={styles.postInfo}>
