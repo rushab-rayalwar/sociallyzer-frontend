@@ -7,32 +7,57 @@ import { Provider } from "react-redux";
 
 // local imports
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
-import Registration from "./pages/Registration/Registration.jsx";
-import Home from "./pages/HomePage/HomePage.jsx";
+import RegistrationPage from "./pages/Registration/RegistrationPage.jsx";
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import PostDetailsPage from "./pages/PostDetailsPage/PostDetailsPage.jsx";
 import { store } from "./redux/store.js";
 
-function App() {
+// function App() {
+//   const router = createBrowserRouter([
+//     {
+//       path:"/",
+//       element:<LandingPage/>
+//     },
+//     {
+//       path:"/register",
+//       element: <Registration/>
+//     },
+//     {
+//       path:"/home",
+//       element:<Home/>
+//     }
+//   ]); 
+//   return(
+//     <Provider store={store}>
+//       <AnimatePresence>
+//         <RouterProvider router={router} />
+//       </AnimatePresence>
+//     </Provider>
+//   )
+// }
+
+export function App(){
   const router = createBrowserRouter([
     {
-      path:"/",
-      element:<LandingPage/>
+      path:"/", element : <LandingPage/>
     },
     {
-      path:"/register",
-      element: <Registration/>
+      path:"/home", element: <HomePage/>, children: [
+        {
+          path : ":postId", element : <PostDetailsPage/>
+        }
+      ]
     },
     {
-      path:"/home",
-      element:<Home/>
+      path:"/register", element: <RegistrationPage/>
     }
   ]);
-
   return(
-    <Provider store={store}>
-      <AnimatePresence>
-        <RouterProvider router={router} />
-      </AnimatePresence>
-    </Provider>
+    <>
+      <Provider store={store}>
+        <RouterProvider router={router}></RouterProvider>
+      </Provider>
+    </>
   )
 }
 

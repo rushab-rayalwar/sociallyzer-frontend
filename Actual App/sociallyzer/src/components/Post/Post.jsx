@@ -30,13 +30,10 @@ export default function Post(){
                 <div className={styles.postFooter}>
                     <div className={styles.postActions}>
                         <div className={styles.likeAndComment}>
-                            {/* <i className="fa-regular fa-thumbs-up postOption"></i> */}
                             <FontAwesomeIcon className={styles.postOption} icon={faThumbsUp}></FontAwesomeIcon>
-                            {/* <i className="fa-regular fa-comment postOption"></i> */}
                             <FontAwesomeIcon className={styles.postOption} icon={faComment}></FontAwesomeIcon>
                         </div>
                         <div className={styles.bookmark}>
-                            {/* <i className="fa-regular fa-bookmark postOption"></i> */}
                             <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
                         </div>
                     </div>

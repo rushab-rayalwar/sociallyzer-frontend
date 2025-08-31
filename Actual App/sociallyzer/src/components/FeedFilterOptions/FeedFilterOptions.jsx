@@ -13,9 +13,9 @@ export default function FeedFilterOptions({cursorLeft, cursorEntered}){
     const dispatch = useDispatch();
     return(
             <motion.div className={styles.filterOptionsContainer}
-            initial={{opacity:0, y:"25%", filter:"blur(0.5rem)"}}
+            initial={{opacity:0, y:"15%", filter:"blur(0.4rem)"}}
             animate={{opacity:1, y:"0%", filter:"blur(0)", transition:{duration:0.3, ease:"easeOut"}}}
-            exit={{opacity:0, y:"25%", filter:"blur(0.5rem)", transition:{duration:0.3, ease:"easeIn"}}}
+            exit={{opacity:0, y:"15%", filter:"blur(0.4rem)", transition:{duration:0.3, ease:"easeIn"}}}
             onMouseLeave={cursorLeft}
             onMouseEnter={cursorEntered}
             >

@@ -4,9 +4,9 @@ import axios from "axios";
 
 // local imports
 import logoSVG from "../../assets/icons/logo.svg";
-import styles from "./Registration.module.css";
+import styles from "./RegistrationPage.module.css";
 
-export default function Registration(){
+export default function RegistrationPage(){
 
     const backendURL = import.meta.env.VITE_BACKEND_URL; // NOTE THIS
     console.log(backendURL, "Backend URL");
