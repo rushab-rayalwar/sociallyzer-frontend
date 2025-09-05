@@ -12,30 +12,6 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import PostDetailsPage from "./pages/PostDetailsPage/PostDetailsPage.jsx";
 import { store } from "./redux/store.js";
 
-// function App() {
-//   const router = createBrowserRouter([
-//     {
-//       path:"/",
-//       element:<LandingPage/>
-//     },
-//     {
-//       path:"/register",
-//       element: <Registration/>
-//     },
-//     {
-//       path:"/home",
-//       element:<Home/>
-//     }
-//   ]); 
-//   return(
-//     <Provider store={store}>
-//       <AnimatePresence>
-//         <RouterProvider router={router} />
-//       </AnimatePresence>
-//     </Provider>
-//   )
-// }
-
 export function App(){
   const router = createBrowserRouter([
     {

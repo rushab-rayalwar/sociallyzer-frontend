@@ -25,14 +25,7 @@ header (top) : 4
     position:relative;
     z-index: 0;
 }
-.postDetailsContainer{
-    position : fixed;
-    display: flex; justify-content: center; align-items: center;
-    backdrop-filter: blur(1rem);
-    z-index: 1;
-    top:0; right:0;
-    width:100dvw; height:100dvh;
-}
+
 
 /* UTILITY */
 .glass{

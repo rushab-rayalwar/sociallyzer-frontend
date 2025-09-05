@@ -1,4 +1,23 @@
-
+.postDetailsContainer{
+    position : fixed;
+    display: flex; justify-content: center; align-items: center;
+    /* backdrop-filter: blur(1rem); */
+    z-index: 1;
+    top:0; right:0;
+    width:100dvw; height:100dvh;
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.063) 50%, rgba(255, 255, 255, 0.025)); */
+}
 .postDetailsMain{
-
+    background-color: rgba(0, 0, 0, 0.732);
+    height:35rem; width:60rem;
+    backdrop-filter: blur(5rem);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.47);
+}
+.picture > img {
+    height : 35rem; width:35re;
+}
+.xMark{
+    color:white;
+    position:absolute;
+    right:0.5rem; top:0.5rem;
 }

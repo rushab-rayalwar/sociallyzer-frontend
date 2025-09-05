@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faComment as commentSolidIcon } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from "react-router-dom";
 
 // local imports
 import styles from "./HomePage.module.css";
@@ -26,6 +27,8 @@ export default function HomePage(){ // NOTE the state logic here
     const hovering = useRef(false);
     const timeout = useRef(null);
     const [visible, setVisible] = useState(false);
+
+    const location = useLocation();
     
     const filterIconRef = useRef();
 
@@ -68,99 +71,8 @@ export default function HomePage(){ // NOTE the state logic here
                         <div className={styles.prePosts}></div>
                         <div className={styles.posts}>
                             <Post/>
-                            {/* <div className={styles.post}>
-                                <div className={styles.postHeader}>
-                                    <div className={styles.postInfo}>
-                                        <div className={styles.userProfilePicContainer}>
-                                            <img src={postIMG1} className={styles.userProfilePic}></img>
-                                        </div>
-                                        <div className={styles.postNameAndTime}>
-                                            <span className={styles.postUserName}>Rushab Rayalwar</span>
-                                            <span className={styles.timePosted}>03:30 Thursday 12/12/2025</span>
-                                        </div>
-                                    </div>
-                                    <div className={styles.friendLevel}>
-                                        <span>General   </span>
-                                    </div>
-                                </div>
-                                <div className={styles.postPic}>
-                                    <img src={postIMG1} className={styles.mainPic}></img>
-                                    <img src={postIMG1} className={styles.shadowPic}></img>
-                                </div>
-                                <div className={styles.postFooter}>
-                                    <div className={styles.postActions}>
-                                        <div className={styles.likeAndComment}>
-                                            <FontAwesomeIcon className={styles.postOption} icon={faThumbsUp}></FontAwesomeIcon>
-                                            <FontAwesomeIcon className={styles.postOption} icon={faComment}></FontAwesomeIcon>
-                                        </div>
-                                        <div className={styles.bookmark}>
-                                            <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
-                            {/* <div className={styles.post}>
-                                <div className={styles.postHeader}>
-                                    <div className={styles.postInfo}>
-                                        <div className={styles.userProfilePicContainer}>
-                                            <img src={postIMG2} className={styles.userProfilePic}></img>
-                                        </div>
-                                        <div className={styles.postNameAndTime}>
-                                            <span className={styles.postUserName}>Rohan Rayalwar</span>
-                                            <span className={styles.timePosted}>22:34 Sunday 12/08/2025</span>
-                                        </div>
-                                    </div>
-                                    <div className={styles.friendLevel}>
-                                        <span>Close Friend</span>
-                                    </div>
-                                </div>
-                                <div className={styles.postPic}>
-                                    <img src={postIMG2} className={styles.mainPic}></img>
-                                    <img src={postIMG2} className={styles.shadowPic}></img>
-                                </div>
-                                <div className={styles.postFooter}>
-                                    <div className={styles.postActions}>
-                                        <div className={styles.likeAndComment}>
-                                            <FontAwesomeIcon className={styles.postOption} icon={faThumbsUp}></FontAwesomeIcon>
-                                            <FontAwesomeIcon className={`${styles.postOption} ${styles.commentSolidIcon}`} icon={commentSolidIcon}></FontAwesomeIcon>
-                                        </div>
-                                        <div className={styles.bookmark}>
-                                            <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
-                            {/* <div className={styles.post}>
-                                <div className={styles.postHeader}>
-                                    <div className={styles.postInfo}>
-                                        <div className={styles.userProfilePicContainer}>
-                                            <img src={postIMG3} className={styles.userProfilePic}></img>
-                                        </div>
-                                        <div className={styles.postNameAndTime}>
-                                            <span className={styles.postUserName}>Rohan Rayalwar</span>
-                                            <span className={styles.timePosted}>22:34 Sunday 12/08/2025</span>
-                                        </div>
-                                    </div>
-                                    <div className={styles.friendLevel}>
-                                        <span>Inner Circle </span>
-                                    </div>
-                                </div>
-                                <div className={styles.postPic}>
-                                    <img src={postIMG3} className={styles.mainPic}></img>
-                                    <img src={postIMG3} className={styles.shadowPic}></img>
-                                </div>
-                                <div className={styles.postFooter}>
-                                    <div className={styles.postActions}>
-                                        <div className={styles.likeAndComment}>
-                                            <FontAwesomeIcon icon={faThumbsUp}></FontAwesomeIcon>
-                                            <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
-                                        </div>
-                                        <div className={styles.bookmark}>
-                                            <FontAwesomeIcon icon={bookmarkRegular}></FontAwesomeIcon>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
+                            <Post/>
+                            <Post/>
                         </div>
                     </section>
                     <footer className={styles.footer}>
@@ -170,9 +82,9 @@ export default function HomePage(){ // NOTE the state logic here
                         </AnimatePresence>
                     </footer>``
                 </div>
-                <div className={styles.postDetailsContainer}>
-                    <Outlet/>
-                </div>
+                <AnimatePresence mode="wait">
+                    <Outlet key={location.pathname}/> {/* NOTE: Providing key={location.key} is necessary because Framer Motion's AnimatePresence component needs a changing key to detect that a child component has been replaced. Without a changing key, AnimatePresence won't recognize the route change as a trigger for the exit and entry animations*/}
+                </AnimatePresence>
             </div>
         </>
     )
