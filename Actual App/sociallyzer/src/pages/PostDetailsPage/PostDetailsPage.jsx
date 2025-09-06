@@ -21,10 +21,10 @@ export default function PostDetailsPage(){
     return (
         <>
             <motion.div className={styles.postDetailsContainer}
-            initial={{ opacity:0, scale:0.9}}
+            initial={{ opacity:0, scale:1.1}}
             animate={{opacity:1, scale:1}}
-            exit={{ opacity:0, scale:0.9}}
-            transition={{duration:0.2, ease:"easeOut"}}
+            exit={{ opacity:0, scale:1.1}}
+            transition={{duration:0.3, ease:"easeOut"}}
             >
                 <div className={styles.postDetailsMain}>
                     <div className={styles.closeIcon}>
