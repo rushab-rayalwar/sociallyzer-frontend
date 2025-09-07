@@ -10,19 +10,47 @@
     /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.063) 50%, rgba(255, 255, 255, 0.025)); */
 }
 .postDetailsMain{
-    background-color: rgba(0, 0, 0, 0.732);
-    height:35rem; width:60rem;
+    /* background-color: rgba(0, 0, 0, 0.732); */
+    background-color: #292c2cba;
+    height:35rem; width:65rem;
     backdrop-filter: blur(5rem);
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.47);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.17);
+    display:flex;
 }
 .picture > img {
     height : 35rem; width:35re;
 }
+
 .closeIcon{
-    
-}
-.xMark{
     color:white;
     position:absolute;
-    right:0.5rem; top:0.5rem;
+    right:0.6rem; top:0.6rem;
+    cursor:pointer;
+}
+.closeIcon:hover{
+    transform:scale(1.1);
+}
+.closeIcon:active{
+    color:rgba(0, 242, 255, 1);
+}
+
+.postInfo{
+    flex-grow: 1;
+    height: 100%;
+    overflow-y: scroll;
+    /* scrollbar-width:thin; */
+}
+.postInfo::-webkit-scrollbar{
+    /* width:2rem;
+    background-color: rgba(0,0,0,0); */
+}
+.postInfo::-webkit-scrollbar-track{
+    color: bisque;
+}
+.postInfo::-webkit-scrollbar-button{
+    color: aqua;
+}
+.postInfoHeader{
+    color: white;
+    font-size: 2rem;
 }
