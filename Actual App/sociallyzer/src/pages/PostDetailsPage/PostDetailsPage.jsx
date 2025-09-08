@@ -8,6 +8,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 // local imports
 import styles from "./PostDetailsPage.module.css";
 import postPic from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
+import postOwnerPic from "../../assets/dummyPosts/Screenshot 2024-03-20 002014.jpg";
 
 
 export default function PostDetailsPage(){
@@ -42,28 +43,31 @@ export default function PostDetailsPage(){
                     </div>
                     <div className={styles.postInfo}>
                         <div className={styles.postInfoHeader}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget eros
-    at libero malesuada congue. Integer nec nunc vitae turpis porttitor
-    venenatis. Suspendisse potenti. Curabitur scelerisque, justo eget aliquet
-    porttitor, sapien justo porta lectus, non aliquam magna magna nec quam.
-    Morbi posuere eros nec lacus finibus, vitae facilisis odio tristique. Proin
-    rhoncus, turpis ut volutpat gravida, sapien purus gravida est, nec eleifend
-    elit arcu a nibh. Nullam eget tincidunt nunc. Donec convallis magna sed
-    augue viverra, vitae vulputate nunc aliquam.
-    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-    ac turpis egestas. Etiam at mauris dui. Curabitur eget felis non erat
-    commodo dictum. Sed posuere tellus eu dui congue, nec pulvinar ex pretium.
-    Ut vel leo est. Nullam ultricies nunc in felis egestas, ut posuere sem
-    convallis.
-    Sed dictum venenatis ex, vel sodales massa condimentum in. Cras nec erat ac
-    sem dictum cursus. Fusce posuere eros ac quam gravida, eget laoreet ex
-    rhoncus. Duis tempor, nibh et luctus accumsan, mauris nibh dictum massa, sit
-    amet imperdiet ligula sem ac neque.
-    Donec malesuada libero in felis dictum tincidunt. Curabitur maximus magna id
-    leo luctus, et luctus sem pretium. Aliquam erat volutpat. Duis dignissim
-    lacus nec massa interdum, vitae dignissim libero mattis. Integer laoreet
-    lacus purus, id ultrices leo luctus a. Pellentesque habitant morbi tristique
-    senectus et netus et malesuada fames ac turpis egestas.
+                        {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget eros
+                        at libero malesuada congue. Integer nec nunc vitae turpis porttitor
+                        venenatis. Suspendisse potenti. Curabitur scelerisque, justo eget aliquet
+                        porttitor, sapien justo porta lectus, non aliquam magna magna nec quam.
+                        Morbi posuere eros nec lacus finibus, vitae facilisis odio tristique. Proin
+                        rhoncus, turpis ut volutpat gravida, sapien purus gravida est, nec eleifend
+                        elit arcu a nibh. Nullam eget tincidunt nunc. Donec convallis magna sed
+                        augue viverra, vitae vulputate nunc aliquam.
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                        ac turpis egestas. Etiam at mauris dui. Curabitur eget felis non erat
+                        commodo dictum. Sed posuere tellus eu dui congue, nec pulvinar ex pretium.
+                        Ut vel leo est. Nullam ultricies nunc in felis egestas, ut posuere sem
+                        convallis.
+                        Sed dictum venenatis ex, vel sodales massa condimentum in. Cras nec erat ac
+                        sem dictum cursus. Fusce posuere eros ac quam gravida, eget laoreet ex
+                        rhoncus. Duis tempor, nibh et luctus accumsan, mauris nibh dictum massa, sit
+                        amet imperdiet ligula sem ac neque.
+                        Donec malesuada libero in felis dictum tincidunt. Curabitur maximus magna id
+                        leo luctus, et luctus sem pretium. Aliquam erat volutpat. Duis dignissim
+                        lacus nec massa interdum, vitae dignissim libero mattis. Integer laoreet
+                        lacus purus, id ultrices leo luctus a. Pellentesque habitant morbi tristique
+                        senectus et netus et malesuada fames ac turpis egestas. */}
+                            <div className={styles.postOwnerPic}>
+                                <img src={postOwnerPic} className={styles.postOwnerPic}></img>
+                            </div>
                         </div>
                     </div>
                 </div>

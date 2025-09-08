@@ -43,6 +43,7 @@
 .postInfo::-webkit-scrollbar{
     /* width:2rem;
     background-color: rgba(0,0,0,0); */
+    display:none;
 }
 .postInfo::-webkit-scrollbar-track{
     color: bisque;
@@ -53,4 +54,8 @@
 .postInfoHeader{
     color: white;
     font-size: 2rem;
+}
+.postOwnerPic{
+    border-radius:50%;
+    transform: scale(0.3);
 }
