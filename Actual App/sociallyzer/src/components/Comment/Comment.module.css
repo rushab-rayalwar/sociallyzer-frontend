@@ -1,0 +1,26 @@
+.comment{
+    background-color: rgba(97,97,97,0.08);
+    min-height: 4rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.commentOwnerInfo{
+    display: flex; align-items: center;
+}
+.commentOwnerPic{
+    height:2rem; width:2rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+.commentOwnerName{
+    font-family: "Work Sans";
+    color: white;
+}
+.commentContent{
+    color:white;
+    /* font-family: "Poiret One"; */
+    /* font-family: "Open Sans"; font-size: 0.9rem; */
+    font-family: "Source Sans 3"; font-weight: 300;
+    margin-top:0.3rem;
+}

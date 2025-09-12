@@ -43,7 +43,7 @@ export default function HomePage(){ // NOTE the state logic here
             if(!hovering.current){
                 setVisible(false);
             }
-        }, 600);
+        }, 300);
     }
     return (
         <>

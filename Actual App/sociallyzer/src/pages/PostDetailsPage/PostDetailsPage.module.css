@@ -1,31 +1,42 @@
 .postDetailsContainer{
     position : fixed;
     display: flex; justify-content: center; align-items: center;
-    /* backdrop-filter: blur(1rem); */
     z-index: 1;
     top:0; right:0;
     width:100dvw; height:100dvh;
-    /* background-color:rgba(0,0,0,0.2); */
     backdrop-filter: blur(2rem);
-    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.063) 50%, rgba(255, 255, 255, 0.025)); */
 }
 .postDetailsMain{
     /* background-color: rgba(0, 0, 0, 0.732); */
-    background-color: #292c2cba;
-    height:35rem; width:65rem;
-    backdrop-filter: blur(5rem);
+    /* background-color: #292c2cba; */
+
+    /* height:35rem; width:65rem; */
+
+    height:39rem; width:69rem;
+    backdrop-filter:brightness(0);
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.17);
+    /* background-color : rgb(41 44 44 / 79%); */
+    background-color: rgba(41,44,44,0.69);
     display:flex;
+    border-radius: 1rem;
+    /* overflow: hidden; */
+    position: relative;
 }
 .picture > img {
-    height : 35rem; width:35re;
+    height : 39rem; width:39rem;
+    border-radius: 1rem 0 0 1rem;
 }
 
 .closeIcon{
     color:white;
     position:absolute;
-    right:0.6rem; top:0.6rem;
+    right:-2.5rem; top:0rem;
     cursor:pointer;
+    background-color: aqua;
+    height:2rem; width:2rem;
+    display: flex; justify-content: center; align-items: center;
+    border-radius: 50%;
+    background-color: rgba(41,44,44,0.69);
 }
 .closeIcon:hover{
     transform:scale(1.1);
@@ -35,11 +46,12 @@
 }
 
 .postInfo{
-    flex-grow: 1;
     height: 100%;
-    overflow-y: scroll;
     /* scrollbar-width:thin; */
+    overflow : scroll;
     padding:1rem;
+    display: flex; flex-direction: column;
+    box-sizing: border-box;
 }
 .postInfo::-webkit-scrollbar{
     /* width:2rem;
@@ -91,4 +103,28 @@
     border-color: rgba(255, 255, 255, 0.056);
     border-style: solid;
     margin: 1rem 0 1rem 0;
+}
+
+.postInfoBody{
+    width: 100%;
+}
+.postDescriptionContainer{
+    max-height: 10rem;
+    /* background-color : rgb(41 44 44 / 79%); */
+    color : white;
+
+    /* font-family: 'Poiret One'; */
+    font-family: 'Open Sans'; font-weight: 300;
+    /* font-family: "Source Sans 3"; letter-spacing: 0.05rem; */
+    /* font-family: 'Poppins'; font-size: 0.9rem; */
+    /* font-family: 'Work Sans'; */
+}
+
+.comments{
+    /* height:100%; */
+    width:100%;
+    /* overflow-y: scroll; */
+}
+.comments::-webkit-scrollbar{
+    display: none;
 }

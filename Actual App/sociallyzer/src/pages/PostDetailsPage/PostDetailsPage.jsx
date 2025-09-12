@@ -4,11 +4,13 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 // local imports
 import styles from "./PostDetailsPage.module.css";
 import postPic from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import postOwnerPic from "../../assets/dummyPosts/Screenshot 2024-03-20 002014.jpg";
+import Comment from "../../components/Comment/Comment";
 
 
 export default function PostDetailsPage(){
@@ -28,15 +30,19 @@ export default function PostDetailsPage(){
     }
     return (
         <>
-            <motion.div className={styles.postDetailsContainer}
-            initial={{ opacity:0, scale:1.1}}
-            animate={{opacity:1, scale:1}}
-            exit={{ opacity:0, scale:1.1}}
-            transition={{duration:0.3, ease:"easeOut"}}
+            <motion.div 
+            className={styles.postDetailsContainer}
+            initial={{ opacity:0, scale:1.1, filter:"blur(0.5rem)"}}
+            animate={{opacity:1, scale:1, filter:"blur(0)"}}
+            exit={{opacity:0, scale:0.9, filter:"blur(0.5rem)"}}
+            transition={{duration:0.4, ease:"easeOut"}}
             >
                 <div className={styles.postDetailsMain}>
-                    <div className={styles.closeIcon} onClick={closePostDetails}>
-                        <FontAwesomeIcon className={styles.xMark} icon={faXmark} />
+                    <div className={styles.navButtons}>
+                        <div className={styles.closeIcon} onClick={closePostDetails}>
+                            <FontAwesomeIcon className={styles.xMark} icon={faXmark} />
+                        </div>
+                        <div className={styles.jumpToTop}></div>
                     </div>
                     <div className={styles.picture}>
                         <img src={postPic}></img>
@@ -53,6 +59,22 @@ export default function PostDetailsPage(){
                             </div>
                         </div>
                         <div className={styles.divider}></div>
+                        <div className={styles.postInfoBody}>
+                            <div className={styles.postDescriptionContainer}>
+                                The quick brown fox jumps over the lazy dog. This sentence is used to test typing skills and a font's legibility because it contains every letter of the alphabet. It's a classic example of a pangram, a sentence that uses every letter at least once.
+                            </div>
+                        </div>
+                        <div className={styles.divider}></div>
+                        <div className={styles.comments} >
+                            <Comment name="Rakshit Devadiga"/>
+                            <Comment name="Rohan Rayalwar"/>
+                            <Comment name="Aditya Walture"/>
+                            <Comment name="Vedant Gaikwad"/>
+                            <Comment name="Rakshit Devadiga"/>
+                            <Comment name="Rohan Rayalwar"/>
+                            <Comment name="Aditya Walture"/>
+                            <Comment name="Vedant Gaikwad"/>
+                        </div>
                     </div>
                 </div>
             </motion.div>
