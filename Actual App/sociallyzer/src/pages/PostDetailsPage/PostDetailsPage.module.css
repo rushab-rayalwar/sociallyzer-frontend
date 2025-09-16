@@ -33,12 +33,12 @@
 .navButtons{
     color:white;
     position:absolute;
-    right:-2.5rem; top:0rem;
+    right:-3rem; top:0rem;
     display: flex; flex-direction: column;
 }
 .navButton{
     cursor:pointer;
-    height:2rem; width:2rem;
+    height:2.5rem; width:2.5rem;
     display: flex; justify-content: center; align-items: center;
     border-radius: 50%;
     background-color: rgba(41,44,44,0.69);
@@ -48,7 +48,7 @@
     transform:scale(1.1);
 }
 .navButton:active{
-    color:rgba(0, 242, 255, 1);
+    color:var(--primary-color);
 }
 
 .postInfo{
@@ -131,13 +131,13 @@
     /* height:100%; */
     width:100%;
     /* overflow-y: scroll; */
+    box-shadow: 0 0 0.3rem 0 rgba(97,97,97,0.08)
 }
 .comments::-webkit-scrollbar{
     display: none;
 }
 
 .userActionsContainer{
-    margin-bottom:1rem;
 }
 .likesAndCommentsNumbers{
     display: flex;
@@ -168,16 +168,22 @@
     color: white;
     cursor: pointer;
     margin-right:0.5rem;
+    transform:scale(1);
+    transition: transform 0.2s ease-out;
+}
+.thumbsUpHollow:hover{
+    transform: scale(1.1);
 }
 .commentInput{
     flex-grow: 1;
-    background-color: rgba(24,24,24,1);
+    background-color: rgba(24,24,24,0.3);
     height:1rem; padding: 1rem;
     border : none;
     /* border-radius: 1rem 0 0 1rem; */
     color:rgb(255, 255, 255);
     resize:none;
-    border-radius:2rem;
+    border-radius:1.5rem;
+    font-family: "Open Sans";
 }
 .commentInput::-webkit-scrollbar{
     display: none;
@@ -187,10 +193,18 @@
     font-family: "Work Sans";
 }
 .commentInput:focus{
-    outline: 2px solid rgba(0, 242, 255, 1);
+    /* outline: 1px solid rgba(0, 242, 255, 1); */
+    outline: 2px solid rgba(255, 255, 255, 0.348);
 }
 .postCommentButton{
     color:white;
     font-family: "Work Sans";
-    margin-left: 0.5rem;;
+    margin-left: 0.5rem;
+    background-color: var(--cta-button-color);
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.postCommentButton:hover{
+    transform:scale(1.1);
+    Cursor: pointer;
 }

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faArrowUp, faThumbsUp, faComment } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faArrowUp, faThumbsUp, faComment, faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp as thumbsUpHollow } from "@fortawesome/free-regular-svg-icons";
 import { AnimatePresence } from "framer-motion";
 
@@ -62,6 +62,9 @@ export default function PostDetailsPage(){
                         <div className={styles.navButton} onClick={closePostDetails}>
                             <FontAwesomeIcon className={styles.xMark} icon={faXmark} />
                         </div>
+                        <div className={styles.navButton}>
+                            <FontAwesomeIcon className={styles.bookmark} icon={faBookmark} />
+                        </div>
                         <AnimatePresence>
                             {arrowIsVisible && 
                                 <motion.div className={styles.navButton} onClick={jumpToTopCommnent}
@@ -113,6 +116,7 @@ export default function PostDetailsPage(){
                                 <div className={styles.postCommentButton}>Post</div>
                             </div>
                         </div>
+                        <div className={styles.divider}></div>
                         <div className={styles.comments} >
                             <Comment name="John Doe"/>
                             <Comment name="Rohan Rayalwar"/>

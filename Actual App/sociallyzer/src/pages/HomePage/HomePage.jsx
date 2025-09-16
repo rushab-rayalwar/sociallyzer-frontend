@@ -65,14 +65,14 @@ export default function HomePage(){ // NOTE the state logic here
                         <span>Rushab Rayalwar</span>
                     </div>
                     </header>
-                    <Navbar/>
+                    <Navbar active="home"/>
                     <FriendSuggestions/>
                     <section className={styles.feed}>
                         <div className={styles.prePosts}></div>
                         <div className={styles.posts}>
-                            <Post/>
-                            <Post/>
-                            <Post/>
+                                <Post/>
+                                <Post/>
+                                <Post/>
                         </div>
                     </section>
                     <footer className={styles.footer}>

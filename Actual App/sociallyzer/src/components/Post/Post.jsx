@@ -1,3 +1,6 @@
+//third party imports
+import { motion } from "framer-motion";
+
 // local imports
 import styles from "./Post.module.css";
 import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
@@ -8,7 +11,15 @@ import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortaweso
 export default function Post(){
     return(
         <>
-            <div className={styles.post}>
+            <motion.div className={styles.post}
+            initial={{filter:"blur(0.5rem)", opacity:0, scale:0.97 }}
+            animate={{filter:"blur(0)", opacity:1, scale:1}}
+            exit={{filter:"blur(0.5rem)", opacity:0, scale:0.97 }}
+            transition={{
+                opacity:{duration:0.2},
+                blur:{duration:0.3}
+            }}
+            >
                 <div className={styles.postHeader}>
                     <div className={styles.postInfo}>
                         <div className={styles.userProfilePicContainer}>
@@ -38,7 +49,7 @@ export default function Post(){
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </>
     )
 }

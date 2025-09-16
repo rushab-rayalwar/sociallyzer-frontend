@@ -10,6 +10,7 @@ import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import RegistrationPage from "./pages/Registration/RegistrationPage.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import PostDetailsPage from "./pages/PostDetailsPage/PostDetailsPage.jsx";
+import FriendsPage from "./pages/FriendsPage/FriendsPage.jsx";
 import { store } from "./redux/store.js";
 
 export function App(){
@@ -26,6 +27,9 @@ export function App(){
     },
     {
       path:"/register", element: <RegistrationPage/>
+    },
+    {
+      path:'/friends', element:<FriendsPage/>
     }
   ]);
   return(
