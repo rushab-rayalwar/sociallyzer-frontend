@@ -52,9 +52,8 @@ export default function PostDetailsPage(){
         <>
             <motion.div 
             className={styles.postDetailsContainer}
-            initial={{ opacity:0, scale:1.1, filter:"blur(0.5rem)"}}
+            initial={{ opacity:1, scale:1.1, filter:"blur(0.5rem)"}}
             animate={{opacity:1, scale:1, filter:"blur(0)"}}
-            exit={{opacity:0, scale:0.9, filter:"blur(0.5rem)"}}
             transition={{duration:0.4, ease:"easeOut"}}
             >
                 <div className={styles.postDetailsMain}>

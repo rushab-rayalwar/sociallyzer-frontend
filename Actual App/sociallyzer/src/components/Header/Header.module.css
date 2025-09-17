@@ -1,13 +1,3 @@
-.background{
-    background-color: rgba(24,24,24,1);
-    margin : 0; padding : 0;
-    min-height: 100dvh;
-}
-.friendsPageContainer{
-    position:relative;
-    z-index: 0;
-}
-
 /* header */
 .header{
     position : fixed; top:0; left : 0;
@@ -51,15 +41,4 @@
     margin-right:0.5rem;
 }
 .title{
-}
-
-.body{
-    width : 60rem; max-width: 100%;
-    height:100dvh; background-color: blue;
-    margin:auto;
-}
-.bodyHeader{
-}
-.bodyTab{
-    color: white;
 }

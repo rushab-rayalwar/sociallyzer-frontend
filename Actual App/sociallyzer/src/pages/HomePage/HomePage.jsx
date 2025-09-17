@@ -14,6 +14,7 @@ import Navbar from "../../components/Navbar/Navbar.jsx";
 import FriendSuggestions from "../../components/FriendSuggestions/FriendSuggestions.jsx";
 import Post from "../../components/Post/Post.jsx";
 import PostDetailsPage from "../PostDetailsPage/PostDetailsPage.jsx";
+import Header from "../../components/Header/Header.jsx";
 
 // images / svgs
 import icon from "../../assets/icons/icon.svg";
@@ -49,22 +50,23 @@ export default function HomePage(){ // NOTE the state logic here
         <>
             <div className={styles.homePageContainer}>
                 <div className={styles.background}>
-                    <header className={styles.header}>
-                    <div className={styles.headerContainer}>
-                        <div className={styles.title}>
-                            <span>
-                                <img src={icon} alt="logo"></img>
-                                SOCIALLYZER
-                            </span>
+                    {/* <header className={styles.header}>
+                        <div className={styles.headerContainer}>
+                            <div className={styles.title}>
+                                <span>
+                                    <img src={icon} alt="logo"></img>
+                                    SOCIALLYZER
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles.userName}>
-                        <div className={styles.userProfilePicContainer}>
-                            <img src={postIMG1} className={styles.userProfilePic}></img>
+                        <div className={styles.userName}>
+                            <div className={styles.userProfilePicContainer}>
+                                <img src={postIMG1} className={styles.userProfilePic}></img>
+                            </div>
+                            <span>Rushab Rayalwar</span>
                         </div>
-                        <span>Rushab Rayalwar</span>
-                    </div>
-                    </header>
+                    </header> */}
+                    <Header/>
                     <Navbar active="home"/>
                     <FriendSuggestions/>
                     <section className={styles.feed}>
