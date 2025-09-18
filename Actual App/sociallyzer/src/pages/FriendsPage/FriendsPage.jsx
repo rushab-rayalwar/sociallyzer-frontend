@@ -1,3 +1,6 @@
+//external imports
+import {motion} from "framer-motion";
+
 //local imports
 import styles from "./FriendsPage.module.css";
 import Navbar from "../../components/Navbar/Navbar";
@@ -12,31 +15,26 @@ export default function FriendsPage(){
         <>
             <div className={styles.friendsPageContainer}>
                 <div className={styles.background}>
-                    {/* <header className={styles.header}>
-                        <div className={styles.headerContainer}>
-                            <div className={styles.title}>
-                                <span>
-                                    <img src={icon} alt="logo"></img>
-                                    SOCIALLYZER
-                                </span>
-                            </div>
-                        </div>
-                        <div className={styles.userName}>
-                            <div className={styles.userProfilePicContainer}>
-                                <img src={postIMG1} className={styles.userProfilePic}></img>
-                            </div>
-                            <span>Rushab Rayalwar</span>
-                        </div>
-                    </header> */}
                     <Header/>
                     <Navbar active="friends"/>
-                    <section className={styles.body}>
+                    <div className={styles.preBody}></div>
+                    <motion.section className={styles.body}
+                    initial={{opacity:0, y:50}}
+                    animate={{opacity:1, y:0}}
+                    transition={{type:"spring", stiffness:100, damping:10}}
+                    >
                         <div className={styles.bodyHeader}>
-                            <div className={styles.bodyTab}>
-                                Requests
+                            <div className={`${styles.bodyTabName} ${styles.selected}`}>
+                                Manage Requests
+                            </div>
+                            <div className={styles.bodyTabName}>
+                                Manage Friendships
                             </div>
                         </div>
-                    </section>
+                        <div className={styles.bodyMain}>
+                            
+                        </div>
+                    </motion.section>
                 </div>
             </div>
         </>
