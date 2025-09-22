@@ -1,3 +1,13 @@
+.divider{
+    height:0;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    /* border-color: rgba(255,255,255,0.18); */
+    margin:auto;
+    margin: 0.3rem 0 0.3rem 0;
+    background-color: rgba(255,255,255,0);
+}
+
 .background{
     background-color: rgba(24,24,24,1);
     margin : 0; padding : 0;
@@ -78,9 +88,25 @@
 }
 .bodyMain{
     background-color: rgba(255,255,255,0.15);
-    background: linear-gradient(to bottom right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-    min-height: 80dvh;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.05) 100%);
+    max-height: 75dvh;
+    padding: 1rem;
+    overflow-y: auto;
 }
+.bodyMain::-webkit-scrollbar { /* NOTE THIS */
+    width: 0.5rem;
+}
+.bodyMain::-webkit-scrollbar-track {
+    background: transparent;    /* invisible track */
+}
+.bodyMain::-webkit-scrollbar-thumb {
+    background-color: #999;     /* grey thumb */
+    border-radius: 4px;         /* rounded edges */
+    border: 2px solid transparent; /* gap around thumb */
+}
+.bodyMain::-webkit-scrollbar-button {
+    display: none;              /* hide arrow buttons */
+  }
 .selected{
     background-color: rgba(255,255,255,0.15);
     box-shadow: 0 0 1rem rgba(0,0,0,0.2);

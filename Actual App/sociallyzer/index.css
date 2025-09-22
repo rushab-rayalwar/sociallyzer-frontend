@@ -1,6 +1,9 @@
 :root{
     --primary-color:rgba(0, 242, 255, 1);
     --cta-button-color:rgba(0, 162, 255, 0.771);
+    --cta-button-hover-color:rgba(0, 162, 255, 1);
+
+    --secondary-text-color:rgba(255,255,255,0.681);
 }
 
 body{
