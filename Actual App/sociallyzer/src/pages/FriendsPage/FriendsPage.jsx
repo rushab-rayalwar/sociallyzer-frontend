@@ -28,10 +28,10 @@ export default function FriendsPage(){
                     transition={{type:"spring", stiffness:120, damping:10, mass:0.9}}
                     >
                         <div className={styles.bodyHeader}>
-                            <div className={`${styles.bodyTabName} ${styles.selected}`} onClick={()=>setTab('left')}>
+                            <div className={tab=="left" ? `${styles.bodyTabName} ${styles.selected}` : styles.bodyTabName} onClick={()=>setTab('left')}>
                                 Manage Requests
                             </div>
-                            <div className={styles.bodyTabName} onClick={()=>setTab('right')}>
+                            <div className={tab=="right" ? `${styles.bodyTabName} ${styles.selected}` : styles.bodyTabName} onClick={()=>setTab('right')}>
                                 Manage Friendships
                             </div>
                         </div>
@@ -70,38 +70,23 @@ export default function FriendsPage(){
                             
                         </div>}
                         {tab=="right" && <div className={`${styles.bodyMain} ${styles.friendships}`}>
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='1'/>
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='12'/>
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='123'/>
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='1234'/>
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='12345'/>
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='123456'/>
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='1234567'/>
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='12345678'/>
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
-                            
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
-                            
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
-                            
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
-                            
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
-                            
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
-                            
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
-                            
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5"/>
-                            
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='123456789'/>
                         </div>}
                     </motion.section>
                 </div>

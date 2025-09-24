@@ -8,6 +8,12 @@
     box-sizing: border-box;
     border-radius: 1rem;
 }
+.friendRequest:hover{
+    background-color: rgba(41,44,44,0.8);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+} 
 .left{
     display:flex;
 }
@@ -22,12 +28,15 @@
 }
 .nameAndMutuals{
     color:white;
+    height:100;
+    display: flex; flex-direction: column; justify-content: center;
 }
 .name{
     font-family: "Work Sans";
 }
 .mutuals{
     font-family: "Source Sans 3";
+    color: var(--secondary-text-color);
 }
 .right{
     display:flex;
@@ -41,7 +50,7 @@
     color:white;
     padding:0.5rem;
     margin-right:0.5rem;
-    border-radius: 0.3rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     font-family: "Work Sans";

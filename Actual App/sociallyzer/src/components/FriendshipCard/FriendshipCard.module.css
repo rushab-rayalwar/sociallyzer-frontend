@@ -20,35 +20,106 @@
     border-radius: 50%;
     margin-right:0.5rem;
 }
-.nameAndMutuals{
+.nameAndInfo{
     color:white;
+    height:100;
+    display: flex; flex-direction: column; justify-content: center;
 }
 .name{
     font-family: "Work Sans";
 }
-.mutuals{
+.info{
     font-family: "Source Sans 3";
+    display: flex; align-items: center; justify-content: center;
+    color: var(--secondary-text-color);
 }
 .right{
     display:flex;
 }
-.acceptButton{
+/* .acceptButton{
     background-color: var(--cta-button-color);
 }
 .deleteButton{
+} */
+.dropdownValue{
+    color: white;
+    /* background-color: rgba(255,255,255,0.1); */
+    background-color: rgba(0, 162, 255, 0.1);
+    padding:0.5rem; margin-right:0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Work Sans";
+    outline: 1px solid rgb(146 221 255 / 29%);
+    position:relative;
+}
+.dropdownValue:hover{
+    background-color: rgba(0, 162, 255, 0.2);
+    outline: 1px solid rgb(146 221 255 / 59%);
+
+}
+.dropdownArrow{
+    margin: 0 0 0 0.3rem;
+    font-size: 0.6rem;
+    transition : transform 0.5s ease-out;
+}
+.dropdownArrowInverted{
+    transform : rotate(180deg);
+    transition : transform 0.5s ease-out;
+}
+.dropdownValue:hover .dropdownArrow{
+    animation : wave 0.6s ease-in-out infinite alternate ;
 }
 .button{
     color:white;
     padding:0.5rem;
     margin-right:0.5rem;
-    border-radius: 0.3rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     font-family: "Work Sans";
 }
-.acceptButton:hover{
+.dropdownMenu{
+    position:absolute;
+    top:100%; left:0;
+    width:max-content;
+    background-color: rgb(37,57,66);
+    outline: 1px solid rgb(146 221 255 / 29%);
+    padding:1rem;
+    border-radius: 1rem;
+}
+.dropdownOption{
+    margin: 0 0 0.5rem 0;
+}
+
+.removeButton:hover{
+    background-color: rgba(255,255,255,0.1);
+}
+/* .acceptButton:hover{
     background-color: var(--cta-button-hover-color);
 }
 .deleteButton:hover{
     background-color: rgba(255,255,255,0.15);;
+} */
+
+.friendCategory{
+    font-family: "Poppins";
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    color: var(--secondary-text-color);
+}
+.dot{
+    height:0.3rem;width:0.3rem;
+    border-radius: 50%;
+    margin:0 0.6rem 0 0.6rem;
+    background-color: rgba(255, 255, 255, 0.395);
+}
+
+@keyframes wave{
+    0%{
+        transform: translateY(-0.07rem);
+    }
+    100%{
+        transform: translateY(0.07rem);
+    }
 }
