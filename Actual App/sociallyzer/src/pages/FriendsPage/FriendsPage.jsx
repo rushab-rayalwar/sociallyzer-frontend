@@ -15,6 +15,7 @@ import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 
 export default function FriendsPage(){
     const [tab, setTab] = useState("left");
+    const [hoveringOver, setHoveringOver] = useState(null);
     return(
         <>
             <div className={styles.friendsPageContainer}>
@@ -70,23 +71,23 @@ export default function FriendsPage(){
                             
                         </div>}
                         {tab=="right" && <div className={`${styles.bodyMain} ${styles.friendships}`}>
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='1'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='1'  enableBlur={( hoveringOver=='1' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('1')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='12'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='2' enableBlur={( hoveringOver=='2' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('2')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='123'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='3' enableBlur={( hoveringOver=='3' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('3')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='1234'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='4' enableBlur={( hoveringOver=='4' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('4')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='12345'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='5' enableBlur={( hoveringOver=='5' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('5')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='123456'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='6' enableBlur={( hoveringOver=='6' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('6')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='1234567'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='7' enableBlur={( hoveringOver=='7' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('7')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='12345678'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='8' enableBlur={( hoveringOver=='8' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('8')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='123456789'/>
+                            <FriendshipCard name="Tatya Vinchu" friendsInCommon="5" key='9' enableBlur={( hoveringOver=='9' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('9')} handleHoveringStop={()=>setHoveringOver(null)} />
                         </div>}
                     </motion.section>
                 </div>

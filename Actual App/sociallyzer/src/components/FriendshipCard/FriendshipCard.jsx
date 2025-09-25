@@ -8,14 +8,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import styles from "./FriendshipCard.module.css";
 import postPic from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 
-export default function FriendshipCard({name, friendsInCommon}){
+export default function FriendshipCard({name, friendsInCommon, enableBlur, handleHovering, handleHoveringStop}){
     const [dropdownMenu, setDropdownMenu] = useState(false);
     function toggleDropdownMenu(){
         setDropdownMenu(!dropdownMenu);
     }
     return(
         <>
-            <div className={styles.friendshipCard}>
+            <div className={enableBlur ? `${styles.blurCard} ${styles.friendshipCard}` : `${styles.noBlurCard} ${styles.friendshipCard}`} onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop}>
                 <div className={styles.left}>
                     <div className={styles.profilePic}>
                         <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&w=1000&q=80" alt="profile pic"/>
@@ -29,16 +29,21 @@ export default function FriendshipCard({name, friendsInCommon}){
                     {/* <div className={`${styles.acceptButton} ${styles.button}`}>Accept</div>
                     <div className={`${styles.deleteButton} ${styles.button}`}>Delete</div> */}
                     <div className={styles.friendCategoryDropdown}>
-                        <div className={styles.dropdownValue} onClick={toggleDropdownMenu}>General <FontAwesomeIcon icon={faCaretDown} className={dropdownMenu ? `${styles.dropdownArrow} ${styles.dropdownArrowInverted}` : styles.dropdownArrow}></FontAwesomeIcon>
-                            {dropdownMenu && 
-                                <AnimatePresence>
-                                    <motion.div className={styles.dropdownMenu}>
-                                        <div className={styles.dropdownOption}>General</div>
-                                        <div className={styles.dropdownOption}>Close Friends</div>
-                                        <div className={styles.dropdownOption}>Inner Circle</div>
-                                    </motion.div>
-                                </AnimatePresence>
-                            }
+                        <div className={styles.dropdownValue} onClick={toggleDropdownMenu}>General <FontAwesomeIcon icon={faCaretDown} className={dropdownMenu ? styles.dropdownArrowInverted : styles.dropdownArrow}></FontAwesomeIcon>
+                            <AnimatePresence>
+                                {dropdownMenu && 
+                                        <motion.div className={styles.dropdownMenu}
+                                        initial={{opacity:0, filter:'blur(0.2rem)', y:'-10%'}}
+                                        animate={{opacity:1, filter:'blur(0)',  y:'0%'}}
+                                        exit={{opacity:0, filter:'blur(0.2rem)',  y:'-10%'}}
+                                        transition={{duration:0.3, ease:"easeOut"}}
+                                        >
+                                            <div className={styles.dropdownOption}>General</div>
+                                            <div className={styles.dropdownOption}>Close Friends</div>
+                                            <div className={styles.dropdownOption}>Inner Circle</div>
+                                        </motion.div>
+                                }
+                            </AnimatePresence>
                         </div>
                     </div>
                     <div className={`${styles.button} ${styles.removeButton}`}>Remove</div>
