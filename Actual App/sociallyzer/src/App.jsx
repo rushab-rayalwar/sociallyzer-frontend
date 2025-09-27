@@ -31,7 +31,7 @@ export function App(){
     {
       path:'/friends', element:<FriendsPage/>
     },
-    {
+    { 
       path:"/user", 
     }
   ]);

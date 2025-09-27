@@ -37,37 +37,23 @@ export default function FriendsPage(){
                             </div>
                         </div>
                         {tab=="left" && <div className={`${styles.bodyMain} ${styles.requests}`}>
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='1'  enableBlur={( hoveringOver=='1' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('1')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='2' enableBlur={( hoveringOver=='2' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('2')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='3' enableBlur={( hoveringOver=='3' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('3')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='4' enableBlur={( hoveringOver=='4' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('4')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='5' enableBlur={( hoveringOver=='5' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('5')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='6' enableBlur={( hoveringOver=='6' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('6')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='7' enableBlur={( hoveringOver=='7' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('7')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='8' enableBlur={( hoveringOver=='8' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('8')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
-                            
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
-                            
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
-                            
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
-                            
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
-                            
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
-                            
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
-                            
-                            <FriendRequest name="John Doe" friendsInCommon="5"/>
+                            <FriendRequest name="Tatya Vinchu" friendsInCommon="5" key='9' enableBlur={( hoveringOver=='9' || hoveringOver==null ) ? false : true } handleHovering={()=>setHoveringOver('9')} handleHoveringStop={()=>setHoveringOver(null)} />
                             
                         </div>}
                         {tab=="right" && <div className={`${styles.bodyMain} ${styles.friendships}`}>

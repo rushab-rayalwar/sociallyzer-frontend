@@ -1,7 +1,7 @@
 .friendRequest{
     display: flex;
     width: 100%;
-    background-color: rgb(41, 44, 44);
+    /* background-color: rgb(41, 44, 44); */
     /* margin-bottom: 1.5rem; */
     justify-content: space-between; align-items: center;
     padding:1rem; margin-bottom:0.5rem;
@@ -9,10 +9,8 @@
     border-radius: 1rem;
 }
 .friendRequest:hover{
-    background-color: rgba(41,44,44,0.8);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    transform: scale(1.02);
-    transition: all 0.3s ease-in-out;
+    background-color: rgba(255,255,255,0.01);
+    cursor: pointer;
 } 
 .left{
     display:flex;
