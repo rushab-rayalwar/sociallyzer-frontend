@@ -61,25 +61,25 @@
 } */
 .dropdownValue{
     color: white;
-    /* background-color: rgba(255,255,255,0.1); */
-    background-color: rgba(0, 162, 255, 0.1);
+    /* background-color: rgba(0, 162, 255, 0.1); */
+    background-color: rgba(0, 162, 255, 0.2);
     padding:0.5rem; margin-right:0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     font-family: "Work Sans";
-    outline: 1px solid rgb(146 221 255 / 29%);
+    /* outline: 1px solid rgb(146 221 255 / 29%); */
     position:relative;
 }
 .dropdownValue:hover{
-    background-color: rgba(0, 162, 255, 0.2);
-    outline: 1px solid rgb(146 221 255 / 59%);
+    background-color: rgba(0, 162, 255, 0.3);
+    /* outline: 1px solid rgb(146 221 255 / 59%); */
 
 }
 .dropdownArrow{
     margin: 0 0 0 0.3rem;
     font-size: 0.6rem;
-    transition : top 0.5s ease-in-out, transform 0.3s ease-out;
+    transition : top 0.5s ease-in-out, transform 0.2s ease-out;
     position:relative;
     transform: rotate(0);
 }
@@ -87,7 +87,7 @@
     margin: 0 0 0 0.3rem;
     font-size: 0.6rem;
     transform : rotate(180deg);
-    transition : top 0.5s ease-in-out, transform 0.3s ease-out;
+    transition : top 0.5s ease-in-out, transform 0.2s ease-out;
     position:relative;
     transform: rotate(180deg);
 }
@@ -107,8 +107,11 @@
     position:absolute;
     top:100%; left:0;
     width:max-content;
-    background-color: hsl(199, 28%, 20%);
-    outline: 1px solid rgb(146 221 255 / 59%);
+    /* background-color: hsl(199, 28%, 20%); */
+    /* background-color: rgba(0, 162, 255, 0.3); */
+    background-color: rgba(25, 74, 102);
+
+    /* outline: 1px solid rgb(146 221 255 / 59%); */
     padding:1rem;
     border-radius: 1rem;
 }
