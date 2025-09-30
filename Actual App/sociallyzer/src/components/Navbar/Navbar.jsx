@@ -22,7 +22,7 @@ export default function Navbar({active}){
                 {/* <i className="fa-solid fa-users"></i> */}
                 <FontAwesomeIcon icon={faUsers}></FontAwesomeIcon>
             </div>
-            <div className={active=="bookmarks" ? `${styles.leftSideOption} ${styles.selected}`:styles.leftSideOption} onClick={()=>navigate()}>
+            <div className={active=="saved" ? `${styles.leftSideOption} ${styles.selected}`:styles.leftSideOption} onClick={()=>navigate("/saved")}>
                 {/* <i className="fa-solid fa-bookmark"></i> */}
                 <FontAwesomeIcon icon={bookmarkSolid}></FontAwesomeIcon>
             </div>

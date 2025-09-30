@@ -8,18 +8,20 @@ export default function FriendRequest({name, friendsInCommon, enableBlur, handle
     const variants = {
         hidden:{
             opacity:0,
-            y: "+30%"
+            y: "+30%",
+            filter : "blur(0.3rem)"
         },
         visible:{
-            opacity:1,
-            y: "0"
+            opacity:1, 
+            y: "0",
+            filter : (enableBlur ? "blur(0.1rem)" : 0) // NOTE THIS
         }
     }
     return(
         <>
-            <motion.div className={enableBlur ? `${styles.blurCard} ${styles.friendRequest}` : `${styles.noBlurCard} ${styles.friendRequest}`} onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop}
+            <motion.div className={styles.friendRequest} onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop} //className={enableBlur ? `${styles.blurCard} ${styles.friendRequest}` : `${styles.noBlurCard} ${styles.friendRequest}`} 
             variants={variants}
-            transition={{duration:0.65}}
+            transition={{opacity:{duration:0.4, ease:"easeOut"}, y:{duration:0.55, ease:"easeOut"}, filter:{duration:0.3, ease:"easeOut"}}}
             >
                 <div className={styles.left}>
                     <div className={styles.profilePic}>

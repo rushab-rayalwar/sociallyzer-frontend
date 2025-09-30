@@ -15,7 +15,8 @@ import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 
 export default function FriendsPage(){
     const [tab, setTab] = useState("left");
-    const [hoveringOver, setHoveringOver] = useState(null);
+    const [hoveringOver, setHoveringOver] = useState(null); //  flag to check which card is being hovered over
+    const [firstMount, setFirstMount] = useState(true);
 
     const containerVariants = {
         hidden : {
@@ -40,7 +41,7 @@ export default function FriendsPage(){
                     >
                         <div className={styles.bodyHeader}>
                             <div className={tab=="left" ? `${styles.bodyTabName} ${styles.selected}` : styles.bodyTabName} onClick={()=>setTab('left')}>
-                                Manage Requests
+                                Manage Requests 
                             </div>
                             <div className={tab=="right" ? `${styles.bodyTabName} ${styles.selected}` : styles.bodyTabName} onClick={()=>setTab('right')}>
                                 Manage Friendships

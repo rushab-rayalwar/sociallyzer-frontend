@@ -66,7 +66,7 @@ export default function HomePage(){ // NOTE the state logic here
                         <AnimatePresence>
                             {visible && <FeedFilterOptions visible={visible} cursorLeft={cursorLeft} cursorEntered={cursorEntered}/>} {/* NOTE THIS */}
                         </AnimatePresence>
-                    </footer>``
+                    </footer>
                 </div>
                 <AnimatePresence mode="wait">
                     <Outlet key={location.pathname}/> {/* NOTE: Providing key={location.key} is necessary because Framer Motion's AnimatePresence component needs a changing key to detect that a child component has been replaced. Without a changing key, AnimatePresence won't recognize the route change as a trigger for the exit and entry animations*/}

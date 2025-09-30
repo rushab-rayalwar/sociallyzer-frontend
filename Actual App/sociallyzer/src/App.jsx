@@ -11,6 +11,7 @@ import RegistrationPage from "./pages/Registration/RegistrationPage.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import PostDetailsPage from "./pages/PostDetailsPage/PostDetailsPage.jsx";
 import FriendsPage from "./pages/FriendsPage/FriendsPage.jsx";
+import SavedPostsPage from "./pages/SavedPostsPage/SavedPostsPage.jsx";
 import { store } from "./redux/store.js";
 
 export function App(){
@@ -31,8 +32,8 @@ export function App(){
     {
       path:'/friends', element:<FriendsPage/>
     },
-    { 
-      path:"/user", 
+    {
+      path:"/saved", element:<SavedPostsPage/>
     }
   ]);
   return(

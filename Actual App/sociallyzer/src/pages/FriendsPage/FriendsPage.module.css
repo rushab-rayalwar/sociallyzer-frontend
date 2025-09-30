@@ -16,6 +16,7 @@
 .friendsPageContainer{
     position:relative;
     z-index: 0;
+    overflow-y: hidden;
 }
  
 /* header */
