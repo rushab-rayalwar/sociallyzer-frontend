@@ -4,24 +4,18 @@ import { motion } from "framer-motion";
 // local imports
 import styles from "./FriendRequest.module.css";
 
-export default function FriendRequest({name, friendsInCommon, enableBlur, handleHovering, handleHoveringStop}){
+export default function FriendRequest({name, friendsInCommon, enableBlur, handleHovering, handleHoveringStop, firstMount}){
     const variants = {
-        hidden:{
-            opacity:0,
-            y: "+30%",
-            filter : "blur(0.3rem)"
-        },
-        visible:{
-            opacity:1, 
-            y: "0",
-            filter : (enableBlur ? "blur(0.1rem)" : 0) // NOTE THIS
-        }
+        hidden : {opacity:0, filter:'blur(0.3rem)', y:"30%"},
+        firstMount : {opacity:1, filter:'blur(0)', y:"0"},
+        switchToRightTab : {opacity:0, filter:'blur(0.3rem)', x:"-10%"},
+        switchToLeftTab : {opacity:1, filter:'blur(0)', x:"0"}
     }
     return(
         <>
-            <motion.div className={styles.friendRequest} onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop} //className={enableBlur ? `${styles.blurCard} ${styles.friendRequest}` : `${styles.noBlurCard} ${styles.friendRequest}`} 
+            <motion.div onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop} className={enableBlur ? `${styles.blurCard} ${styles.friendRequest}` : `${styles.noBlurCard} ${styles.friendRequest}`} 
             variants={variants}
-            transition={{opacity:{duration:0.4, ease:"easeOut"}, y:{duration:0.55, ease:"easeOut"}, filter:{duration:0.3, ease:"easeOut"}}}
+            transition={{opacity:{duration:0.4, ease:"easeOut"}, y:{duration:0.55, ease:"easeOut"}, x:{duration:0.55, ease:"easeOut"}, filter:{duration:0.3, ease:"easeOut"}}}
             >
                 <div className={styles.left}>
                     <div className={styles.profilePic}>
