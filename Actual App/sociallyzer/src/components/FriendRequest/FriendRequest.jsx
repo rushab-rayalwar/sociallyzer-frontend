@@ -6,16 +6,16 @@ import styles from "./FriendRequest.module.css";
 
 export default function FriendRequest({name, friendsInCommon, enableBlur, handleHovering, handleHoveringStop, firstMount}){
     const variants = {
-        hidden : {opacity:0, filter:'blur(0.3rem)', y:"30%"},
-        firstMount : {opacity:1, filter:'blur(0)', y:"0"},
-        switchToRightTab : {opacity:0, filter:'blur(0.3rem)', x:"-10%"},
-        switchToLeftTab : {opacity:1, filter:'blur(0)', x:"0"}
+        hidden : {opacity:0, filter:'blur(0.3rem)', y:"30%", x:'0'},
+        firstMount : {opacity:1, filter:'blur(0)', y:"0", x:'0'},
+        left : {opacity:1, filter:'blur(0)', y:"0", x:'0'},
+        right : {opacity:0, filter:'blur(0.3)', y:"0", x:'-100%'}
     }
     return(
         <>
             <motion.div onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop} className={enableBlur ? `${styles.blurCard} ${styles.friendRequest}` : `${styles.noBlurCard} ${styles.friendRequest}`} 
             variants={variants}
-            transition={{opacity:{duration:0.4, ease:"easeOut"}, y:{duration:0.55, ease:"easeOut"}, x:{duration:0.55, ease:"easeOut"}, filter:{duration:0.3, ease:"easeOut"}}}
+            transition={{opacity:{duration:0.6, ease:"easeOut"}, y:{ type:"spring", stiffness:50, damping:10}, x:{duration:0.55, ease:"easeOut"}, filter:{duration:0.3, ease:"easeOut"}}}
             >
                 <div className={styles.left}>
                     <div className={styles.profilePic}>

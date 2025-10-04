@@ -1,11 +1,7 @@
 .noBlurCard{
-    filter: blur(0); opacity : 1;
-    transition : filter 0.2s ease-out, opacity 0.2s ease-out;
     z-index: 3;
 }
 .blurCard{
-    filter: blur(0.15rem); opacity: 1;
-    transition : filter 0.3s ease-out, opacity 0.5s ease-out;
     z-index: 2;
 }
 .noBlurCard, .blurCard{
