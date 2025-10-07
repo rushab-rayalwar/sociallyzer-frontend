@@ -12,7 +12,10 @@ import FriendshipCard from "../../components/FriendshipCard/FriendshipCard";
 // images / svgs
 import icon from "../../assets/icons/icon.svg";
 import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
+import { current } from "@reduxjs/toolkit";
 
+
+// NOTE : VERY IMPORTANT the animation logic for staggered animations
 export default function FriendsPage(){
     const [tab, setTab] = useState("left");
     const [hoveringOver, setHoveringOver] = useState(null); //  flag to check which card is being hovered over
@@ -20,32 +23,35 @@ export default function FriendsPage(){
     const [containerState, setContainerState] = useState('hidden');
 
     function switchToLeftTab(){
-        setTab('left');
         setContainerState('left');
+        setTab('left');
     }
     function switchToRightTab(){
-        setTab('right');
         setContainerState('right');
+        setTab('right');
     }
 
     useEffect(()=>{
-        setTimeout(()=>{
-            setFirstMount(false);
-        }, 1000);
         setContainerState('firstMount');
     }, []);
+
+    useEffect(()=>{ // this is only for debugging purposes
+        console.log('Container State', containerState);
+        console.log('Tab', tab);
+        console.log('.');
+    },[containerState]);
 
     const containerVariants = { //  these variants apply to both the requests container and the friendships container
         hidden : {
             opacity : 0
         },
-        firstMount: {
+        firstMount: { // this  variant is applied only for the first mount of the left tab
             opacity : 1,
-            transition:{staggerChildren:0.1, delayChildren:0.1, duration:0.1, ease:"easeOut"}
+            transition:{staggerChildren:0.1, delayChildren:0, duration:0.1, ease:"easeOut"}
         },
         left: {
             opacity : 1,
-            transition:{staggerChildren:0.1, delayChildren:0.1, duration:0.1, ease:"easeOut"}
+            transition:{staggerChildren:0.1, delayChildren:0, duration:0.1, ease:"easeOut"}
         },
         right: {
             opacity : 1,
@@ -75,7 +81,7 @@ export default function FriendsPage(){
                         </div>
                         {tab=="left" && <motion.div className={`${styles.bodyMain} ${styles.requests}`}
                         variants = {containerVariants}
-                        initial = 'hidden'
+                        initial = {containerState == "hidden" ? "hidden" : "right"} // NOTE
                         animate = {containerState}
                         >
                             {users.map((f,i)=>{
@@ -84,13 +90,17 @@ export default function FriendsPage(){
                                 )
                             })}                            
                         </motion.div>}
-                        {tab=="right" && <div className={`${styles.bodyMain} ${styles.friendships}`}>
+                        {tab=="right" && <motion.div className={`${styles.bodyMain} ${styles.friendships}`}
+                        variants = {containerVariants}
+                        initial = {containerState == 'right' ? 'left' : 'right'}
+                        animate = {containerState}
+                        >
                             {users.map((f,i)=>{
                                 return (
                                     <FriendshipCard name={f} friendsInCommon='5' key={i} enableBlur={(hoveringOver==i || hoveringOver==null) ? false : true} handleHovering={()=>setHoveringOver(i.toString())} handleHoveringStop={()=>setHoveringOver(null)} />
                                 )
                             })}
-                        </div>}
+                        </motion.div>}
                     </motion.section>
                 </div>
             </div>

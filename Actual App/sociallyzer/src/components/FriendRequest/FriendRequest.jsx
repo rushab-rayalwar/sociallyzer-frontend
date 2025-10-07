@@ -9,7 +9,7 @@ export default function FriendRequest({name, friendsInCommon, enableBlur, handle
         hidden : {opacity:0, filter:'blur(0.3rem)', y:"30%", x:'0'},
         firstMount : {opacity:1, filter:'blur(0)', y:"0", x:'0'},
         left : {opacity:1, filter:'blur(0)', y:"0", x:'0'},
-        right : {opacity:0, filter:'blur(0.3)', y:"0", x:'-100%'}
+        right : {opacity:0, filter:'blur(0.3rem)', y:"0", x:'-10%'}
     }
     return(
         <>
