@@ -1,17 +1,16 @@
 .noBlurCard{
-    filter: blur(0); opacity : 1;
-    transition : filter 0.2s ease-out, opacity 0.2s ease-out;
+    transition : filter 0.6s ease-out, opacity 0.2s ease-in-out;
     z-index: 3;
 }
 .blurCard{
-    filter: blur(0.15rem); opacity: 1;
-    transition : filter 0.5s ease-out, opacity 0.5s ease-out;
+    filter: blur(0.2rem) !important;
+    transition : filter 0.6s ease-out, opacity 0.5s ease-in-out;
     z-index: 2;
 }
 .noBlurCard, .blurCard{
 }
 
-.friendshipCard{
+.friendshipCard, .friendshipCardNoHover{
     display: flex;
     width: 100%;
     /* background-color: rgb(41, 44, 44); */
@@ -23,7 +22,7 @@
     cursor:pointer;
     position:relative;
 }
-.friendshipCard:hover{
+.friendshipCard:hover, .focused{
     background-color: rgba(255,255,255,0.01);
 }
 .left{
@@ -112,25 +111,36 @@
     background-color: rgba(25, 74, 102);
 
     /* outline: 1px solid rgb(146 221 255 / 59%); */
-    padding:1rem;
+    padding:0.75rem 0 0.75rem 0;
     border-radius: 1rem;
+    overflow:hidden;
 }
 .dropdownOption{
-    margin: 0 0 0.5rem 0;
+    padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+    display: flex; align-items: center; justify-content: space-between;
 }
 .dropdownOption:hover{
-    background-color: hsl(199, 28%, 30%);
+    background-color: hsla(201.82, 60.63%, 27.9%, 1);
+}
+.dropdownOption:hover > .statusContainer{
+    transform: scale(1.1);
+}
+.statusContainer{
+    height:0.7rem; width:0.7rem;
+    border-radius: 50%;
+    border : 1px solid rgba(255, 255, 255, 0.584);
+    margin-left : 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+}
+.currentCategory{
+    height:60%; width:60%;
+    background-color: #00f2ff;
+    border-radius: 50%;
 }
 
 .removeButton:hover{
     background-color: rgba(255,255,255,0.1);
 }
-/* .acceptButton:hover{
-    background-color: var(--cta-button-hover-color);
-}
-.deleteButton:hover{
-    background-color: rgba(255,255,255,0.15);;
-} */
 
 .friendCategory{
     font-family: "Poppins";

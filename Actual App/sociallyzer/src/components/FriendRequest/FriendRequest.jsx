@@ -9,13 +9,13 @@ export default function FriendRequest({name, friendsInCommon, enableBlur, handle
         hidden : {opacity:0, filter:'blur(0.3rem)', y:"30%", x:'0'},
         firstMount : {opacity:1, filter:'blur(0)', y:"0", x:'0'},
         left : {opacity:1, filter:'blur(0)', y:"0", x:'0'},
-        right : {opacity:0, filter:'blur(0.3rem)', y:"0", x:'-10%'}
+        right : {opacity:0, filter:'blur(0.3rem)', y:"0", x:'-5%'}
     }
     return(
         <>
             <motion.div onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop} className={enableBlur ? `${styles.blurCard} ${styles.friendRequest}` : `${styles.noBlurCard} ${styles.friendRequest}`} 
             variants={variants}
-            transition={{opacity:{duration:0.6, ease:"easeOut"}, y:{ type:"spring", stiffness:50, damping:10}, x:{duration:0.55, ease:"easeOut"}, filter:{duration:0.3, ease:"easeOut"}}}
+            transition={{opacity:{duration:0.5, ease:"easeOut"}, y:{ type:"spring", stiffness:50, damping:10}, x:{duration:0.5, ease:"easeOut"}, filter:{duration:0.5, ease:"easeOut"}}}
             >
                 <div className={styles.left}>
                     <div className={styles.profilePic}>

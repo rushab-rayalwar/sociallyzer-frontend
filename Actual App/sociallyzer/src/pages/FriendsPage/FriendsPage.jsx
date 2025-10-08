@@ -15,31 +15,32 @@ import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import { current } from "@reduxjs/toolkit";
 
 
-// NOTE : VERY IMPORTANT the animation logic for staggered animations
+// NOTE : VERY IMPORTANT - study the animation logic for staggered animations
 export default function FriendsPage(){
+    
     const [tab, setTab] = useState("left");
-    const [hoveringOver, setHoveringOver] = useState(null); //  flag to check which card is being hovered over
-
+    const [focus, setFocus] = useState(null); //  Represents the list item under focus, in the friendships tab. An element is under focus when the user clicks on the dropdown menu of that element
     const [containerState, setContainerState] = useState('hidden');
-
-    function switchToLeftTab(){
-        setContainerState('left');
-        setTab('left');
-    }
-    function switchToRightTab(){
-        setContainerState('right');
-        setTab('right');
-    }
 
     useEffect(()=>{
         setContainerState('firstMount');
     }, []);
 
-    useEffect(()=>{ // this is only for debugging purposes
-        console.log('Container State', containerState);
-        console.log('Tab', tab);
-        console.log('.');
-    },[containerState]);
+    function toggleFocus(id){
+        if(id === focus) setFocus(null);
+        else setFocus(id);
+    }
+    function switchToLeftTab(){
+        setFocus(null);
+        setContainerState('left');
+        setTab('left');
+    }
+    function switchToRightTab(){
+        setFocus(null);
+        setContainerState('right');
+        setTab('right');
+    }
+
 
     const containerVariants = { //  these variants apply to both the requests container and the friendships container
         hidden : {
@@ -51,11 +52,11 @@ export default function FriendsPage(){
         },
         left: {
             opacity : 1,
-            transition:{staggerChildren:0.1, delayChildren:0, duration:0.1, ease:"easeOut"}
+            transition:{staggerChildren:0.05, duration:0.1, ease:"easeOut"}
         },
         right: {
             opacity : 1,
-            transition:{staggerChildren:0.1, delayChildren:0.1, duration:0.1, ease:"easeOut"}
+            transition:{staggerChildren:0.05, duration:0.1, ease:"easeOut"}
         }
     }
     const users = ["Rohan Rayalwar", "Sheetal Rayalwar", "Tatya Vinchu", "Shourya Rayalwar", "Gourang Rayalwar", "Aditya Walture", "Pratik Kurhe", "Yuvraj Rathore", "Ravi Rathore"];
@@ -84,9 +85,9 @@ export default function FriendsPage(){
                         initial = {containerState == "hidden" ? "hidden" : "right"} // NOTE
                         animate = {containerState}
                         >
-                            {users.map((f,i)=>{
+                            {users.map((u,i)=>{
                                 return (
-                                    <FriendRequest name={f} friendsInCommon='5' key={i} enableBlur={(hoveringOver==i || hoveringOver==null) ? false : true} handleHovering={()=>setHoveringOver(i.toString())} handleHoveringStop={()=>setHoveringOver(null)} />
+                                    <FriendRequest name={u} friendsInCommon='5' key={i} />
                                 )
                             })}                            
                         </motion.div>}
@@ -95,9 +96,9 @@ export default function FriendsPage(){
                         initial = {containerState == 'right' ? 'left' : 'right'}
                         animate = {containerState}
                         >
-                            {users.map((f,i)=>{
+                            {users.map((u,i)=>{
                                 return (
-                                    <FriendshipCard name={f} friendsInCommon='5' key={i} enableBlur={(hoveringOver==i || hoveringOver==null) ? false : true} handleHovering={()=>setHoveringOver(i.toString())} handleHoveringStop={()=>setHoveringOver(null)} />
+                                    <FriendshipCard name={u} friendsInCommon='5' key={i} enableBlur={ (focus == null || focus == i) ? false : true} toggleFocus={toggleFocus} focus={focus} id={i}/>
                                 )
                             })}
                         </motion.div>}
