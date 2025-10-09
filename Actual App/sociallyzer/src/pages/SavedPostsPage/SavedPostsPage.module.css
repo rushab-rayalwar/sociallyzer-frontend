@@ -3,7 +3,7 @@
     background-color: rgb(24,24,24); /* all 24 */
     margin : 0; padding : 0;
     /* width: 100dvw; */
-    min-height: 100dvh; height:fit-content;
+    min-height: 100dvh;
 }
 .savedPostsPageContainer{
     position:relative;
@@ -11,10 +11,23 @@
 }
 
 .savedPostsSection{
-    width:60rem; height:10rem;
-    margin:auto;
-    background-color: aqua;
+    width:60rem; max-width:100%; height:fit-content; margin:auto;
+    display:flex; flex-direction:column; align-items: center;
 }
 .marginAtTop{
-    height:3rem;
+    height:4rem; width:100%;
+}
+.savedPostsContainer{
+    display:flex; align-items: center; flex-direction: column;
+    width:100%;
+}
+.savedPostsHeader{
+    padding:1rem; font-family:"Work Sans"; color:white;
+    width:fit-content;
+}
+.savedPosts{
+    display : grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:1rem;
+    width:100%;
 }

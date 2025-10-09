@@ -1,0 +1,6 @@
+.savedPost{
+    grid-column: span 1;
+    aspect-ratio: 1/1;
+    background-color: aqua;
+    border-radius:1rem;
+}

@@ -52,7 +52,7 @@ export default function HomePage(){ // NOTE the state logic here
                 <div className={styles.background}>
                     <Header/>
                     <Navbar active="home"/>
-                    <FriendSuggestions/>
+                    {/* <FriendSuggestions/> */}
                     <section className={styles.feed}>
                         <div className={styles.prePosts}></div>
                         <div className={styles.posts}>

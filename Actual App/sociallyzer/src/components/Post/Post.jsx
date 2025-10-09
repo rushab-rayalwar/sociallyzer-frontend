@@ -14,7 +14,6 @@ export default function Post(){
             <motion.div className={styles.post}
             initial={{filter:"blur(0.5rem)", opacity:0, scale:0.97 }}
             animate={{filter:"blur(0)", opacity:1, scale:1}}
-            exit={{filter:"blur(0.5rem)", opacity:0, scale:0.97 }}
             transition={{
                 opacity:{duration:0.2},
                 blur:{duration:0.3}
