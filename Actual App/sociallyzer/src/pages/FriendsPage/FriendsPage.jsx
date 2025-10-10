@@ -59,7 +59,7 @@ export default function FriendsPage(){
             transition:{staggerChildren:0.05, duration:0.1, ease:"easeOut"}
         }
     }
-    const users = ["Rohan Rayalwar", "Sheetal Rayalwar", "Tatya Vinchu", "Shourya Rayalwar", "Gourang Rayalwar", "Aditya Walture", "Pratik Kurhe", "Yuvraj Rathore", "Ravi Rathore"];
+    const users = ["Rohan Rayalwar", "Sheetal Rayalwar", "John Doe", "Shourya Rayalwar", "Gourang Rayalwar", "Aditya Walture", "Pratik Kurhe", "Yuvraj Rathore", "Ravi Rathore"];
     return( 
         <>
             <div className={styles.friendsPageContainer}>

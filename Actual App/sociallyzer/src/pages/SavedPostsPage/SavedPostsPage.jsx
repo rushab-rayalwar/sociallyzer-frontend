@@ -1,5 +1,5 @@
 // third-party imports
-import {motion} from
+import {motion} from "framer-motion";
 
 // local imports
 import styles from "./SavedPostsPage.module.css";
@@ -18,25 +18,29 @@ export default function SavedPostsPage(){
                         <div className={styles.marginAtTop}></div>
                         <div className={styles.savedPostsContainer}>
                             <div className={styles.savedPostsHeader}>Saved Posts</div>
-                            <div className={styles.savedPosts}>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                                <SavedPost/>
-                            </div>
+                            <motion.div className={styles.savedPosts}
+                            variants={{show: { transition:{staggerChildren:0.05} } }}
+                            initial="hidden"
+                            animate="show"
+                            >
+                                <SavedPost imageNumber="1"/>
+                                <SavedPost imageNumber="3"/>
+                                <SavedPost imageNumber="2"/>
+                                <SavedPost imageNumber="1"/>
+                                <SavedPost imageNumber="3"/>
+                                <SavedPost imageNumber="2"/>
+                                <SavedPost imageNumber="3"/>
+                                <SavedPost imageNumber="1"/>
+                                <SavedPost imageNumber="2"/>
+                                <SavedPost imageNumber="3"/>
+                                <SavedPost imageNumber="2"/>
+                                <SavedPost imageNumber="1"/>
+                                <SavedPost imageNumber="2"/>
+                                <SavedPost imageNumber="1"/>
+                                <SavedPost imageNumber="3"/>
+                                <SavedPost imageNumber="1"/>
+                                <SavedPost imageNumber="2"/>
+                            </motion.div>
                         </div>
                     </section>
                 </div>

@@ -1,6 +1,29 @@
 .savedPost{
     grid-column: span 1;
     aspect-ratio: 1/1;
-    background-color: aqua;
+    /* background-color: aqua; */
+}
+.savedPost > img {
+    height:100%; width:100%;
     border-radius:1rem;
+    position:relative;
+    top:0; right:0;
+    object-fit: cover;
+}
+.savedPost > .hoverOverlay{
+    display: none;
+    opacity:0;
+    position: absolute;
+    top:0; right:0;
+    background-color: black;
+    transition: opacity 1s ease-out;
+}
+.savedPost:hover > .hoverOverlay{
+    display: block; height:100%; width:100%;
+    position: absolute;
+    top:0; right:0;
+    opacity:1;
+    background-color: black;
+    transition: opacity 1s ease-out;
+    border-radius: 1rem;
 }
