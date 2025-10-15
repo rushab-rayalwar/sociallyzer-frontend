@@ -9,9 +9,10 @@
     grid-column: span 1;
     aspect-ratio: 1/1;
     /* background-color: aqua; */
-    border-radius: 1rem;
+    border-radius: 0.27-0rem;
     overflow: hidden;
     position:relative; top:0; right:0;
+    cursor: pointer;
 }
 .savedPost > img {
     height:100%; width:100%;
@@ -27,10 +28,37 @@
 } */
 
 .overlay { 
-    opacity:1;
-    transition: opacity 0.4s ease-in-out;
-    position:absolute; bottom:0; right:0;
+    opacity:0;
+    transition: opacity 0.4s ease-in-out, filter 0.4s ease-out;
+    position:absolute; bottom:0; left:0;
     z-index:2;
     background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(24, 24, 24,1));
-    height:110%; width:110%;
+    height:105%; width:105%;
+    color:white;
+    filter: blur(0.25rem);
+}
+.overlay:hover{
+    opacity:1;
+    transition: opacity 0.3s ease-in-out, filter 0.4s ease-out;
+    filter: blur(0);
+}
+.overlayFooter{
+    position:absolute;
+    bottom:0; left:0;
+    /* font-family: 'Work Sans'; */
+    font-family: 'Work Sans';
+    padding:1rem;
+}
+.postOwnerName{
+    margin-bottom: 0.5rem;
+}
+.postInfo{
+    color:rgba(255,255,255,0.681);
+    font-size:0.9rem;
+}
+.faIcon{
+    margin-right:0rem;
+}
+.postInfo > span {
+    margin-right:1rem;
 }

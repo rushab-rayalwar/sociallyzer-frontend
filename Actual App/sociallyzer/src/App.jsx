@@ -33,7 +33,11 @@ export function App(){
       path:'/friends', element:<FriendsPage/>
     },
     {
-      path:"/saved", element:<SavedPostsPage/>
+      path:"/saved", element:<SavedPostsPage/>, children : [
+        {
+          path : ":postId", element : <PostDetailsPage/>
+        }
+      ]
     }
   ]);
   return(

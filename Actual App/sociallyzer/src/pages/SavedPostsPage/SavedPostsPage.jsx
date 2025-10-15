@@ -1,6 +1,7 @@
 // third-party imports
-import {motion} from "framer-motion";
+import {motion, AnimatePresence} from "framer-motion";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 // local imports
 import styles from "./SavedPostsPage.module.css";
@@ -53,6 +54,9 @@ export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study 
                         </div>
                     </section>
                 </div>
+                <AnimatePresence mode="wait">
+                    <Outlet key={location.pathname}/> {/* NOTE: Providing key={location.key} is necessary because Framer Motion's AnimatePresence component needs a changing key to detect that a child component has been replaced. Without a changing key, AnimatePresence won't recognize the route change as a trigger for the exit and entry animations*/}
+                </AnimatePresence>
             </div>
         </>
     )
