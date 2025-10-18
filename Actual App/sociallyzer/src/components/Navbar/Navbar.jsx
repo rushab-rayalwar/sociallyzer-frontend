@@ -14,7 +14,7 @@ export default function Navbar({active}){
                 {/* <i className="fa-solid fa-house"></i> */}
                 <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
             </div>
-            <div className={active=="user" ? `${styles.leftSideOption} ${styles.selected}`:styles.leftSideOption} onClick={()=>navigate()}>
+            <div className={active=="profile" ? `${styles.leftSideOption} ${styles.selected}`:styles.leftSideOption} onClick={()=>navigate("/profile")}>
                 {/* <i className="fa-solid fa-user"></i> */}
                 <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
             </div>

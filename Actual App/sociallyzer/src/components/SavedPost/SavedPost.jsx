@@ -22,7 +22,7 @@ export default function SavedPost({imageNumber="1", mouseEnter, mouseLeave, hove
     const variants = {
         hidden:{scale:0.97, opacity:0, filter:"blur(0.5rem)"},
         show:{scale:1, opacity:1, filter:"blur(0)"},
-        hoveringOverAChild:{ filter: ((hoveringOver == null || hoveringOver == id) ? "blur(0)" : "blur(0.1rem)"), scale:(hoveringOver == id ? 1.03 : 1), opacity:1, transition:{scale:{type:"spring", stiffness:100, damping:15}}},
+        hoveringOverAChild:{ filter: ((hoveringOver == null || hoveringOver == id) ? "blur(0) drop-shadow(0 0 0.8rem rgba(0,0,0,0.8))" : "blur(0.1rem)"), scale:(hoveringOver == id ? 1.03 : 1), opacity:1, transition:{scale:{type:"spring", stiffness:100, damping:15}}},
     }
 
     function getImageFromImageNumber(){ // this is only for demo purposes

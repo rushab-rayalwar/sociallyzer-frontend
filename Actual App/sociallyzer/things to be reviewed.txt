@@ -1,0 +1,5 @@
+1. Folder Structure
+2. Documentation
+3. CSS
+4. Comments
+5. Taking Notes from Comments

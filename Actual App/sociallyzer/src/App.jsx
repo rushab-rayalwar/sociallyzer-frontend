@@ -12,9 +12,11 @@ import HomePage from "./pages/HomePage/HomePage.jsx";
 import PostDetailsPage from "./pages/PostDetailsPage/PostDetailsPage.jsx";
 import FriendsPage from "./pages/FriendsPage/FriendsPage.jsx";
 import SavedPostsPage from "./pages/SavedPostsPage/SavedPostsPage.jsx";
+import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import { store } from "./redux/store.js";
 
 export function App(){
+
   const router = createBrowserRouter([
     {
       path:"/", element : <LandingPage/>
@@ -38,6 +40,9 @@ export function App(){
           path : ":postId", element : <PostDetailsPage/>
         }
       ]
+    },
+    {
+      path:"profile", element : <ProfilePage/>
     }
   ]);
   return(

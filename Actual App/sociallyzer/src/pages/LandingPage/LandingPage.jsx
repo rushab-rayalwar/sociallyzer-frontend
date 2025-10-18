@@ -8,8 +8,7 @@ import logoSVG from "../../assets/icons/logo.svg";
 import styles from "./LandingPage.module.css";
 import animations from "./LandingPageAnimations.module.css";
 
-
-export default function LandingPage(){
+export default function LandingPage(){ 
     const loginButton = useRef();
     const getStartedButton = useRef();
     const navigate = useNavigate();

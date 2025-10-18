@@ -9,7 +9,7 @@
     grid-column: span 1;
     aspect-ratio: 1/1;
     /* background-color: aqua; */
-    border-radius: 0.27-0rem;
+    border-radius: 1rem;
     overflow: hidden;
     position:relative; top:0; right:0;
     cursor: pointer;
