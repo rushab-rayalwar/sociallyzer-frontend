@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 import styles from "./SavedPostsPage.module.css";
 import Header from "../../components/Header/Header";
 import Navbar from "../../components/Navbar/Navbar";
-import SavedPost from "../../components/SavedPost/SavedPost";
+import SavedPost from "../../components/PostInGrid/PostInAGrid";
 
 export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study the staggering and hovering logic here
     const [hoveringOver, setHoveringOver] = useState(null);

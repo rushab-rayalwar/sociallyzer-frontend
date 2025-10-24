@@ -20,7 +20,8 @@
     color : white;
 }
 .filter {
-    font-family: 'Poppins';
+    /* font-family: 'Poppins'; */
+    font-family: "Poiret one"; letter-spacing: 0.1rem; font-weight: 600;
     display: flex; align-items: center;
     cursor: default;
     display: flex;

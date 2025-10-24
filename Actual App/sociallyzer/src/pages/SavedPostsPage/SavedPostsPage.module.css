@@ -22,7 +22,8 @@
     width:100%;
 }
 .savedPostsHeader{
-    padding:1rem; font-family:"Work Sans"; color:white;
+    padding:1rem; font-family:"Poiret One"; font-weight:600; letter-spacing: 0.1rem;
+    color:white;
     width:fit-content;
 }
 .savedPosts{

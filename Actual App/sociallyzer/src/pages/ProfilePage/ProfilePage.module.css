@@ -1,3 +1,10 @@
+.divider{
+    width:100%;
+    height:1px;
+    background-color: rgba(255,255,255,0.1);
+    margin: 1rem 0 3rem 0;
+}
+
 .profilePageContainer{
     position:relative;
     z-index: 0;
@@ -12,6 +19,8 @@
     width : 60rem; max-width: 100%; margin:auto; height:fit-content;
     display:flex; flex-direction: column; align-items: center;
     position: relative; z-index: 1;
+    /* background-color: rgba(255, 255, 255, 0.016); */
+    border-radius:1rem 1rem 0 0;
 }
 .marginAtTop{
     width:100%;
@@ -19,30 +28,35 @@
 }
 .profilePage{
     width:100%;
+    /* background-color: rgba(255,255,255,0.5); */
 }
+
 .pageHeader{
-    width:100%;
     display:flex;
+    margin:auto;
+    /* background-color: rgb(63, 63, 63); */
 }
 .profilePicSection{
     /* width:50%; */
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    height: inherit;
 }
 .profilePicSection > img {
     aspect-ratio: 1/1;
     border-radius: 50%;
     height:13rem;
-    margin:0 2rem 0 0;
+    margin:0 2rem 0 2rem;
 }
 .profileInfoSection{
-    width: 70%;
+    /* width: 70%; */
+    width:42rem;
+    /* background-color: blue; */
 }
 .userName{
     color:white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: 'Poppins';
 }
 .profileInfo{
@@ -51,12 +65,36 @@
     display:flex;
 }
 .profileInfo > span {
-    margin: 1.5rem 1.5rem 0 0;
-    font-size: 1.2rem;
+    margin: 0.5rem 1rem 0 0;
+    font-size: 1.1rem;
 }
 .userBio{
     color:white;
-    margin-top:2rem;
-    font-family: "Poppins";
+    margin-top:1rem;
+    font-family: "Source Sans 3";
     font-weight: 300;
+    /* letter-spacing: 0.05rem; */
+}
+.editProfileButtonContainer{
+    margin:1rem 0 1rem 0;
+}
+.editProfileButton{
+    padding:0.5rem;
+    color:white;
+    font-family: "Poppins";
+    background-color: rgba(0, 162, 255, 0.2);
+    display:inline-block;
+    border-radius: 0.5rem;
+    cursor:pointer;
+}
+.editProfileButton:hover{
+    
+}
+.posts{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:0.5rem;
+    width:100%;
+    padding:0 1rem 0 1rem;
+    box-sizing: border-box;
 }

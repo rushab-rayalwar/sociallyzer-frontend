@@ -6,12 +6,12 @@ import { faThumbsUp, faComment } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 // local imports
-import styles from "./SavedPost.module.css";
+import styles from "./PostInAGrid.module.css";
 import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import postIMG2 from "../../assets/dummyPosts/Screenshot 2024-03-20 002014.jpg";
 import postIMG3 from "../../assets/dummyPosts/zdzszgh.png";
 
-export default function SavedPost({imageNumber="1", mouseEnter, mouseLeave, hoveringOver, id}){ // VERY IMPORTANT NOTE : Please study the staggering and hovering logic in the parent component (SavedPostsPage)
+export default function PostInAGrid({imageNumber="1", mouseEnter, mouseLeave, hoveringOver, id}){ // VERY IMPORTANT NOTE : Please study the staggering and hovering logic in the parent component (SavedPostsPage)
     
     const navigate = useNavigate();
 
