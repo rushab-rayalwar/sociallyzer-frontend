@@ -42,7 +42,14 @@ export function App(){
       ]
     },
     {
-      path:"profile", element : <ProfilePage/>
+      path:"/profile", element : <ProfilePage/>, children : [
+        {
+          path : ":postId", element : <PostDetailsPage/>
+        }
+      ]
+    },
+    {
+      path:"*", element : <HomePage/>
     }
   ]);
   return(

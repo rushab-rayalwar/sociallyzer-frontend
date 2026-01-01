@@ -39,6 +39,10 @@ export default function PostInAGrid({imageNumber="1", mouseEnter, mouseLeave, ho
         if( Number(hoveringOver) === Number(id) ) className = `${styles.savedPost} ${styles.hoveredOver}`;
         return className;
     }
+    function navigateToPostDetails(id){
+        console.log("navigating to",location.pathname+"/"+id);
+        navigate(id);
+    }
     return(
         <>
             <AnimatePresence>
@@ -46,7 +50,7 @@ export default function PostInAGrid({imageNumber="1", mouseEnter, mouseLeave, ho
                 variants={variants}
                 transition={{opacity:{duration:0.7}, filter:{duration:0.35, ease:"easeInOut"}, scale:{type:"spring", stiffness:70, damping:15}}}
 
-                onClick={()=>navigate(id)}
+                onClick={()=>navigateToPostDetails(id)}
                 >
                     <img src={getImageFromImageNumber()} ></img>
                 <div className={styles.overlay}>

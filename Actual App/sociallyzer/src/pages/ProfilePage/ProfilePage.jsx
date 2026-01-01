@@ -1,6 +1,7 @@
 // third party imports
-import {motion} from "framer-motion";
-import { useState } from "react";
+import {AnimatePresence, motion} from "framer-motion";
+import { useState, useRef } from "react";
+import { Outlet } from "react-router-dom";
 
 // local imports
 import Navbar from "../../components/Navbar/Navbar.jsx";
@@ -57,7 +58,8 @@ export default function ProfilePage(){
                             animate={hoveringOver == null ? "show" : "hoveringOverAChild"}
                             >
                                 {Array.from({length:15},(_, index)=>{
-                                    let imageNumber = Math.floor(Math.random()*3) + 1;
+                                    // let imageNumber = Math.floor(Math.random()*3) + 1;
+                                    let imageNumber = index%3 + 1;
                                     return (
                                         <PostInAGrid imageNumber={imageNumber} key={index} id={index} hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(index)}></PostInAGrid>
                                     )
@@ -66,6 +68,9 @@ export default function ProfilePage(){
                         </div>
                     </motion.section>
                 </div>
+                <AnimatePresence mode="await">
+                    <Outlet key={location.pathname}></Outlet>
+                </AnimatePresence>
             </div>
         </>
     )
