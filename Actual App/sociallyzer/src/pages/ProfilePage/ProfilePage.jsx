@@ -3,6 +3,10 @@ import {AnimatePresence, motion} from "framer-motion";
 import { useState, useRef } from "react";
 import { Outlet } from "react-router-dom";
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+
+
 // local imports
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import Header from "../../components/Header/Header.jsx";
@@ -13,6 +17,16 @@ import PostInAGrid from "../../components/PostInGrid/PostInAGrid.jsx";
 export default function ProfilePage(){
 
     const [hoveringOver, setHoveringOver] = useState(null);
+    const [editing, setEditing] = useState(false);
+
+    const imageInputRef = useRef();
+
+    function getImageInput(){
+        imageInputRef.current.click();
+    }
+    function toggleEditing(){
+        setEditing(prev=>!prev);
+    }
 
     const variants = {
         hidden:{},
@@ -34,6 +48,10 @@ export default function ProfilePage(){
                         <div className={styles.profilePage}>
                             <div className={styles.pageHeader}>
                                 <div className={styles.profilePicSection}>
+                                    {editing && <div className={styles.editPicOverlay} onClick={getImageInput}>
+                                        <FontAwesomeIcon icon={faPencil} className={styles.pencilIcon} ></FontAwesomeIcon>
+                                        <input type="file" accept="image/*" name="profileImage" ref={imageInputRef}></input>
+                                    </div>}
                                     <img src={image}></img>
                                 </div>
                                 <div className={styles.profileInfoSection}>
@@ -43,12 +61,16 @@ export default function ProfilePage(){
                                     <div className={styles.profileInfo}>
                                         <span>10 Posts</span> <span>100 Friends</span>
                                     </div>
-                                    <div className={styles.userBio}>
+                                    {
+                                        editing ? (<textarea className={styles.userBioTextArea}>
+                                            Just another curious soul trying to make sense of this chaotic, beautiful world. Music, movies, and random midnight thoughts — that’s my kind of therapy. Just another curious soul trying to make sense of this chaotic, beautiful world. Music, movies, and random midnight thoughts — that’s my kind of therapy.
+                                            </textarea>) : (<div className={styles.userBio}>
                                         Just another curious soul trying to make sense of this chaotic, beautiful world. Music, movies, and random midnight thoughts — that’s my kind of therapy. Just another curious soul trying to make sense of this chaotic, beautiful world. Music, movies, and random midnight thoughts — that’s my kind of therapy.
-                                    </div>
+                                    </div>) // NOTE THIS
+                                    }
                                     <div className={styles.editProfileButtonContainer}>
-                                        <div className={styles.editProfileButton}>Edit Profile</div>
-                                    </div>    
+                                        {!editing ? (<div className={styles.editProfileButton} onClick={toggleEditing}>Edit Profile</div>) : (<div className={styles.editProfileButton} onClick={toggleEditing}>Save</div>)}
+                                    </div>
                                 </div>
                             </div>
                             <div className={styles.divider}></div>

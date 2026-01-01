@@ -42,12 +42,42 @@
     flex-direction: column;
     justify-content: center;
     height: inherit;
-}
-.profilePicSection > img {
     aspect-ratio: 1/1;
     border-radius: 50%;
     height:13rem;
     margin:0 2rem 0 2rem;
+    overflow: hidden;
+    position:relative;
+}
+.profilePicSection > img {
+    height:100%;
+    width:100%;
+    position:relative;
+    z-index: 1;
+}
+.editPicOverlay{
+    /* background-color: rgba(17, 66, 94, 0.2); */
+    background-color: rgba(0,0,0, 0.5);
+    height:100%; width:100%;
+    position: absolute; z-index: 2;
+    display:flex; justify-content: center; align-items: center;
+    color:white;
+    backdrop-filter: blur(0);
+    transition : backdrop-filter 0.5s ease-out;
+}
+.pencilIcon {
+    font-size: 1.5rem;
+    transition : font-size 0.5s ease-out;
+}
+.editPicOverlay:hover{
+    cursor: pointer;
+    backdrop-filter: blur(0.3rem);
+}
+.editPicOverlay:hover .pencilIcon {
+    font-size: 2rem;
+}
+.editPicOverlay > input {
+    display : none;
 }
 .profileInfoSection{
     /* width: 70%; */
@@ -75,6 +105,19 @@
     font-weight: 300;
     /* letter-spacing: 0.05rem; */
 }
+.userBioTextArea{
+    color:white;
+    margin-top:1rem;
+    font-family: "Source Sans 3";
+    font-weight: 300;
+    background-color: rgba(0,0,0,0);
+    resize: none;
+    width:100%;
+    height: fit-content;
+}
+.userBioTextArea::-webkit-scrollbar {
+    display: none;
+}
 .editProfileButtonContainer{
     margin:1rem 0 1rem 0;
 }
@@ -88,7 +131,7 @@
     cursor:pointer;
 }
 .editProfileButton:hover{
-    
+    background-color: rgba(0, 162, 255, 0.3);
 }
 .posts{
     display:grid;

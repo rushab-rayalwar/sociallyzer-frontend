@@ -48,6 +48,9 @@ export function App(){
         }
       ]
     },
+    // {
+    //   path:"/profile/edit", element: <
+    // },
     {
       path:"*", element : <HomePage/>
     }
