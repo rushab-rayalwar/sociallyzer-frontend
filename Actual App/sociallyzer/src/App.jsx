@@ -13,7 +13,7 @@ import PostDetailsPage from "./pages/PostDetailsPage/PostDetailsPage.jsx";
 import FriendsPage from "./pages/FriendsPage/FriendsPage.jsx";
 import SavedPostsPage from "./pages/SavedPostsPage/SavedPostsPage.jsx";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
-import { store } from "./redux/store.js";
+// import { store } from "./redux/store.js";
 
 export function App(){
 
@@ -57,9 +57,7 @@ export function App(){
   ]);
   return(
     <>
-      <Provider store={store}>
-        <RouterProvider router={router}></RouterProvider>
-      </Provider>
+      <RouterProvider router={router}></RouterProvider>
     </>
   )
 }

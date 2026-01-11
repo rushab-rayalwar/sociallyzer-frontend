@@ -145,3 +145,26 @@ input::placeholder{
     text-decoration: underline;
     cursor: pointer;
 }
+/* ERRORS */
+.errorsContainer{
+    height:fit-content;
+    padding:0.5rem;
+    width:100%;
+    background-color: #ff000052;
+    border:1px solid rgba(255,72,72);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    margin-top:1rem;
+}
+.error{
+    font-family: 'Poppins'; font-size: 0.9rem;
+    color:rgb(255, 106, 61);
+    position:relative;
+}
+.errorCircle{
+    font-size:0.2rem;
+    margin-bottom:0.4rem;
+    margin-right:0.2rem;
+}

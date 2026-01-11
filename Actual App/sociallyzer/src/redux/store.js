@@ -1,11 +1,17 @@
-// external imports
-import { configureStore } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-// local imports
-import { filterReducer } from "./filtersReducer.js";
+const INITIAL_STATE = {
+    data : {
+        isLoggedIn : false,
+        name : "",
+        email : ""
+    }
+}
 
-export const store = configureStore({
-    reducer:{
-        filters: filterReducer
+const userSlice = createSlice({
+    name:"user",
+    initialState : INITIAL_STATE,
+    reducers : {
+        
     }
 });

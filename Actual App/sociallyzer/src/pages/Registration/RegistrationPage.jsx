@@ -1,6 +1,9 @@
 // third party imports
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
+import {motion} from "framer-motion";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 // local imports
 import logoSVG from "../../assets/icons/logo.svg";
@@ -8,30 +11,29 @@ import styles from "./RegistrationPage.module.css";
 
 export default function RegistrationPage(){
 
+    const [errors,setErrors] = useState([]);
+
     const backendURL = import.meta.env.VITE_BACKEND_URL; // NOTE THIS
-    console.log(backendURL, "Backend URL");
 
-    const name = useRef();
-    const email = useRef();
-    const password = useRef();
+    let nameRef = useRef();
+    let emailRef = useRef();
+    let passwordRef = useRef();
 
-    // event handlers
     async function onSubmit(){
-        let data = {
-            name : name.current.value,
-            email : email.current.value,
-            password : password.current.value
-        };
-        await axios.post(  // NOTE THIS
-            backendURL+"/api/users/signup",
-            data,
-            {
-                withCredentials:true,
-                headers:{
-                    "Content-Type":"application/json"
-                }
+        try{
+            console.log(nameRef.current, emailRef.current, passwordRef.current);
+            const res = await axios.post(`${backendURL}/api/users/signup`,{
+                name:nameRef.current.value,
+                email:emailRef.current.value,
+                password:passwordRef.current.value
+            });
+            if(!res.success){
+                setErrors(res.errors);
             }
-        )
+            console.log("Signup Success,", res.data);
+        } catch(error){
+            setErrors(['Something went wrong!'])
+        }
     }
     return(
         <>
@@ -45,19 +47,18 @@ export default function RegistrationPage(){
                     <div className={styles.formElements}>
                         <div className={`${styles.field} ${styles.name}`}>
                             <label htmlFor="name">Name</label>
-                            <input type="string" id="name" placeholder="John Doe" ref={name}></input>
+                            <input type="string" id="name" placeholder="John Doe" ref={nameRef}></input>
                         </div>
                         <div className={`${styles.field} ${styles.email}`}>
                             <label htmlFor="email">Email</label>
-                            <input type="string" id="email" placeholder="johndoe@xyz.com" ref={email}></input>
+                            <input type="string" id="email" placeholder="johndoe@xyz.com" ref={emailRef}></input>
                         </div>
                         <div className={`${styles.field} ${styles.password}`}>
                             <label htmlFor="password">Password</label>
-                            <input type="password" id="password" placeholder="Password Here" ref={password}></input>
+                            <input type="password" id="password" placeholder="Password Here" ref={passwordRef}></input>
                         </div>
                         <div className={styles.submitButton} onClick={onSubmit}>
                             <span>Register</span>
-                        
                             <div className={styles.buttonHoverBG}></div>
                         </div>
                     </div>
@@ -65,6 +66,17 @@ export default function RegistrationPage(){
                 <div className={styles.loginLink}>
                     <span>Already have an account? <a>Login</a> </span>
                 </div>
+                {errors.length!=0 && <motion.div className={styles.errorsContainer}>
+                    {errors.map(e=>{
+                        return (
+                            <div className={styles.error}>
+                                <FontAwesomeIcon icon={faCircle} className={styles.errorCircle}></FontAwesomeIcon>
+                                {e}
+                            </div>
+                            )}
+                        )
+                    }
+                </motion.div>}
             </div>
             </div>
         </>

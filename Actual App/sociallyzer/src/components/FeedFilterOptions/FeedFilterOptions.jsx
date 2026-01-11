@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 // local imports
 import styles from "./FeedFilterOptions.module.css";
-import { store } from "../../redux/store.js";
-import { filterActions } from "../../redux/filtersReducer.js";
+// import { store } from "../../redux/store.js";
+// import { filterActions } from "../../redux/filtersReducer.js";
 
 export default function FeedFilterOptions({cursorLeft, cursorEntered}){
     const filters = useSelector(state=>state.filters);
