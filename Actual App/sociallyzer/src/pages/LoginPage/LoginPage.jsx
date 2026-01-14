@@ -75,7 +75,7 @@ export default function LoginPage(){
                     </div>
                 </form>
                 <div className={styles.loginLink}>
-                    <span>Already have an account? <a>Register</a> </span>
+                    <span>Create new account? <a onClick={()=>navigate("/register")}>Register</a> </span>
                 </div>
                 {errors && errors.length!=0 && <motion.div className={styles.errorsContainer}>
                     {errors.map((e, index)=>{ // PASSING INDEXES AS KEY IS RISKY

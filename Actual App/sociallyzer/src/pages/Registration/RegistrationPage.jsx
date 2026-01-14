@@ -70,7 +70,7 @@ export default function RegistrationPage(){
                     </div>
                 </form>
                 <div className={styles.loginLink}>
-                    <span>Already have an account? <a onClick={()=>navigate("/register")}>Login</a> </span>
+                    <span>Already have an account? <a onClick={()=>navigate("/login")}>Login</a> </span>
                 </div>
                 {errors && errors.length!=0 && <motion.div className={styles.errorsContainer}>
                     {errors.map(e=>{
