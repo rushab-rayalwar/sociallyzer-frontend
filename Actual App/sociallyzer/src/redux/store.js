@@ -1,17 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+// third party
+import { configureStore } from "@reduxjs/toolkit";
 
-const INITIAL_STATE = {
-    data : {
-        isLoggedIn : false,
-        name : "",
-        email : ""
-    }
-}
+// local imports
+import userReducer from "./user/userSlice.js";
 
-const userSlice = createSlice({
-    name:"user",
-    initialState : INITIAL_STATE,
-    reducers : {
-        
+const store = configureStore({
+    reducer : {
+        user : userReducer
     }
 });
+
+export default store;

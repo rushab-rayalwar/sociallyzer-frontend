@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 // core modules
 
 // local imports
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import RegistrationPage from "./pages/Registration/RegistrationPage.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
@@ -13,7 +14,7 @@ import PostDetailsPage from "./pages/PostDetailsPage/PostDetailsPage.jsx";
 import FriendsPage from "./pages/FriendsPage/FriendsPage.jsx";
 import SavedPostsPage from "./pages/SavedPostsPage/SavedPostsPage.jsx";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
-// import { store } from "./redux/store.js";
+import store from "./redux/store.js";
 
 export function App(){
 
@@ -30,6 +31,9 @@ export function App(){
     },
     {
       path:"/register", element: <RegistrationPage/>
+    },
+    {
+      path:"/login", element: <LoginPage/>
     },
     {
       path:'/friends', element:<FriendsPage/>
@@ -57,7 +61,9 @@ export function App(){
   ]);
   return(
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <Provider store={store}>
+        <RouterProvider router={router}></RouterProvider>
+      </Provider>
     </>
   )
 }

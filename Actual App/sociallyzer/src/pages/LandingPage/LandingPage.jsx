@@ -43,7 +43,7 @@ export default function LandingPage(){
                 Cut the noise, filter your feed,<br></br>
                 and share with the people who matter.</div>
                 <div className={styles.headingCtaButtons} style={{fontFamily: 'Poppins'}}>
-                    <div className={`${styles.ctaButton} ${styles.login}`} ref={loginButton}>
+                    <div className={`${styles.ctaButton} ${styles.login}`} ref={loginButton} onClick={gotoLogin}>
                         <div className={styles.glass} style={{borderRadius : "0.5rem"}}></div>
                         Login
                     </div> 
