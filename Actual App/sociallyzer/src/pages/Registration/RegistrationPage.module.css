@@ -164,7 +164,7 @@ input::placeholder{
     color:rgb(255, 106, 61);
     position:relative;
 }
-.errorCircle{
+.exclamation{
     font-size:0.2rem;
     margin-bottom:0.4rem;
     margin-right:0.2rem;

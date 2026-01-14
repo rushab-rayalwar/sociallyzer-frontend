@@ -2,7 +2,7 @@
 import { useRef, useState } from "react";
 import axios from "axios";
 import {motion} from "framer-motion";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
@@ -70,13 +70,13 @@ export default function RegistrationPage(){
                     </div>
                 </form>
                 <div className={styles.loginLink}>
-                    <span>Already have an account? <a>Login</a> </span>
+                    <span>Already have an account? <a onClick={()=>navigate("/register")}>Login</a> </span>
                 </div>
                 {errors && errors.length!=0 && <motion.div className={styles.errorsContainer}>
                     {errors.map(e=>{
                         return (
                             <div className={styles.error}>
-                                <FontAwesomeIcon icon={faCircle} className={styles.errorCircle}></FontAwesomeIcon>
+                                <FontAwesomeIcon icon={faExclamation} className={styles.exclamation}></FontAwesomeIcon>
                                 {e}
                             </div>
                             )}
