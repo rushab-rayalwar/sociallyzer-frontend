@@ -7,8 +7,30 @@ import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 
+function formatTime(dateInput) {
+    const date = new Date(dateInput);
+  
+    const time = new Intl.DateTimeFormat("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    }).format(date);
+  
+    const day = new Intl.DateTimeFormat("en-IN", {
+      weekday: "long"
+    }).format(date);
+  
+    const datePart = new Intl.DateTimeFormat("en-IN", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    }).format(date);
+  
+    return `${time} ${day} ${datePart}`;
+}
 
-export default function Post(){
+export default function Post({userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
+    let formattedTimeOfCreation = formatTime(createdAt);
     return(
         <>
             <motion.div className={styles.post}
@@ -25,17 +47,21 @@ export default function Post(){
                             <img src={postIMG1} className={styles.userProfilePic}></img>
                         </div>
                         <div className={styles.postNameAndTime}>
-                            <span className={styles.postUserName}>Rushab Rayalwar</span>
-                            <span className={styles.timePosted}>03:30 Thursday 12/12/2025</span>
+                            <span className={styles.postUserName}>{userName}</span>
+                            <span className={styles.timePosted}>{formattedTimeOfCreation}</span>
                         </div>
                     </div>
                     <div className={styles.friendLevel}>
                         <span>General   </span>
                     </div>
                 </div>
-                <div className={styles.postPic}>
+                {/* <div className={styles.postPic}>
                     <img src={postIMG1} className={styles.mainPic}></img>
                     <img src={postIMG1} className={styles.shadowPic}></img>
+                </div> */}
+                <div className={styles.postPic}>
+                    <img src={image.url} className={styles.mainPic}></img>
+                    <img src={image.url} className={styles.shadowPic}></img>
                 </div>
                 <div className={styles.postFooter}>
                     <div className={styles.postActions}>

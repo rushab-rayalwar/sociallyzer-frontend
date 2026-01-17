@@ -25,6 +25,7 @@ export default function RegistrationPage(){
     async function onSubmit(){
         try{
             console.log(nameRef.current.value, emailRef.current.value, passwordRef.current.value);
+            console.log("Sending details to",`${backendURL}/api/users/signup`); 
             const res = await axios.post(`${backendURL}/api/users/signup`,{
                 name:nameRef.current.value,
                 email:emailRef.current.value,

@@ -1,11 +1,12 @@
 // external imports
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faComment as commentSolidIcon } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 // local imports
 import styles from "./HomePage.module.css";
@@ -27,11 +28,28 @@ import filterIcon from "../../assets/icons/filter.svg";
 export default function HomePage(){ // NOTE the state logic here
     const hovering = useRef(false);
     const timeout = useRef(null);
-    const [visible, setVisible] = useState(false);
+    const filterIconRef = useRef();
+
+    const [visible, setVisible] = useState(false); // Controls the visibility of the FeedFilterOptions component
+    const [posts, setPosts] = useState([]);
 
     const location = useLocation();
     
-    const filterIconRef = useRef();
+
+    useEffect(()=>{ // NOTE THIS : the callback function here cannot be async as async functions always return a promise. The callback function of useEffect is expected to either return a cleanup function or nothing
+        getPosts().then(data=>{
+            setPosts(data);
+        }).catch(error=>{
+            let backendErrors = error.response?.data?.errors || ["Something went wrong"];
+            console.log("ERROR LOADING POSTS", error);
+        });
+    },[]);
+
+    async function getPosts(){
+        let res = await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/feed/",{withCredentials:true});
+        let data = res.data;
+        return data;
+    }
 
     function cursorEntered(){
         hovering.current = true;
@@ -56,9 +74,11 @@ export default function HomePage(){ // NOTE the state logic here
                     <section className={styles.feed}>
                         <div className={styles.prePosts}></div>
                         <div className={styles.posts}>
-                                <Post/>
-                                <Post/>
-                                <Post/>
+                                {
+                                    posts.map(p=>{
+                                        return <Post data={p}></Post>
+                                    })
+                                }
                         </div>
                     </section>
                     <footer className={styles.footer}>
