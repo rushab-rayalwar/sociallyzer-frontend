@@ -13,7 +13,7 @@ const INITIAL_STATE = {
     errors : []
 }
 
-const userSlice = createSlice({
+const userSlice = createSlice({ 
     name : "user",
     initialState : INITIAL_STATE,
     reducers : {

@@ -3,7 +3,7 @@ import axios from "axios";
 
 const loginUser = createAsyncThunk("user/loginUser",async (data, thunkAPI)=>{
     try{
-        let res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/signin`,data);
+        let res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/signin`,data,{withCredentials:true});
         let dataReceived = res.data.data;
         return dataReceived;
     } catch(error) {
