@@ -31,14 +31,14 @@ export default function HomePage(){ // NOTE the state logic here
     const filterIconRef = useRef();
 
     const [visible, setVisible] = useState(false); // Controls the visibility of the FeedFilterOptions component
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
     const location = useLocation();
     
 
     useEffect(()=>{ // NOTE THIS : the callback function here cannot be async as async functions always return a promise. The callback function of useEffect is expected to either return a cleanup function or nothing
         getPosts().then(data=>{
-            setPosts(data);
+            setPosts(data.data); // data is the Object received from the backend and the .data property contains the data about the posts
         }).catch(error=>{
             let backendErrors = error.response?.data?.errors || ["Something went wrong"];
             console.log("ERROR LOADING POSTS", error);
@@ -74,8 +74,9 @@ export default function HomePage(){ // NOTE the state logic here
                     <section className={styles.feed}>
                         <div className={styles.prePosts}></div>
                         <div className={styles.posts}>
-                                {
+                                {posts &&
                                     posts.map(p=>{
+                                        console.log("data sent to the post component", p);
                                         return <Post data={p}></Post>
                                     })
                                 }

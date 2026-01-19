@@ -29,7 +29,8 @@ function formatTime(dateInput) {
     return `${time} ${day} ${datePart}`;
 }
 
-export default function Post({userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
+export default function Post({data}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
+    let {userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt} = data;
     let formattedTimeOfCreation = formatTime(createdAt);
     return(
         <>
