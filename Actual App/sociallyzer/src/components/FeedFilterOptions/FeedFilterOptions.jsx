@@ -1,16 +1,15 @@
 // third party imports
 import {motion} from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 
 // local imports
 import styles from "./FeedFilterOptions.module.css";
-// import { store } from "../../redux/store.js";
-// import { filterActions } from "../../redux/filtersReducer.js";
+import store from "../../redux/store.js";
+import { toggleFilter } from "../../redux/filterOptions/filterOptionsSlice.js";
 
 export default function FeedFilterOptions({cursorLeft, cursorEntered}){
-    const filters = useSelector(state=>state.filters);
-    const toggleFilter = filterActions.toggleFilter;
     const dispatch = useDispatch();
+    const filters = useSelector(state=>state.filterOptions);
     return(
             <motion.div className={styles.filterOptionsContainer}
             initial={{opacity:0, y:"15%", filter:"blur(0.4rem)"}}

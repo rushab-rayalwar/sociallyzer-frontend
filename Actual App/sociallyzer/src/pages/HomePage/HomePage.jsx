@@ -38,6 +38,7 @@ export default function HomePage(){ // NOTE the state logic here
 
     useEffect(()=>{ // NOTE THIS : the callback function here cannot be async as async functions always return a promise. The callback function of useEffect is expected to either return a cleanup function or nothing
         getPosts().then(data=>{
+            console.log(data);
             setPosts(data.data); // data is the Object received from the backend and the .data property contains the data about the posts
         }).catch(error=>{
             let backendErrors = error.response?.data?.errors || ["Something went wrong"];

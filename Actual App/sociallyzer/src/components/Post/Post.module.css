@@ -65,6 +65,12 @@
     position : absolute; right: -1rem;
     z-index: 1;
 }
+.postFooter{
+
+}
+.postContent{
+    color:white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 .postActions{
     display: flex;
     justify-content: space-between;
