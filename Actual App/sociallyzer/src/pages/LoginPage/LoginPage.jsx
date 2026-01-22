@@ -70,7 +70,6 @@ export default function LoginPage(){
                         </div>
                         <button type="submit" className={styles.submitButton}>
                             <span>Login</span>
-                            {/* <div className={styles.buttonHoverBG}></div> */}
                             <div className={loggingIn ? styles.buttonLoggingInBG : styles.buttonHoverBG}></div>
                         </button>
                     </div>

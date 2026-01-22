@@ -13,6 +13,7 @@ import styles from "./RegistrationPage.module.css";
 export default function RegistrationPage(){
 
     const [errors,setErrors] = useState([]);
+    const [registering, setRegistering] = useState(false); // Indicates whether the user registration request is in progress
 
     const backendURL = import.meta.env.VITE_BACKEND_URL; // NOTE THIS
 
@@ -25,14 +26,17 @@ export default function RegistrationPage(){
     async function onSubmit(){
         try{
             console.log(nameRef.current.value, emailRef.current.value, passwordRef.current.value);
-            console.log("Sending details to",`${backendURL}/api/users/signup`); 
+            console.log("Sending details to",`${backendURL}/api/users/signup`);
+            setRegistering(true);
             const res = await axios.post(`${backendURL}/api/users/signup`,{
                 name:nameRef.current.value,
                 email:emailRef.current.value,
                 password:passwordRef.current.value
             });
+            setRegistering(false);
             if(!res.success){
                 setErrors(res.data.errors); // res.data stores the data received from the backend
+                setRegistering(false);
             }
             console.log("Signup Success,", res.data);
             navigate("/");
@@ -40,6 +44,7 @@ export default function RegistrationPage(){
         } catch(error){
             console.log(error.response.data);
             setErrors(error.response.data.errors || ['Something went wrong!'])
+            setRegistering(false);
         }
     }
     return(
@@ -66,7 +71,7 @@ export default function RegistrationPage(){
                         </div>
                         <div className={styles.submitButton} onClick={onSubmit}>
                             <span>Register</span>
-                            <div className={styles.buttonHoverBG}></div>
+                            <div className={registering ? styles.buttonLoggingInBG : styles.buttonHoverBG}></div>
                         </div>
                     </div>
                 </form>
@@ -83,6 +88,9 @@ export default function RegistrationPage(){
                             )}
                         )
                     }
+                </motion.div>}
+                {registering && <motion.div className={styles.disclaimerContainer} initial={{opacity:0}} animate={{opacity:1}} transition={{ease:"easeOut", duration:0.5}}>
+                Heads up! This app runs on a free hosting service, so the first request after inactivity might take a little longer while the server spins up. Subsequent requests will be much faster.
                 </motion.div>}
             </div>
             </div>
