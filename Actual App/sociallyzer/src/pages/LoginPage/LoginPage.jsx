@@ -70,14 +70,15 @@ export default function LoginPage(){
                         </div>
                         <button type="submit" className={styles.submitButton}>
                             <span>Login</span>
-                            <div className={styles.buttonHoverBG}></div>
+                            {/* <div className={styles.buttonHoverBG}></div> */}
+                            <div className={loggingIn ? styles.buttonLoggingInBG : styles.buttonHoverBG}></div>
                         </button>
                     </div>
                 </form>
                 <div className={styles.loginLink}>
                     <span>Create new account? <a onClick={()=>navigate("/register")}>Register</a> </span>
                 </div>
-                {errors && errors.length!=0 && <motion.div className={styles.errorsContainer}>
+                {errors && errors.length!=0 && <motion.div className={styles.errorsContainer} initial={{opacity:0}} animate={{opacity:1}} transition={{ease:"easeOut", duration:0.5}}>
                     {errors.map((e, index)=>{ // PASSING INDEXES AS KEY IS RISKY
                         return (
                             <div className={styles.error} key={index}>
@@ -87,6 +88,12 @@ export default function LoginPage(){
                             )}
                         )
                     }
+                </motion.div>}
+                {/* {loggingIn && <motion.div className={styles.errorsContainer} initial={{opacity:0}} animate={{opacity:1}} transition={{ease:"easeOut", duration:0.5}}>
+                    DISCLAIMER : The first request (login) to the backend might take upto 20 seconds
+                </motion.div>} */}
+                {loggingIn && <motion.div className={styles.disclaimerContainer} initial={{opacity:0}} animate={{opacity:1}} transition={{ease:"easeOut", duration:0.5}}>
+                Heads up! This app runs on a free hosting service, so the first request after inactivity might take a little longer while the server spins up. Subsequent requests will be much faster.
                 </motion.div>}
             </div>
             </div>
