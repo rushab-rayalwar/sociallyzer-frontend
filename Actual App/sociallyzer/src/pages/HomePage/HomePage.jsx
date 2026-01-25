@@ -7,6 +7,9 @@ import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortaweso
 import { faComment as commentSolidIcon } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+//redux related imports
+import { useSelector, useDispatch } from "react-redux";
+import fetchFeedPosts from "../../redux/feedPosts/filterPostsThunk.js";
 
 // local imports
 import styles from "./HomePage.module.css";
@@ -31,26 +34,31 @@ export default function HomePage(){ // NOTE the state logic here
     const filterIconRef = useRef();
 
     const [visible, setVisible] = useState(false); // Controls the visibility of the FeedFilterOptions component
-    const [posts, setPosts] = useState(null);
+    // const [posts, setPosts] = useState(null);
+    const feedPostsState = useSelector(state=>state.feedPosts);
+    const posts = feedPostsState.data;
 
     const location = useLocation();
-    
+    const dispatch = useDispatch(fetchFeedPosts);
 
-    useEffect(()=>{ // NOTE THIS : the callback function here cannot be async as async functions always return a promise. The callback function of useEffect is expected to either return a cleanup function or nothing
-        getPosts().then(data=>{
-            console.log(data);
-            setPosts(data.data); // data is the Object received from the backend and the .data property contains the data about the posts
-        }).catch(error=>{
-            let backendErrors = error.response?.data?.errors || ["Something went wrong"];
-            console.log("ERROR LOADING POSTS", error);
-        });
-    },[]);
+    // useEffect(()=>{ // NOTE THIS : the callback function here cannot be async as async functions always return a promise. The callback function of useEffect is expected to either return a cleanup function or nothing
+    //     getPosts().then(data=>{
+    //         console.log(data);
+    //         setPosts(data.data); // data is the Object received from the backend and the .data property contains the data about the posts
+    //     }).catch(error=>{
+    //         let backendErrors = error.response?.data?.errors || ["Something went wrong"];
+    //         console.log("ERROR LOADING POSTS", error);
+    //     });
+    // },[]);
+    useEffect(()=>{
+        dispatch(fetchFeedPosts());
+    },[dispatch]);
 
-    async function getPosts(){
-        let res = await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/feed/",{withCredentials:true});
-        let data = res.data;
-        return data;
-    }
+    // async function getPosts(){
+    //     let res = await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/feed/",{withCredentials:true});
+    //     let data = res.data;
+    //     return data;
+    // }
 
     function cursorEntered(){
         hovering.current = true;
@@ -75,15 +83,18 @@ export default function HomePage(){ // NOTE the state logic here
                     <section className={styles.feed}>
                         <div className={styles.prePosts}></div>
                         <div className={styles.posts}>
-                                {posts &&
+                                {posts.length > 0 && !feedPostsState.loading &&
                                     posts.map(p=>{
                                         console.log("data sent to the post component", p);
-                                        return <Post data={p}></Post>
+                                        return <Post data={p} key={p._id}></Post>
                                     })
+                                }
+                                {
+                                    feedPostsState.loading && <h1>LOADING !</h1>
                                 }
                         </div>
                     </section>
-                    <footer className={styles.footer}>
+                    <footer className={styles.footer} style={{width : (visible ? "100%" : "fit-content")}}>
                         <img src={filterIcon} className={styles.filterIcon} ref={filterIconRef} onMouseEnter={cursorEntered} onMouseLeave={cursorLeft}></img>
                         <AnimatePresence>
                             {visible && <FeedFilterOptions visible={visible} cursorLeft={cursorLeft} cursorEntered={cursorEntered}/>} {/* NOTE THIS */}

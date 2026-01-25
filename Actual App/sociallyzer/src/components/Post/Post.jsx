@@ -1,11 +1,14 @@
 //third party imports
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 // local imports
 import styles from "./Post.module.css";
 import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
+import { faThumbsUp as thumbRegular, faComment as commentRegular, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
+import { faThumbsUp as thumbSolid, faComment as commentSolid, faBookmark as bookmarkSolid} from "@fortawesome/free-solid-svg-icons";
+
 
 function formatTime(dateInput) {
     const date = new Date(dateInput);
@@ -32,6 +35,35 @@ function formatTime(dateInput) {
 export default function Post({data}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
     let {userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt} = data;
     let formattedTimeOfCreation = formatTime(createdAt);
+
+    const [options, setOptions] = useState(
+        {
+            liked : false,
+            commented : false,
+            saved : false
+        }
+    );
+
+    function handleClick(option){
+        switch(option) {
+            case "like" :
+                setOptions(options=>{
+                    return {...options, liked : !options.liked}
+                });
+                break;
+            case "comment" :
+                setOptions(options=>{
+                    return {...options, commented : !options.commented}
+                });
+                break;
+            case "save" :
+                setOptions(options=>{
+                    return {...options, saved : !options.saved}
+                });
+                break;
+        }
+    }
+
     return(
         <>
             <motion.div className={styles.post}
@@ -70,11 +102,29 @@ export default function Post({data}){ // if the visibility field is not present 
                     </div> */}
                     <div className={styles.postActions}>
                         <div className={styles.likeAndComment}>
-                            <FontAwesomeIcon className={styles.postOption} icon={faThumbsUp}></FontAwesomeIcon>
-                            <FontAwesomeIcon className={styles.postOption} icon={faComment}></FontAwesomeIcon>
+                            <div className={styles.like} onClick={()=>handleClick("like")}>
+                                <div className={styles.likesCount}>10</div>
+                                {
+                                !options.liked ? 
+                                <FontAwesomeIcon className={styles.postOption} icon={thumbRegular}></FontAwesomeIcon>
+                                : <FontAwesomeIcon className={styles.postOption} icon={thumbSolid}></FontAwesomeIcon>
+                                }
+                            </div>
+                            <div className={styles.comment} onClick={()=>handleClick("comment")}>
+                                <div className={styles.commentsCount}>3</div>
+                                {
+                                !options.commented ? 
+                                <FontAwesomeIcon className={styles.postOption} icon={commentRegular}></FontAwesomeIcon>
+                                : <FontAwesomeIcon className={styles.postOption} icon={commentSolid}></FontAwesomeIcon>
+                                }
+                            </div>
                         </div>
-                        <div className={styles.bookmark}>
-                            <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
+                        <div className={styles.bookmark} onClick={()=>handleClick("save")}>
+                                {
+                                !options.saved ? 
+                                <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
+                                : <FontAwesomeIcon className={styles.postOption} icon={bookmarkSolid}></FontAwesomeIcon>
+                                }
                         </div>
                     </div>
                 </div>
