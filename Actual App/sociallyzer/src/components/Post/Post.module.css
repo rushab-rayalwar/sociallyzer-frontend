@@ -7,6 +7,7 @@
     background: linear-gradient(to right, rgba(255,255,255,0.03), rgba(255,255,255,0.04), rgba(255,255,255,0.03));
     backdrop-filter: blur(3rem);
     overflow: hidden;
+    width : 28.5rem;
 }
 .postHeader {
     display: flex; align-items: center; margin-bottom: 0.8rem; justify-content: space-between; margin-top: 0.8rem;
@@ -69,7 +70,11 @@
 
 }
 .postContent{
-    color:white; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:white; font-family: 'open Sans'; font-size:0.9rem;
+    margin: 0.6rem 0.5rem 0 0.6rem;
+    background-color: rgba(0,0,0,0.5);
+    padding : 0.3rem;
+    border-radius: 0.2rem;;
 }
 .postActions{
     display: flex;

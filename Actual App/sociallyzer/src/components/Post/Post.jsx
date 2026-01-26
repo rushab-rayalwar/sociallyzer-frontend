@@ -97,13 +97,13 @@ export default function Post({data}){ // if the visibility field is not present 
                     <img src={image.url} className={styles.shadowPic}></img>
                 </div>
                 <div className={styles.postFooter}>
-                    {/* <div className={styles.postContent}>
+                    <div className={styles.postContent}>
                         {content}
-                    </div> */}
+                    </div>
                     <div className={styles.postActions}>
                         <div className={styles.likeAndComment}>
                             <div className={styles.like} onClick={()=>handleClick("like")}>
-                                <div className={styles.likesCount}>10</div>
+                                <div className={styles.likesCount}>{likesCount}</div>
                                 {
                                 !options.liked ? 
                                 <FontAwesomeIcon className={styles.postOption} icon={thumbRegular}></FontAwesomeIcon>
@@ -111,7 +111,7 @@ export default function Post({data}){ // if the visibility field is not present 
                                 }
                             </div>
                             <div className={styles.comment} onClick={()=>handleClick("comment")}>
-                                <div className={styles.commentsCount}>3</div>
+                                <div className={styles.commentsCount}>{commentsCount}</div>
                                 {
                                 !options.commented ? 
                                 <FontAwesomeIcon className={styles.postOption} icon={commentRegular}></FontAwesomeIcon>
@@ -132,3 +132,5 @@ export default function Post({data}){ // if the visibility field is not present 
         </>
     )
 }
+
+// open sans

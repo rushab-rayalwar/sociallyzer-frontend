@@ -1,7 +1,7 @@
 // external imports
 import { useState, useRef, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faComment as commentSolidIcon } from "@fortawesome/free-solid-svg-icons";
@@ -34,6 +34,7 @@ export default function HomePage(){ // NOTE the state logic here
     const filterIconRef = useRef();
 
     const [visible, setVisible] = useState(false); // Controls the visibility of the FeedFilterOptions component
+    const [widthOfFooter, setWidthOfFooter] = useState("fit-content");
     // const [posts, setPosts] = useState(null);
     const feedPostsState = useSelector(state=>state.feedPosts);
     const posts = feedPostsState.data;
@@ -41,35 +42,26 @@ export default function HomePage(){ // NOTE the state logic here
     const location = useLocation();
     const dispatch = useDispatch(fetchFeedPosts);
 
-    // useEffect(()=>{ // NOTE THIS : the callback function here cannot be async as async functions always return a promise. The callback function of useEffect is expected to either return a cleanup function or nothing
-    //     getPosts().then(data=>{
-    //         console.log(data);
-    //         setPosts(data.data); // data is the Object received from the backend and the .data property contains the data about the posts
-    //     }).catch(error=>{
-    //         let backendErrors = error.response?.data?.errors || ["Something went wrong"];
-    //         console.log("ERROR LOADING POSTS", error);
-    //     });
-    // },[]);
     useEffect(()=>{
-        dispatch(fetchFeedPosts());
+        if(posts.length == 0){
+            dispatch(fetchFeedPosts());
+        }
     },[dispatch]);
-
-    // async function getPosts(){
-    //     let res = await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/feed/",{withCredentials:true});
-    //     let data = res.data;
-    //     return data;
-    // }
 
     function cursorEntered(){
         hovering.current = true;
         if(timeout) clearTimeout(timeout.current);
         setVisible(true);
+        setWidthOfFooter("100%");
     }
     function cursorLeft(){
         hovering.current = false;
         timeout.current = setTimeout(()=>{
             if(!hovering.current){
                 setVisible(false);
+                setTimeout(()=>{ // NOTE : this delays the change in width of the footer to wait for the fade out animation
+                    setWidthOfFooter("fit-content");
+                },300);
             }
         }, 300);
     }
@@ -89,12 +81,29 @@ export default function HomePage(){ // NOTE the state logic here
                                         return <Post data={p} key={p._id}></Post>
                                     })
                                 }
-                                {
-                                    feedPostsState.loading && <h1>LOADING !</h1>
-                                }
+                                {/* {
+                                    feedPostsState.loading && <div className={styles.loadingCard}>LOADING !</div>
+                                } */}
+                                <AnimatePresence mode="await">
+                                    {feedPostsState.loading && <motion.div className={styles.loadingCard}
+                                    initial={{opacity:0, y:"-10%"}}
+                                    animate={{opacity:1, y:"0%"}}
+                                    exit={{opacity:0, y:"-10%"}}
+                                    transition={{duration:0.4, ease:"easeOut"}}
+                                    >
+                                        <div className={styles.loadingCardHeader}>
+                                            <div className={styles.loading}>LOADING !</div>
+                                            <div className={styles.loadingShadow}>LOADING !</div> {/* NOTE : This is to create the glow effect */}
+                                        </div>
+                                        
+                                        <div className={styles.loadingCardBody}>
+                                            Heads up! This app runs on a free hosting service, so the first request after inactivity might take a little longer while the server spins up. Subsequent requests will be much faster.
+                                        </div>
+                                    </motion.div>}
+                                </AnimatePresence>
                         </div>
                     </section>
-                    <footer className={styles.footer} style={{width : (visible ? "100%" : "fit-content")}}>
+                    <footer className={styles.footer} style={{width : widthOfFooter}}>
                         <img src={filterIcon} className={styles.filterIcon} ref={filterIconRef} onMouseEnter={cursorEntered} onMouseLeave={cursorLeft}></img>
                         <AnimatePresence>
                             {visible && <FeedFilterOptions visible={visible} cursorLeft={cursorLeft} cursorEntered={cursorEntered}/>} {/* NOTE THIS */}
