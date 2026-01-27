@@ -69,13 +69,41 @@
 .postFooter{
 
 }
-.postContent{
-    color:white; font-family: 'open Sans'; font-size:0.9rem;
-    margin: 0.6rem 0.5rem 0 0.6rem;
-    background-color: rgba(0,0,0,0.5);
-    padding : 0.3rem;
-    border-radius: 0.2rem;;
+.postContentContainer{
+    width:100%;
+    display: flex; justify-content: center;
+    margin-top:0.5rem;
 }
+.postContent{
+    width : calc(100% - 1.6rem);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.03));
+    padding:0.5rem;
+    border-radius: 0.4rem;
+    max-height: 3rem;
+    font-family : "Open Sans"; font-size: 0.9rem;
+    overflow-y: auto;
+}
+/* width of the scrollbar */
+.postContent::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+  
+  /* track (background) */
+  .postContent::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0);
+    border-radius: 10px;
+  }
+  
+  /* thumb (the draggable part) */
+  .postContent::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.095);
+    border-radius: 10px;
+  }
+  
+  /* thumb on hover */
+  .postContent::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.681);
+  }
 .postActions{
     display: flex;
     justify-content: space-between;

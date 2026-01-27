@@ -97,8 +97,10 @@ export default function Post({data}){ // if the visibility field is not present 
                     <img src={image.url} className={styles.shadowPic}></img>
                 </div>
                 <div className={styles.postFooter}>
-                    <div className={styles.postContent}>
-                        {content}
+                    <div className={styles.postContentContainer}>
+                        <div className={styles.postContent}>
+                            {content}
+                        </div>
                     </div>
                     <div className={styles.postActions}>
                         <div className={styles.likeAndComment}>
