@@ -1,6 +1,7 @@
 //third party imports
 import { motion } from "framer-motion";
 import { useState } from "react";
+import axios from "axios";
 
 // local imports
 import styles from "./Post.module.css";
@@ -33,13 +34,13 @@ function formatTime(dateInput) {
 }
 
 export default function Post({data}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
-    let {userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt} = data;
+    let {userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt, _id} = data;
     let formattedTimeOfCreation = formatTime(createdAt);
 
     const [options, setOptions] = useState(
         {
             liked : false,
-            commented : false,
+            numberOfLikes : likesCount,
             saved : false
         }
     );
@@ -47,9 +48,7 @@ export default function Post({data}){ // if the visibility field is not present 
     function handleClick(option){
         switch(option) {
             case "like" :
-                setOptions(options=>{
-                    return {...options, liked : !options.liked}
-                });
+                requestToggleLike();
                 break;
             case "comment" :
                 setOptions(options=>{
@@ -62,6 +61,32 @@ export default function Post({data}){ // if the visibility field is not present 
                 });
                 break;
         }
+    }
+    function requestToggleLike(){
+        console.log("REQUEST PENDING");
+        setOptions(prevOptions=>{
+            return {
+                ...prevOptions,
+                liked : !prevOptions.liked,
+                numberOfLikes : (prevOptions.liked ? Math.max(prevOptions.numberOfLikes-1,0) : prevOptions.numberOfLikes+1)
+            };
+        });
+
+        axios
+        .patch(import.meta.env.VITE_BACKEND_URL+"/api/likes/"+_id, null, {withCredentials : true})
+        .then(response=>{
+            console.log("Success", response.data);
+        })
+        .catch(error=>{  // NOTE THIS : this avoids race condition
+            console.log('Error executing toggle like request', error);
+            setOptions(prevOptions=>{
+                return {
+                    ...prevOptions,
+                    liked : !prevOptions.liked,
+                    numberOfLikes : (prevOptions.liked ? Math.max(prevOptions.numberOfLikes-1,0) : prevOptions.numberOfLikes+1)
+                };
+            });
+        })
     }
 
     return(
@@ -105,7 +130,7 @@ export default function Post({data}){ // if the visibility field is not present 
                     <div className={styles.postActions}>
                         <div className={styles.likeAndComment}>
                             <div className={styles.like} onClick={()=>handleClick("like")}>
-                                <div className={styles.likesCount}>{likesCount}</div>
+                                <div className={styles.likesCount}>{options.numberOfLikes}</div>
                                 {
                                 !options.liked ? 
                                 <FontAwesomeIcon className={styles.postOption} icon={thumbRegular}></FontAwesomeIcon>
@@ -114,11 +139,7 @@ export default function Post({data}){ // if the visibility field is not present 
                             </div>
                             <div className={styles.comment} onClick={()=>handleClick("comment")}>
                                 <div className={styles.commentsCount}>{commentsCount}</div>
-                                {
-                                !options.commented ? 
                                 <FontAwesomeIcon className={styles.postOption} icon={commentRegular}></FontAwesomeIcon>
-                                : <FontAwesomeIcon className={styles.postOption} icon={commentSolid}></FontAwesomeIcon>
-                                }
                             </div>
                         </div>
                         <div className={styles.bookmark} onClick={()=>handleClick("save")}>
