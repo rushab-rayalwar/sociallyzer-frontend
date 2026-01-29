@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // local imports
 import styles from "./Post.module.css";
@@ -42,28 +43,48 @@ export default function Post({data}){ // if the visibility field is not present 
             liked : false,
             numberOfLikes : likesCount,
             saved : false
-        }
+        }   
     );
+    const [isSaving, setIsSaving] = useState(false);
+    const [isLiking, setIsLiking] = useState(false);
+
+    const navigate = useNavigate();
 
     function handleClick(option){
         switch(option) {
             case "like" :
-                requestToggleLike();
+                if(!isLiking) requestToggleLike();
                 break;
             case "comment" :
-                setOptions(options=>{
-                    return {...options, commented : !options.commented}
-                });
+                navigate("/profile/"+_id);
                 break;
             case "save" :
-                setOptions(options=>{
-                    return {...options, saved : !options.saved}
-                });
+                if(!isSaving) requestToggleSave();
                 break;
         }
     }
-    function requestToggleLike(){
+    function requestToggleSave(){
         console.log("REQUEST PENDING");
+        setIsSaving(true);
+        setOptions(prevOptions=>{
+            return {...prevOptions, saved : !prevOptions.saved}
+        });
+
+        axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/saved-posts/${_id}`,null,{withCredentials:true})
+        .then(response=>console.log("Success", response.data))
+        .catch(error=>{
+            console.log('Error executing toggle save request', error);
+            setOptions(prevOptions=>{
+                return {...prevOptions, saved : !prevOptions.saved}
+            })
+        })
+        .finally(()=>{
+            setIsSaving(false);
+        });
+    }
+    function requestToggleLike(){ // NOTE THIS : this implements optimistic updates
+        console.log("REQUEST PENDING");
+        setIsLiking(true);
         setOptions(prevOptions=>{
             return {
                 ...prevOptions,
@@ -86,6 +107,9 @@ export default function Post({data}){ // if the visibility field is not present 
                     numberOfLikes : (prevOptions.liked ? Math.max(prevOptions.numberOfLikes-1,0) : prevOptions.numberOfLikes+1)
                 };
             });
+        })
+        .finally(()=>{
+            setIsLiking(false);
         })
     }
 

@@ -1,4 +1,4 @@
-// library imports
+    // library imports
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,10 +17,13 @@ import Comment from "../../components/Comment/Comment";
 export default function PostDetailsPage(){
 
     const postInfo = useRef();
+    const commentRef = useRef();
     const [arrowIsVisible, setArrowIsVisible] = useState(false);
 
     useEffect(()=>{
-        const originalStyle = window.getComputedStyle(document.body).overflow;
+        commentRef.current.focus(); // bring focus to the comment input field
+
+        const originalStyle = window.getComputedStyle(document.body).overflow; // prevent scrolling when this page is open
         document.body.style.overflow = "hidden"; //NOTE : directly modifying DOM when using React is not encouraged as it might conflict with React's state management and result in unexpected behaviour
         // but this is a safe exception because the body element itself does not come under react components' tree
         return ()=>{
@@ -111,7 +114,7 @@ export default function PostDetailsPage(){
                             </div>
                             <div className={styles.actions}>
                                 <FontAwesomeIcon icon={thumbsUpHollow} className={styles.thumbsUpHollow}></FontAwesomeIcon>
-                                <textarea type="text" placeholder="Write a comment..." className={styles.commentInput}></textarea>
+                                <textarea type="text" placeholder="Write a comment..." className={styles.commentInput} ref={commentRef}></textarea>
                                 <div className={styles.postCommentButton}>Post</div>
                             </div>
                         </div>
