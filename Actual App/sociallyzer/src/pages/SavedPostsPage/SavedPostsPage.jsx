@@ -1,16 +1,26 @@
 // third-party imports
 import {motion, AnimatePresence} from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 // local imports
 import styles from "./SavedPostsPage.module.css";
 import Header from "../../components/Header/Header";
 import Navbar from "../../components/Navbar/Navbar";
 import SavedPost from "../../components/PostInGrid/PostInAGrid";
+//redux related imports
+import fetchSavedPosts from "../../redux/savedPostsSlice/savedPostsThunk.js";
 
 export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study the staggering and hovering logic here
     const [hoveringOver, setHoveringOver] = useState(null);
+
+    const dispatch = useDispatch();
+    const savedPosts = useSelector(state=>state.savedPosts);
+    
+    useEffect(()=>{
+        dispatch(fetchSavedPosts());
+    },[]);
 
     const variants = {
         hidden: {},
@@ -33,7 +43,7 @@ export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study 
                             initial="hidden"
                             animate={hoveringOver == null ? "show" : "hoveringOverAChild"}
                             >
-                                <SavedPost imageNumber="1" key="17" id="17" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(17)}/>
+                                {/* <SavedPost imageNumber="1" key="17" id="17" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(17)}/>
                                 <SavedPost imageNumber="3" key="16" id="16" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(16)}/>
                                 <SavedPost imageNumber="2" key="15" id="15" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(15)}/>
                                 <SavedPost imageNumber="1" key="14" id="14" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(14)}/>
@@ -49,8 +59,25 @@ export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study 
                                 <SavedPost imageNumber="1" key="4" id="4" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(4)}/>
                                 <SavedPost imageNumber="3" key="3" id="3" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(3)}/>
                                 <SavedPost imageNumber="1" key="2" id="2" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(2)}/>
-                                <SavedPost imageNumber="2" key="1" id="1" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(1)}/>
+                                <SavedPost imageNumber="2" key="1" id="1" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(1)}/> */}
                             </motion.div>
+                            <AnimatePresence mode="await">
+                                {savedPosts.loading && <motion.div className={styles.loadingCard}
+                                initial={{opacity:0, y:"-10%"}}
+                                animate={{opacity:1, y:"0%"}}
+                                exit={{opacity:0, y:"-10%"}}
+                                transition={{duration:0.4, ease:"easeOut"}}
+                                >
+                                    <div className={styles.loadingCardHeader}>
+                                        <div className={styles.loading}>LOADING !</div>
+                                        <div className={styles.loadingShadow}>LOADING !</div> {/* NOTE : This is to create the glow effect */}
+                                    </div>
+                                    
+                                    <div className={styles.loadingCardBody}>
+                                        Heads up! This app runs on a free hosting service, so the first request after inactivity might take a little longer while the server spins up. Subsequent requests will be much faster.
+                                    </div>
+                                </motion.div>}
+                            </AnimatePresence>
                         </div>
                     </section>
                 </div>

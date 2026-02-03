@@ -29,19 +29,17 @@ export default function LoginPage(){
     useEffect(()=>{
         if(loggedIn){
             navigate("/home");
-        }
+        }   
     },[loggedIn]);
 
     async function onSubmit(){
-        if(emailRef.current.value.trim() === "" && !errors.includes("Enter a valid email")){
+        if(emailRef.current.value.trim() === "" && !errors.includes("Enter a valid email")){ 
             dispatch(addError("Enter a valid email"));
-            return;
         }
         if(passwordRef.current.value.trim() === "" && !errors.includes("Password is required")){
             dispatch(addError("Password is required"));
-            return;
         }
-        if( !errors.includes("Enter a valid email") && !errors.includes("Password is required") ) dispatch(loginUser({email:emailRef.current.value, password:passwordRef.current.value}));
+        if( emailRef.current.value.trim() != "" && passwordRef.current.value.trim() != "" ) dispatch(loginUser({email:emailRef.current.value, password:passwordRef.current.value}));
     }
     return(
         <>
