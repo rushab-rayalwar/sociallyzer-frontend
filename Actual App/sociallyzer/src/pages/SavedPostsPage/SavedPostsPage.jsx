@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./SavedPostsPage.module.css";
 import Header from "../../components/Header/Header";
 import Navbar from "../../components/Navbar/Navbar";
-import SavedPost from "../../components/PostInGrid/PostInAGrid";
+import SavedPost from "../../components/SavedPost/SavedPost.jsx";
 //redux related imports
 import fetchSavedPosts from "../../redux/savedPostsSlice/savedPostsThunk.js";
 
@@ -17,10 +17,14 @@ export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study 
 
     const dispatch = useDispatch();
     const savedPosts = useSelector(state=>state.savedPosts);
+    console.log("saved posts loading state", savedPosts.loading);
+    console.log("saved posts", savedPosts.data);
     
     useEffect(()=>{
-        dispatch(fetchSavedPosts());
-    },[]);
+        if(savedPosts.data.length == 0){
+            dispatch(fetchSavedPosts());
+        }
+    },[dispatch]);
 
     const variants = {
         hidden: {},
@@ -60,6 +64,11 @@ export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study 
                                 <SavedPost imageNumber="3" key="3" id="3" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(3)}/>
                                 <SavedPost imageNumber="1" key="2" id="2" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(2)}/>
                                 <SavedPost imageNumber="2" key="1" id="1" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(1)}/> */}
+                                {
+                                    !savedPosts.data.loading && savedPosts.data.length > 0 && savedPosts.data.map(s=>{
+                                        return <SavedPost post={s} key={s._id} hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(s.id)}></SavedPost>
+                                    })
+                                }
                             </motion.div>
                             <AnimatePresence mode="await">
                                 {savedPosts.loading && <motion.div className={styles.loadingCard}

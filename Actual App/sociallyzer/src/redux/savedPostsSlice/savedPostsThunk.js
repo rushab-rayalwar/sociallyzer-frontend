@@ -3,7 +3,7 @@ import axios from "axios";
 
 const fetchSavedPosts = createAsyncThunk("savedPosts", async (_, thunkAPI)=>{
     try{
-        const response = await axios.get(import.meta.env+'/api/saved-posts/',{withCredentials:true});
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL+'/api/saved-posts/',{withCredentials:true});
         const savedPosts = response.data;
         return savedPosts;
     } catch(error){

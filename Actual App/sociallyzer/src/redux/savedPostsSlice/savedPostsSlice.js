@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import fetchFeedPosts from "../feedPosts/filterPostsThunk.js";
+import fetchSavedPosts from "./savedPostsThunk.js";
 
 const INITIAL_STATE = {
     data:[],
@@ -16,18 +16,18 @@ const savedPosts = createSlice({
     },
     extraReducers : (builder)=>{
         builder
-            .addCase(fetchFeedPosts.fulfilled,(state, action)=>{
+            .addCase(fetchSavedPosts.fulfilled,(state, action)=>{
                 console.log("FULFILLED")
-                state.data = action.payload;
+                state.data = action.payload.data.accessiblePosts;
                 state.loading = false;
                 state.errors = [];
             })
-            .addCase(fetchFeedPosts.rejected, (state, action)=>{
+            .addCase(fetchSavedPosts.rejected, (state, action)=>{
                 console.log("REJECTED")
                 state.errors = action.payload;
                 state.loading = false;
             })
-            .addCase(fetchFeedPosts.pending, (state, action)=>{
+            .addCase(fetchSavedPosts.pending, (state, action)=>{
                 console.log("PENDING")
                 state.loading = true;
             })

@@ -33,3 +33,37 @@
     gap:0.1rem;
     width:100%;
 }
+
+/* ERRORS AND WARNINGS */
+.loadingCard{
+    font-family: 'Open Sans';
+    margin-top : 4rem;
+    width : 28rem;
+    background: linear-gradient(to right, rgba(255,255,255,0.03), rgba(255,255,255,0.04), rgba(255,255,255,0.03));
+    padding:1rem;
+    border-radius:0.4rem;
+    /* border : 1px solid rgba(255, 255, 255, 0.195); */
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.loadingCardHeader{
+    position:relative; width:100%;
+    height:1rem;
+    margin-bottom:0.5rem;
+}
+.loading, .loadingShadow{
+    width:100%;
+    display: flex; justify-content: center; align-items: center;
+    position : absolute; top:0; right:0;
+    color:white;
+}
+.loading{
+    z-index : 1;
+}
+.loadingShadow{
+    z-index : 0; filter : blur(4rem);
+    /* opacity : 0.3; */
+}
+.loadingCardBody{
+    color : rgba(255,255,255,0.681);
+}
