@@ -65,7 +65,7 @@ export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study 
                                 <SavedPost imageNumber="1" key="2" id="2" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(2)}/>
                                 <SavedPost imageNumber="2" key="1" id="1" hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(1)}/> */}
                                 {
-                                    !savedPosts.data.loading && savedPosts.data.length > 0 && savedPosts.data.map(s=>{
+                                    !savedPosts.loading && savedPosts.data.length > 0 && savedPosts.data.map(s=>{
                                         return <SavedPost post={s} key={s._id} hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(s.id)}></SavedPost>
                                     })
                                 }

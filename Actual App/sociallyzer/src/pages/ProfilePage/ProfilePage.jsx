@@ -1,28 +1,41 @@
 // third party imports
 import {AnimatePresence, motion} from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
-
 
 // local imports
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import Header from "../../components/Header/Header.jsx";
 import styles from "./ProfilePage.module.css";
 import image from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
-import PostInAGrid from "../../components/PostInGrid/PostInAGrid.jsx";
+import ProfilePageComponentInGrid from "../../components/ProfilePagePostInGrid/ProfilePageComponentInGrid.jsx";
+// related to redux
+import fetchUserPosts from "../../redux/userPosts/userPostsThunk.js";
 
 export default function ProfilePage(){
 
     const [hoveringOver, setHoveringOver] = useState(null);
     const [editing, setEditing] = useState(false);
 
+    const userPosts = useSelector(state=>state.userPosts);
+    console.log("user posts in profile page",userPosts);
+
+    useEffect(()=>{
+        if(userPosts.data.length == 0){
+            dispatch(fetchUserPosts());
+        }
+    },[]);
+
+    const dispatch = useDispatch()
+
     const imageInputRef = useRef();
 
     function getImageInput(){
-        imageInputRef.current.click();
+        imageInputRef.current.click();  
     }
     function toggleEditing(){
         setEditing(prev=>!prev);
@@ -79,13 +92,19 @@ export default function ProfilePage(){
                             initial="hidden"
                             animate={hoveringOver == null ? "show" : "hoveringOverAChild"}
                             >
-                                {Array.from({length:15},(_, index)=>{
+                                {/* {Array.from({length:15},(_, index)=>{
                                     // let imageNumber = Math.floor(Math.random()*3) + 1;
                                     let imageNumber = index%3 + 1;
                                     return (
                                         <PostInAGrid imageNumber={imageNumber} key={index} id={index} hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(index)}></PostInAGrid>
                                     )
-                                })}
+                                })} */}
+                                {
+                                    userPosts.data.length > 0 &&
+                                    userPosts.data.map(p=>{
+                                        return <ProfilePageComponentInGrid post={p} key={p._id} hoveringOver={hoveringOver} mouseLeave={()=>setHoveringOver(null)} mouseEnter={()=>setHoveringOver(p._id)}></ProfilePageComponentInGrid>
+                                    })
+                                }
                             </motion.div>
                         </div>
                     </motion.section>
