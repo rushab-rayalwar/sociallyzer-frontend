@@ -14,17 +14,27 @@ import fetchSavedPosts from "../../redux/savedPostsSlice/savedPostsThunk.js";
 
 export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study the staggering and hovering logic here
     const [hoveringOver, setHoveringOver] = useState(null);
+    const [noPosts, setNoPosts] = useState(false);
 
     const dispatch = useDispatch();
     const savedPosts = useSelector(state=>state.savedPosts);
-    console.log("saved posts loading state", savedPosts.loading);
-    console.log("saved posts", savedPosts.data);
     
     useEffect(()=>{
         if(savedPosts.data.length == 0){
             dispatch(fetchSavedPosts());
         }
     },[dispatch]);
+    useEffect(()=>{ // toggle the noPosts variable to control the visibility of the card that says "No Saved Posts!"
+        if(savedPosts.data.length == 0){
+            if(savedPosts.loading){
+                setNoPosts(false);
+            } else {
+                setNoPosts(true);
+            }
+        } else {
+            setNoPosts(false);
+        }
+    },[savedPosts]);
 
     const variants = {
         hidden: {},
@@ -70,23 +80,38 @@ export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study 
                                     })
                                 }
                             </motion.div>
-                            <AnimatePresence mode="await">
-                                {savedPosts.loading && <motion.div className={styles.loadingCard}
-                                initial={{opacity:0, y:"-10%"}}
-                                animate={{opacity:1, y:"0%"}}
-                                exit={{opacity:0, y:"-10%"}}
-                                transition={{duration:0.4, ease:"easeOut"}}
-                                >
-                                    <div className={styles.loadingCardHeader}>
-                                        <div className={styles.loading}>LOADING !</div>
-                                        <div className={styles.loadingShadow}>LOADING !</div> {/* NOTE : This is to create the glow effect */}
-                                    </div>
-                                    
-                                    <div className={styles.loadingCardBody}>
-                                        Heads up! This app runs on a free hosting service, so the first request after inactivity might take a little longer while the server spins up. Subsequent requests will be much faster.
-                                    </div>
-                                </motion.div>}
-                            </AnimatePresence>
+                            {/* <AnimatePresence mode="await"> */}
+                            {savedPosts.loading && <motion.div className={styles.loadingCard}
+                            initial={{opacity:0, y:"-10%"}}
+                            animate={{opacity:1, y:"0%"}}
+                            exit={{opacity:0, y:"-10%"}}
+                            transition={{duration:0.4, ease:"easeOut"}}
+                            >
+                                <div className={styles.loadingCardHeader}>
+                                    <div className={styles.loading}>LOADING !</div>
+                                    <div className={styles.loadingShadow}>LOADING !</div> {/* NOTE : This is to create the glow effect */}
+                                </div>
+                                
+                                <div className={styles.loadingCardBody}>
+                                    Heads up! This app runs on a free hosting service, so the first request after inactivity might take a little longer while the server spins up. Subsequent requests will be much faster.
+                                </div>
+                            </motion.div>}
+                            {noPosts && <motion.div className={styles.loadingCard}
+                            initial={{opacity:0, y:"-10%"}}
+                            animate={{opacity:1, y:"0%"}}
+                            exit={{opacity:0, y:"-10%"}}
+                            transition={{duration:0.4, ease:"easeOut"}}
+                            >
+                                <div className={styles.loadingCardHeader}>
+                                    <div className={styles.loading}>No Saved Posts !</div>
+                                    <div className={styles.loadingShadow}>No Saved Posts !</div> {/* NOTE : This is to create the glow effect */}
+                                </div>
+                                
+                                {/* <div className={styles.loadingCardBody}>
+                                    Heads up! This app runs on a free hosting service, so the first request after inactivity might take a little longer while the server spins up. Subsequent requests will be much faster.
+                                </div> */}
+                            </motion.div>}
+                            {/* </AnimatePresence> */}
                         </div>
                     </section>
                 </div>

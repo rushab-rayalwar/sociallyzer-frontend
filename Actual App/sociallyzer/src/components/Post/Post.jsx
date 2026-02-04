@@ -35,14 +35,15 @@ function formatTime(dateInput) {
 }
 
 export default function Post({data}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
-    let {userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt, _id} = data;
+    let {userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt, _id, isLiked, isBookmarked} = data;
     let formattedTimeOfCreation = formatTime(createdAt);
-
+    console.log("Is Liked", isLiked);
+    console.log("Is BookMarked", isBookmarked);
     const [options, setOptions] = useState(
         {
-            liked : false,
+            liked : isLiked,
             numberOfLikes : likesCount,
-            saved : false
+            saved : isBookmarked
         }   
     );
     const [isSaving, setIsSaving] = useState(false);

@@ -17,8 +17,8 @@ const savedPosts = createSlice({
     extraReducers : (builder)=>{
         builder
             .addCase(fetchSavedPosts.fulfilled,(state, action)=>{
-                console.log("FULFILLED")
-                state.data = action.payload.data.accessiblePosts;
+                console.log("FULFILLED saved posts", action.payload);
+                state.data = action.payload.data.accessiblePosts || [];
                 state.loading = false;
                 state.errors = [];
             })
