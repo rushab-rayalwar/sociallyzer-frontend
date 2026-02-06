@@ -1,11 +1,12 @@
     // library imports
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faArrowUp, faThumbsUp, faComment, faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp as thumbsUpHollow } from "@fortawesome/free-regular-svg-icons";
 import { AnimatePresence } from "framer-motion";
+import axios from "axios";
 
 // local imports
 import styles from "./PostDetailsPage.module.css";
@@ -16,12 +17,37 @@ import Comment from "../../components/Comment/Comment";
 
 export default function PostDetailsPage(){
 
-    const postInfo = useRef();
+    const {postId} = useParams();
+    const [postInfo, setPostInfo] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+
+    const postInfoDivRef = useRef();
     const commentRef = useRef();
     const [arrowIsVisible, setArrowIsVisible] = useState(false);
+    // const [post, setPost] = useState();
 
     useEffect(()=>{
         commentRef.current.focus(); // bring focus to the comment input field
+
+        //load post data
+        setIsLoading(true);
+        axios.get(import.meta.env.VITE_BACKEND_URL+"/posts/"+postId,{withCredentials:true})
+        .then(response=>{
+            setPostInfo(response.data.data);
+            setIsLoading(false);
+            console.log("POST DETAILS LOADED", response.data.data);
+        })
+        .catch(error=>{
+            console.log(error);
+            setIsLoading(false);
+            navigate(-1);
+        })
+        .finally(()=>{
+                if(isLoading){
+                    setIsLoading(false);
+                }
+            }
+        )
 
         const originalStyle = window.getComputedStyle(document.body).overflow; // prevent scrolling when this page is open
         document.body.style.overflow = "hidden"; //NOTE : directly modifying DOM when using React is not encouraged as it might conflict with React's state management and result in unexpected behaviour
@@ -37,14 +63,14 @@ export default function PostDetailsPage(){
         navigate(-1);
     }
     function jumpToTopCommnent(){
-        // postInfo.current.scrollTop = "0";  NOTE THIS
-        postInfo.current.scrollTo({
+        // postInfoDivRef.current.scrollTop = "0";  NOTE THIS
+        postInfoDivRef.current.scrollTo({
             top:0,
             behavior:"smooth"
         });
     }
     function handleScrollButtonVisibility(){
-        if(postInfo.current.scrollTop > 0){
+        if(postInfoDivRef.current.scrollTop > 0){
             setArrowIsVisible(true);
         } else {
             setArrowIsVisible(false);
@@ -83,7 +109,7 @@ export default function PostDetailsPage(){
                     <div className={styles.picture}>
                         <img src={postPic}></img>
                     </div>
-                    <div className={styles.postInfo} ref={postInfo} onScroll={handleScrollButtonVisibility}>
+                    <div className={styles.postInfo} ref={postInfoDivRef} onScroll={handleScrollButtonVisibility}>
                         <div className={styles.postInfoHeader}>
                             <div className={styles.postOwnerPic}>
                                 <img src={postOwnerPic} className={styles.postOwnerPic}></img>

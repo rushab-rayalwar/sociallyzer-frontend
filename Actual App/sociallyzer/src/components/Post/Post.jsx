@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 // local imports
 import styles from "./Post.module.css";
@@ -10,7 +11,9 @@ import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faThumbsUp as thumbRegular, faComment as commentRegular, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsUp as thumbSolid, faComment as commentSolid, faBookmark as bookmarkSolid} from "@fortawesome/free-solid-svg-icons";
-
+// redux related imports
+import { toggleLikeOfAPostInFeedSlice, toggleSaveOfAPostInFeedSlice } from "../../redux/feedPosts/feedPostsSclice.js";
+import { toggleSavedPostOptimistic } from "../../redux/savedPostsSlice/savedPostsSlice.js";
 
 function formatTime(dateInput) {
     const date = new Date(dateInput);
@@ -37,19 +40,12 @@ function formatTime(dateInput) {
 export default function Post({data}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
     let {userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt, _id, isLiked, isBookmarked} = data;
     let formattedTimeOfCreation = formatTime(createdAt);
-    console.log("Is Liked", isLiked);
-    console.log("Is BookMarked", isBookmarked);
-    const [options, setOptions] = useState(
-        {
-            liked : isLiked,
-            numberOfLikes : likesCount,
-            saved : isBookmarked
-        }   
-    );
-    const [isSaving, setIsSaving] = useState(false);
+
+    const [isSaving, setIsSaving] = useState(false); // NOTE THIS : these flags avoid sending requests when a similar request already mid flight
     const [isLiking, setIsLiking] = useState(false);
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     function handleClick(option){
         switch(option) {
@@ -57,7 +53,7 @@ export default function Post({data}){ // if the visibility field is not present 
                 if(!isLiking) requestToggleLike();
                 break;
             case "comment" :
-                navigate("/profile/"+_id);
+                navigate("/home/"+_id);
                 break;
             case "save" :
                 if(!isSaving) requestToggleSave();
@@ -67,47 +63,38 @@ export default function Post({data}){ // if the visibility field is not present 
     function requestToggleSave(){
         console.log("REQUEST PENDING");
         setIsSaving(true);
-        setOptions(prevOptions=>{
-            return {...prevOptions, saved : !prevOptions.saved}
-        });
+        dispatch(toggleSavedPostOptimistic(data));
+        dispatch(toggleSaveOfAPostInFeedSlice(_id)); // this is an optimistic update
 
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/saved-posts/${_id}`,null,{withCredentials:true})
-        .then(response=>console.log("Success", response.data))
+        .then(response=>{
+            console.log("Success", response.data);
+            // isBookmarked property of the post in the feedPosts slice is now in sync with real state and is no more optimistic
+        })
         .catch(error=>{
             console.log('Error executing toggle save request', error);
-            setOptions(prevOptions=>{
-                return {...prevOptions, saved : !prevOptions.saved}
-            })
+            dispatch(toggleSavedPostOptimistic(data));
+        dispatch(toggleSaveOfAPostInFeedSlice(_id)); // cancel the optimistic update
+
         })
         .finally(()=>{
             setIsSaving(false);
         });
     }
-    function requestToggleLike(){ // NOTE THIS : this implements optimistic updates
+    function requestToggleLike(){
         console.log("REQUEST PENDING");
-        setIsLiking(true);
-        setOptions(prevOptions=>{
-            return {
-                ...prevOptions,
-                liked : !prevOptions.liked,
-                numberOfLikes : (prevOptions.liked ? Math.max(prevOptions.numberOfLikes-1,0) : prevOptions.numberOfLikes+1)
-            };
-        });
+        setIsLiking(true);  // NOTE THIS : this avoids race condition
+        dispatch(toggleLikeOfAPostInFeedSlice(_id)); // this is an optimistic update
 
         axios
         .patch(import.meta.env.VITE_BACKEND_URL+"/api/likes/"+_id, null, {withCredentials : true})
         .then(response=>{
             console.log("Success", response.data);
+            // isLiked property of the post in the feedPosts slice is now in sync with real state and is no more optimistic
         })
-        .catch(error=>{  // NOTE THIS : this avoids race condition
+        .catch(error=>{
             console.log('Error executing toggle like request', error);
-            setOptions(prevOptions=>{
-                return {
-                    ...prevOptions,
-                    liked : !prevOptions.liked,
-                    numberOfLikes : (prevOptions.liked ? Math.max(prevOptions.numberOfLikes-1,0) : prevOptions.numberOfLikes+1)
-                };
-            });
+            dispatch(toggleLikeOfAPostInFeedSlice(_id)); // cancel the optimistic update
         })
         .finally(()=>{
             setIsLiking(false);
@@ -138,10 +125,6 @@ export default function Post({data}){ // if the visibility field is not present 
                         <span>General   </span>
                     </div>
                 </div>
-                {/* <div className={styles.postPic}>
-                    <img src={postIMG1} className={styles.mainPic}></img>
-                    <img src={postIMG1} className={styles.shadowPic}></img>
-                </div> */}
                 <div className={styles.postPic}>
                     <img src={image.url} className={styles.mainPic}></img>
                     <img src={image.url} className={styles.shadowPic}></img>
@@ -155,11 +138,11 @@ export default function Post({data}){ // if the visibility field is not present 
                     <div className={styles.postActions}>
                         <div className={styles.likeAndComment}>
                             <div className={styles.like} onClick={()=>handleClick("like")}>
-                                <div className={styles.likesCount}>{options.numberOfLikes}</div>
+                                <div className={styles.likesCount}>{likesCount}</div>
                                 {
-                                !options.liked ? 
-                                <FontAwesomeIcon className={styles.postOption} icon={thumbRegular}></FontAwesomeIcon>
-                                : <FontAwesomeIcon className={styles.postOption} icon={thumbSolid}></FontAwesomeIcon>
+                                    !isLiked ? 
+                                    <FontAwesomeIcon className={styles.postOption} icon={thumbRegular}></FontAwesomeIcon>
+                                    : <FontAwesomeIcon className={styles.postOption} icon={thumbSolid}></FontAwesomeIcon>
                                 }
                             </div>
                             <div className={styles.comment} onClick={()=>handleClick("comment")}>
@@ -169,9 +152,9 @@ export default function Post({data}){ // if the visibility field is not present 
                         </div>
                         <div className={styles.bookmark} onClick={()=>handleClick("save")}>
                                 {
-                                !options.saved ? 
-                                <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
-                                : <FontAwesomeIcon className={styles.postOption} icon={bookmarkSolid}></FontAwesomeIcon>
+                                    !isBookmarked ? 
+                                    <FontAwesomeIcon className={styles.postOption} icon={bookmarkRegular}></FontAwesomeIcon>
+                                    : <FontAwesomeIcon className={styles.postOption} icon={bookmarkSolid}></FontAwesomeIcon>
                                 }
                         </div>
                     </div>
@@ -180,5 +163,3 @@ export default function Post({data}){ // if the visibility field is not present 
         </>
     )
 }
-
-// open sans

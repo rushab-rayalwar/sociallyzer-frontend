@@ -18,6 +18,7 @@ export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study 
 
     const dispatch = useDispatch();
     const savedPosts = useSelector(state=>state.savedPosts);
+    console.log("Saved posts", savedPosts);
     
     useEffect(()=>{
         if(savedPosts.data.length == 0){

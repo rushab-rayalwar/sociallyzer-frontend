@@ -77,7 +77,6 @@ export default function HomePage(){ // NOTE the state logic here
                         <div className={styles.posts}>
                                 {posts.length > 0 && !feedPostsState.loading &&
                                     posts.map(p=>{
-                                        console.log("data sent to the post component", p);
                                         return <Post data={p} key={p._id}></Post>
                                     })
                                 }
