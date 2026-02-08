@@ -28,6 +28,7 @@
 .picture > img {
     height : 39rem; width:39rem;
     border-radius: 1rem 0 0 1rem;
+    object-fit: cover;
 }
 
 .navButtons{
@@ -52,7 +53,7 @@
 }
 
 .postInfo{
-    height: 100%;
+    height: 100%; width:100%;
     /* scrollbar-width:thin; */
     overflow : scroll;
     padding:1rem;
@@ -133,6 +134,11 @@
     /* overflow-y: scroll; */
     box-shadow: 0 0 0.3rem 0 rgba(97,97,97,0.08)
 }
+.noComments{
+    font-family : 'Work Sans'; font-size:0.9rem;
+    color: rgba(255,255,255,0.681);
+    text-align: center;
+}
 .comments::-webkit-scrollbar{
     display: none;
 }
@@ -180,7 +186,7 @@
     height:1rem; padding: 1rem;
     border : none;
     /* border-radius: 1rem 0 0 1rem; */
-    color:rgb(255, 255, 255);
+    color:rgba(255, 255, 255);
     resize:none;
     border-radius:1.5rem;
     font-family: "Open Sans";
