@@ -1,4 +1,4 @@
-    // library imports
+// library imports
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams} from "react-router-dom";
@@ -20,7 +20,7 @@ export default function PostDetailsPage(){
     const {postId} = useParams();
 
     const [postData, setPostData] = useState({isLoading:false, data:null});
-    const [postComments, setPostComments] = useState();
+    const [postComments, setPostComments] = useState({isLoading:false, data:null});
 
     const postInfoDivRef = useRef();
     const commentRef = useRef();
@@ -48,13 +48,26 @@ export default function PostDetailsPage(){
                 );
                 setPostData({isLoading:false, data:response.data.data});
             } catch (error) {
-                console.error("REJECTED :", error);
+                console.error("post Details could not be fetched", error);
                 setPostData({isLoading:false, data:null});
             }
         };
     
         fetchPostData();
-    }, []);
+    }, [postId]);
+    useEffect(()=>{
+        const fetchComments = async () => {
+            try{
+                setPostComments({isLoading:true, data:null});
+                let response = await axios.get(import.meta.env.VITE_BACKEND_URL+'/api/comments/'+postId, {withCredentials:true});
+                setPostComments({isLoading:false, data:response.data.data});
+            } catch(error) {
+                console.log("Comments could not be fetched", error);
+                setPostComments({isLoading:false, data:null});
+            }
+        }
+        fetchComments();
+    }, postId);
 
     const navigate = useNavigate();
 
@@ -156,16 +169,14 @@ export default function PostDetailsPage(){
                             </div>
                             <div className={styles.divider}></div>
                             <div className={styles.comments} >
-                                {/* <Comment name="John Doe"/>
-                                <Comment name="Rohan Rayalwar"/>
-                                <Comment name="XYZ ABC"/>
-                                <Comment name="Abcd Efgh"/>
-                                <Comment name="John Doe"/>
-                                <Comment name="Rohan Rayalwar"/>
-                                <Comment name="XYZ ABC"/>
-                                <Comment name="Abcd Efgh"/> */}
                                 {
-                                    !postComments && 
+                                    postComments.data && 
+                                    postComments.data.map(c=>{
+                                        return <Comment comment={c}/>
+                                    })
+                                }
+                                {
+                                    !postComments.data && 
                                     <div className={styles.noComments}>
                                         No Comments yet!
                                     </div>
