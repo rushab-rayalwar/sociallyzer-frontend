@@ -12,7 +12,28 @@ const userPostsSlice = createSlice({
     name : "userPosts",
     initialState : INITIAL_STATE,
     reducers : {
-
+        toggleLikeInUserPostSliceOptimistic : (state, action)=>{
+            state.data = state.data.map(p=>{
+                if( String(p._id) === String(action.payload) ){
+                    return {
+                        ...p,
+                        isLiked : !p.isLiked,
+                        likesCount : (p.isLiked ? p.likesCount-1 : p.likesCount+1)
+                    }
+                }
+                return p;
+            });
+        },
+        toggleSaveInUserPostSliceOptimistic : (state, action)=>{
+            state.data = state.data.map((p)=>{
+                if( String(p._id) === String(action.payload) ){
+                    return {
+                        ...p,
+                        isBookmarked : !p.isBookmarked,
+                    }
+                }
+            });
+        }
     },
     extraReducers : (builder)=>{
         builder
@@ -35,4 +56,5 @@ const userPostsSlice = createSlice({
     }
 });
 
+export const {toggleLikeInUserPostSliceOptimistic, toggleSaveInUserPostSliceOptimistic} = userPostsSlice.actions;
 export default userPostsSlice.reducer;

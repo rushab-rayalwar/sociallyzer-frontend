@@ -12,13 +12,25 @@ const savedPostsSlice = createSlice({
     name:"savedPosts",
     initialState: INITIAL_STATE,
     reducers:{
-        toggleSavedPostOptimistic : (state, action)=>{ // action.payload contains the post object to be saved
+        toggleSavedPostInSavedPostSliceOptimistic : (state, action)=>{ // action.payload contains the post object to be saved
             let postInState = state.data.find(p=>String(p._id) == String(action.payload._id));
             if(!postInState){
                 state.data.unshift(action.payload); // optimistically add post to the state
             } else {
                 state.data = state.data.filter(p=>String(p._id) != String(action.payload._id));
             }
+        },
+        toggleLikeInSavedPostSliceOptimistic : (state, action)=>{
+            state.data = state.data.forEach(p=>{
+                if( String(p._id) === String(action.payload) ){
+                    return {
+                        ...p,
+                        isLiked : !p.isLiked,
+                        likesCount : (p.isLiked ? p.likesCount-1 : p.likesCount+1)
+                    }
+                }
+                return p;
+            })
         }
     },
     extraReducers : (builder)=>{
@@ -41,5 +53,5 @@ const savedPostsSlice = createSlice({
     }
 });
 
-export const {toggleSavedPostOptimistic} = savedPostsSlice.actions;
+export const {toggleLikeInSavedPostSliceOptimistic, toggleSavedPostInSavedPostSliceOptimistic} = savedPostsSlice.actions;
 export default savedPostsSlice.reducer;

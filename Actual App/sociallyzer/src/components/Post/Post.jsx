@@ -12,8 +12,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faThumbsUp as thumbRegular, faComment as commentRegular, faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsUp as thumbSolid, faComment as commentSolid, faBookmark as bookmarkSolid} from "@fortawesome/free-solid-svg-icons";
 // redux related imports
-import { toggleLikeOfAPostInFeedSlice, toggleSaveOfAPostInFeedSlice } from "../../redux/feedPosts/feedPostsSclice.js";
-import { toggleSavedPostOptimistic } from "../../redux/savedPostsSlice/savedPostsSlice.js";
+import {toggleSavedPostInSavedPostSliceOptimistic, toggleLikeInSavedPostSliceOptimistic} from "../../redux/savedPostsSlice/savedPostsSlice.js";
+import {toggleLikeInFeedSliceOptimistic, toggleSaveInFeedSliceOptimistic} from "../../redux/feedPosts/feedPostsSclice.js";
+import {toggleLikeInUserPostSliceOptimistic, toggleSaveInUserPostSliceOptimistic} from "../../redux/userPosts/userPostsSlice.js";
 
 function formatTime(dateInput) {
     const date = new Date(dateInput);
@@ -63,8 +64,9 @@ export default function Post({data}){ // if the visibility field is not present 
     function requestToggleSave(){
         console.log("REQUEST PENDING");
         setIsSaving(true);
-        dispatch(toggleSavedPostOptimistic(data));
-        dispatch(toggleSaveOfAPostInFeedSlice(_id)); // this is an optimistic update
+        dispatch(toggleSavedPostInSavedPostSliceOptimistic(data));
+        dispatch(toggleSaveInFeedSliceOptimistic(_id)); // these are optimistic updates
+        dispatch(toggleSaveInUserPostSliceOptimistic(_id));
 
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/saved-posts/${_id}`,null,{withCredentials:true})
         .then(response=>{
@@ -73,9 +75,9 @@ export default function Post({data}){ // if the visibility field is not present 
         })
         .catch(error=>{
             console.log('Error executing toggle save request', error);
-            dispatch(toggleSavedPostOptimistic(data));
-        dispatch(toggleSaveOfAPostInFeedSlice(_id)); // cancel the optimistic update
-
+            dispatch(toggleSavedPostInSavedPostSliceOptimistic(data));
+            dispatch(toggleSaveInFeedSliceOptimistic(_id));
+            dispatch(toggleSaveInUserPostSliceOptimistic(_id));
         })
         .finally(()=>{
             setIsSaving(false);
@@ -84,7 +86,9 @@ export default function Post({data}){ // if the visibility field is not present 
     function requestToggleLike(){
         console.log("REQUEST PENDING");
         setIsLiking(true);  // NOTE THIS : this avoids race condition
-        dispatch(toggleLikeOfAPostInFeedSlice(_id)); // this is an optimistic update
+        dispatch(toggleLikeInFeedSliceOptimistic(_id)); // this is an optimistic update
+        dispatch(toggleLikeInUserPostSliceOptimistic(_id));
+        dispatch(toggleLikeInSavedPostSliceOptimistic(_id));
 
         axios
         .patch(import.meta.env.VITE_BACKEND_URL+"/api/likes/"+_id, null, {withCredentials : true})
@@ -94,7 +98,9 @@ export default function Post({data}){ // if the visibility field is not present 
         })
         .catch(error=>{
             console.log('Error executing toggle like request', error);
-            dispatch(toggleLikeOfAPostInFeedSlice(_id)); // cancel the optimistic update
+            dispatch(toggleLikeInFeedSliceOptimistic(_id));
+            dispatch(toggleLikeInUserPostSliceOptimistic(_id));
+            dispatch(toggleLikeInSavedPostSliceOptimistic(_id));
         })
         .finally(()=>{
             setIsLiking(false);

@@ -12,7 +12,7 @@ const feedPostsSlice = createSlice({
     name : "feedPosts",
     initialState : INITIAL_STATE,
     reducers : {
-        toggleLikeOfAPostInFeedSlice : (state, action)=>{ // NOTE THIS : this action is triggered when the 'toggle like' request successfully gets executed at the server. This action's purpose is to keep the posts state and likes state in sync with each other.
+        toggleLikeInFeedSliceOptimistic : (state, action)=>{ // NOTE THIS : this action is triggered when the 'toggle like' request successfully gets executed at the server. This action's purpose is to keep the posts state and likes state in sync with each other.
             state.data = state.data.map(p=>{
                 if( String(p._id) === String(action.payload) ){
                     return {
@@ -24,7 +24,7 @@ const feedPostsSlice = createSlice({
                 return p;
             })
         },
-        toggleSaveOfAPostInFeedSlice : (state, action)=>{
+        toggleSaveInFeedSliceOptimistic : (state, action)=>{
             state.data = state.data.map(p=>{
                 if(String(p._id) === String(action.payload)){
                     return{
@@ -56,5 +56,5 @@ const feedPostsSlice = createSlice({
     }
 });
 
-export const {toggleLikeOfAPostInFeedSlice, toggleSaveOfAPostInFeedSlice} = feedPostsSlice.actions;
+export const {toggleLikeInFeedSliceOptimistic, toggleSaveInFeedSliceOptimistic} = feedPostsSlice.actions;
 export default feedPostsSlice.reducer;

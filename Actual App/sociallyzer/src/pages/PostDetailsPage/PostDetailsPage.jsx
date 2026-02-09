@@ -172,7 +172,7 @@ export default function PostDetailsPage(){
                                 {
                                     postComments.data && 
                                     postComments.data.map(c=>{
-                                        return <Comment comment={c}/>
+                                        return <Comment comment={c} key={c._id}/>
                                     })
                                 }
                                 {
