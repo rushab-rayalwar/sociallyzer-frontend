@@ -21,7 +21,7 @@ const savedPostsSlice = createSlice({
             }
         },
         toggleLikeInSavedPostSliceOptimistic : (state, action)=>{
-            state.data = state.data.forEach(p=>{
+            state.data = state.data.map(p=>{
                 if( String(p._id) === String(action.payload) ){
                     return {
                         ...p,

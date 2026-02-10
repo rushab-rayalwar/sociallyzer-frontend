@@ -7,6 +7,7 @@ import { faXmark, faArrowUp, faThumbsUp, faComment, faBookmark } from "@fortawes
 import { faThumbsUp as thumbsUpHollow } from "@fortawesome/free-regular-svg-icons";
 import { AnimatePresence } from "framer-motion";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 // local imports
 import styles from "./PostDetailsPage.module.css";
@@ -14,6 +15,8 @@ import postPic from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import postOwnerPic from "../../assets/dummyPosts/Screenshot 2024-03-20 002014.jpg";
 import Comment from "../../components/Comment/Comment";
 import ToastNotification from "../../components/ToastNotification/ToastNotification";
+//redux related imports
+
 
 export default function PostDetailsPage(){
 
@@ -25,6 +28,8 @@ export default function PostDetailsPage(){
     const postInfoDivRef = useRef();
     const commentRef = useRef();
     const [arrowIsVisible, setArrowIsVisible] = useState(false);
+
+    const userDetails = useSelector(state=>state.user);
 
     useEffect(()=>{
         const originalStyle = window.getComputedStyle(document.body).overflow; // prevent scrolling when this page is open
@@ -88,7 +93,52 @@ export default function PostDetailsPage(){
             setArrowIsVisible(false);
         }
     }
+    async function handlePostComment(e){
+        e.preventDefault();
 
+        const tempId = `temp-${Date.now()}`;
+        let newComment = {
+            _id : tempId,
+            authorId : userDetails._id,
+            authorName : userDetails.name,
+            postId : postId,
+            content : commentRef.current.value,
+            updated : false,
+            isOptimistic : true
+        }
+        try{
+            setPostComments(postComments=>{
+                return {
+                    isLoading : false, data : [newComment, ...postComments.data]
+                }
+            });
+            console.log("PENDING");
+            let response = await axios.post(
+                `${import.meta.env.VITE_BACKEND_URL}/api/comments/${postId.toString()}`,
+                {content : newComment.content},
+                {withCredentials:true}
+            );
+            console.log("FULFILLED");
+            setPostComments(postComments=>{
+                let newCommentsArray = postComments.data.map(c=>{
+                    if(c.isOptimistic && c._id === tempId){
+                        return response.data.data;
+                    }
+                    return c;
+                });
+                return {isLoading : false, data : newCommentsArray}
+            });
+        } catch (error) {
+            console.log("REJECTED - ERROR CREATING NEW COMMENT", error);
+            setPostComments(postComments=>{
+                let arrayWithOptimisiticCommentRemoved = postComments.data.filter(c=>{
+                    if(c.isOptimistic && c._id === tempId) return false;
+                    return true;
+                });
+                return {isLoading : false, data : arrayWithOptimisiticCommentRemoved}
+            })
+        }
+    }
     return (
         <>  
             {
@@ -164,7 +214,7 @@ export default function PostDetailsPage(){
                                 <div className={styles.actions}>
                                     <FontAwesomeIcon icon={thumbsUpHollow} className={styles.thumbsUpHollow}></FontAwesomeIcon>
                                     <textarea type="text" placeholder="Write a comment..." className={styles.commentInput} ref={commentRef}></textarea>
-                                    <div className={styles.postCommentButton}>Post</div>
+                                    <div className={styles.postCommentButton} onClick={handlePostComment}>Post</div>
                                 </div>
                             </div>
                             <div className={styles.divider}></div>
