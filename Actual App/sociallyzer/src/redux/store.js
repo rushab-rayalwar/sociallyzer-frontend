@@ -2,11 +2,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // local imports
-import userReducer from "./user/userSlice.js";
-import filterOptionsReducer from "./filterOptions/filterOptionsSlice.js";
-import feedPostsReducer from "./feedPosts/feedPostsSclice.js";
-import savedPostsReducer from "./savedPostsSlice/savedPostsSlice.js";
-import userPostsReducer from "./userPosts/userPostsSlice.js";
+import userReducer from "./features/user/userSlice.js";
+import filterOptionsReducer from "./features/filterOptions/filterOptionsSlice.js";
+import feedPostsReducer from "./features/feedPosts/feedPostsSclice.js";
+import savedPostsReducer from "./features/savedPostsSlice/savedPostsSlice.js";
+import userPostsReducer from "./features/userPosts/userPostsSlice.js";
 
 const store = configureStore({
     reducer : {

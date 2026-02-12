@@ -7,9 +7,7 @@ import { faThumbsUp, faComment, faBookmark as bookmarkRegular } from "@fortaweso
 import { faComment as commentSolidIcon } from "@fortawesome/free-solid-svg-icons";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-//redux related imports
 import { useSelector, useDispatch } from "react-redux";
-import fetchFeedPosts from "../../redux/feedPosts/filterPostsThunk.js";
 
 // local imports
 import styles from "./HomePage.module.css";
@@ -19,6 +17,8 @@ import FriendSuggestions from "../../components/FriendSuggestions/FriendSuggesti
 import Post from "../../components/Post/Post.jsx";
 import PostDetailsPage from "../PostDetailsPage/PostDetailsPage.jsx";
 import Header from "../../components/Header/Header.jsx";
+// redux related
+import fetchFeedPosts from "../../redux/features/feedPosts/filterPostsThunk.js";
 
 // images / svgs
 import icon from "../../assets/icons/icon.svg";
@@ -40,7 +40,7 @@ export default function HomePage(){ // NOTE the state logic here
     const posts = feedPostsState.data;
 
     const location = useLocation();
-    const dispatch = useDispatch(fetchFeedPosts);
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         if(posts.length == 0){

@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from "react-redux";
 // local imports
 import styles from "./FeedFilterOptions.module.css";
 import store from "../../redux/store.js";
-import { toggleFilter } from "../../redux/filterOptions/filterOptionsSlice.js";
+import { toggleFilter } from "../../redux/features/filterOptions/filterOptionsSlice.js";
 
 export default function FeedFilterOptions({cursorLeft, cursorEntered}){
     const dispatch = useDispatch();

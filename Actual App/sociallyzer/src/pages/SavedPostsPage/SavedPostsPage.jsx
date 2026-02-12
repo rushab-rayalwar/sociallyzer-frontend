@@ -10,7 +10,7 @@ import Header from "../../components/Header/Header";
 import Navbar from "../../components/Navbar/Navbar";
 import SavedPost from "../../components/SavedPost/SavedPost.jsx";
 //redux related imports
-import fetchSavedPosts from "../../redux/savedPostsSlice/savedPostsThunk.js";
+import fetchSavedPosts from "../../redux/features/savedPostsSlice/savedPostsThunk.js";
 
 export default function SavedPostsPage(){ // VERY IMPORTANT NOTE : Please study the staggering and hovering logic here
     const [hoveringOver, setHoveringOver] = useState(null);

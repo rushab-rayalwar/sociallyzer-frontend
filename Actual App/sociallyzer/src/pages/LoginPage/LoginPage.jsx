@@ -11,8 +11,8 @@ import { useEffect } from "react";
 // local imports
 import logoSVG from "../../assets/icons/logo.svg";
 import styles from "./LoginPage.module.css";
-import { loginUser } from "../../redux/user/userThunk.js";
-import { addError } from "../../redux/user/userSlice.js";
+import { loginUser } from "../../redux/features/user/userThunk.js";
+import { addError } from "../../redux/features/user/userSlice.js";
 
 export default function LoginPage(){
 

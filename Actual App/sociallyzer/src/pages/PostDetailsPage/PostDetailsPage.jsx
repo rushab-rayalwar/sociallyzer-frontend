@@ -8,6 +8,7 @@ import { faThumbsUp as thumbsUpHollow } from "@fortawesome/free-regular-svg-icon
 import { AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // local imports
 import styles from "./PostDetailsPage.module.css";
@@ -16,7 +17,7 @@ import postOwnerPic from "../../assets/dummyPosts/Screenshot 2024-03-20 002014.j
 import Comment from "../../components/Comment/Comment";
 import ToastNotification from "../../components/ToastNotification/ToastNotification";
 //redux related imports
-
+import {commentAdded, commentRemoved, likeToggled} from "../../redux/features/posts/postActions.js";
 
 export default function PostDetailsPage(){
 
@@ -30,6 +31,8 @@ export default function PostDetailsPage(){
     const [arrowIsVisible, setArrowIsVisible] = useState(false);
 
     const userDetails = useSelector(state=>state.user);
+
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         const originalStyle = window.getComputedStyle(document.body).overflow; // prevent scrolling when this page is open
@@ -112,6 +115,8 @@ export default function PostDetailsPage(){
                     isLoading : false, data : [newComment, ...postComments.data]
                 }
             });
+            dispatch(commentAdded(postId));
+
             console.log("PENDING");
             let response = await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/api/comments/${postId.toString()}`,
@@ -136,7 +141,8 @@ export default function PostDetailsPage(){
                     return true;
                 });
                 return {isLoading : false, data : arrayWithOptimisiticCommentRemoved}
-            })
+            });
+            dispatch(commentRemoved(postId));
         }
     }
     return (
@@ -159,7 +165,7 @@ export default function PostDetailsPage(){
                                 <FontAwesomeIcon className={styles.xMark} icon={faXmark} />
                             </div>
                             <div className={styles.navButton}>
-                                <FontAwesomeIcon className={styles.bookmark} icon={faBookmark} />
+                                <FontAwesomeIcon className={postData.data && postData.data.isBookmarked ? styles.bookmarked : styles.notBookmarked} icon={faBookmark} />
                             </div>
                             <AnimatePresence>
                                 {arrowIsVisible && 

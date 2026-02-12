@@ -51,6 +51,12 @@
 .navButton:active{
     color:var(--primary-color);
 }
+.bookmarked{
+    color:var(--primary-color);
+}
+.notBookmarked{
+    color:white;
+}
 
 .postInfo{
     height: 100%; width:100%;
