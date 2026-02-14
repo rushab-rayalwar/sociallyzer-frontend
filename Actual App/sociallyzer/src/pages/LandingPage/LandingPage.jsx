@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 // local imports
 import logoSVG from "../../assets/icons/logo.svg";
 import styles from "./LandingPage.module.css";
-import animations from "./LandingPageAnimations.module.css";
 
 export default function LandingPage(){ 
     const loginButton = useRef();

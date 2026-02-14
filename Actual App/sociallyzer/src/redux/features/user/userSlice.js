@@ -19,6 +19,12 @@ const userSlice = createSlice({
     reducers : {
         addError : (state, action)=>{
             state.errors.push(action.payload);
+        },
+        addUserDetails : (state, action)=>{
+            state.loggedIn = true;
+            state.email = action.payload.email;
+            state.name = action.payload.name;
+            state._id = action.payload._id;
         }
     },
     extraReducers : builder => {
@@ -56,5 +62,5 @@ const userSlice = createSlice({
     }
 });
 
-export const {addError} = userSlice.actions;
+export const {addError, addUserDetails} = userSlice.actions;
 export default userSlice.reducer;

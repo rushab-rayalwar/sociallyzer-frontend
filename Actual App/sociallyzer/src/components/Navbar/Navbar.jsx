@@ -1,6 +1,6 @@
 // external imports
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faHouse, faUser, faUsers, faBookmark as bookmarkSolid} from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faUser, faUsers, faBookmark as bookmarkSolid, faCirclePlus} from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 // local imports
@@ -17,6 +17,13 @@ export default function Navbar({active}){
             <div className={active=="profile" ? `${styles.leftSideOption} ${styles.selected}`:styles.leftSideOption} onClick={()=>navigate("/profile")}>
                 {/* <i className="fa-solid fa-user"></i> */}
                 <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+            </div>
+            <div className={active=="addPost" ? `${styles.leftSideOption} ${styles.selected} ${styles.createPost}`: `${styles.leftSideOption} ${styles.createPost}`} onClick={()=>navigate("/add-post")}>
+                {/* <i className="fa-solid fa-user"></i> */}
+                <FontAwesomeIcon icon={faCirclePlus}></FontAwesomeIcon>
+                <div className={styles.createPostTooltip}>
+                    
+                </div>
             </div>
             <div className={active=="friends" ? `${styles.leftSideOption} ${styles.selected}`:styles.leftSideOption} onClick={()=>navigate("/friends")}>
                 {/* <i className="fa-solid fa-users"></i> */}

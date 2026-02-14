@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import fetchUserPosts from "./userPostsThunk.js";
+import {fetchUserPosts, createPost} from "./userPostsThunk.js";
 import { commentAdded, commentRemoved } from "../posts/postActions.js";
 import { likeToggled, saveToggled } from "../posts/postActions.js";
 
@@ -34,10 +34,24 @@ const userPostsSlice = createSlice({
                 console.log("PENDING")
                 state.loading = true;
             })
+            // create post
+            .addCase(createPost.pending, (state)=>{
+                state.loading = true;
+            })
+            .addCase(createPost.fulfilled, (state, action)=>{
+                state.loading = false;
+                state.data = [action.payload, ...state.data];
+            })
+            .addCase(createPost.rejected, (state, action)=>{
+                state.loading = false;
+                state.errors = action.payload;
+            })
             // comment
             .addCase(commentAdded, (state, action)=>{
+                console.log("Comment added in userPosts slice");
+
                 state.data = state.data.map(p=>{
-                    if( String(p._id) === String(action.payload._id) ){
+                    if( String(p._id) === String(action.payload) ){
                         return {
                             ...p,
                             commentsCount : p.commentsCount+1

@@ -1,0 +1,304 @@
+.background{ /* body */
+    /* background-color: rgb(36,36,36); */
+    background-color: rgb(24,24,24); /* all 24 */
+    white-space: 'pre-wrap';
+}
+
+/* tags */
+.background{ /* body */
+    /* width: 100dvw; */
+    min-height: 100dvh;
+}
+.addPostPageContainer{
+    position:relative;
+    z-index: 0;
+}
+
+/* form */
+.formContainer{
+    max-width: 900%;
+    width : 40rem;
+    margin: auto;
+    padding-top: 6rem;
+    display: flex;
+    justify-content: center;
+}
+
+.form{
+    padding:2.5rem;
+    border-radius:1rem;
+    width:100%;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.formHeader{
+    color:white;
+    font-family:'Poiret One';
+    letter-spacing: 0.2rem;
+    width:100%;
+    display: flex; 
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.postForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.inputGroup {
+    width: 100%;
+}
+
+.textArea {
+    resize: none;
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--secondary-text-color);
+    font-family: 'Inter', sans-serif; 
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Important for padding */
+}
+
+/* .textArea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 242, 255, 0.1);
+} */
+
+.imageUploadContainer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.visibilityOptionsContainer{
+    display: flex; align-items: center; justify-content:space-between;
+    width : 100%; height : 100%;
+    /* background-color: bisque; */
+    color : white;
+}
+.visibilityOption {
+    /* font-family: 'Poppins'; */
+    font-family: "Poiret one"; letter-spacing: 0.1rem; font-weight: 600;
+    display: flex; align-items: center;
+    cursor: default;
+    display: flex;
+    /* background-color: grey; */
+    height:80%;
+    padding : 1rem 1rem 1rem 1rem;
+    border-radius: 1rem;
+}
+.visibilityOption:hover{
+    /* background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.158), rgba(255, 255, 255, 0.237)); */
+    background-color: rgba(255,255,255,0.15);
+}
+.visibilityOption:active{
+    background-color: rgba(0, 242, 255, 0.15);
+}
+.dotContainer{
+    height:0.7rem; width:0.7rem;
+    border-radius: 50%;
+    border : 1px solid rgba(255, 255, 255, 0.584);
+    margin-left : 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+}
+.dot{
+    height:60%; width:60%;
+    background-color: #00f2ff;
+    border-radius: 50%;
+}
+.postAsPublicButton{
+    display: flex; align-items: center;
+    color:white; font-family: "Open Sans"; font-size:0.8rem;
+    cursor:pointer;
+    margin-top: -0.5rem;
+}
+.squareContainer{
+    height:0.7rem; width:0.7rem;
+    border-radius: 25%;
+    border : 1px solid rgba(255, 255, 255, 0.584);
+    margin-left : 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+    margin-right:0.5rem;
+    margin-left:1rem;
+}
+.postAsPublicButton:hover > .squareContainer{
+    border-color: #00f2ff;
+}
+.square{
+    height:70%; width:70%;
+    background-color: #00f2ff;
+    border-radius: 25%;
+}
+
+.uploadBtn {
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.05);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.9rem;
+    width:100%;
+}
+
+.uploadBtn:hover {
+    background-color: rgba(0, 242, 255, 0.1);
+}
+
+.imagePreview {
+    position: relative;
+    width: 100%;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    margin-top: 1rem;
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.imagePreview img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.removeImageBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.removeImageBtn:hover {
+    background-color: rgba(255, 0, 0, 0.7);
+}
+
+.submitBtn {
+    /* Base styles from .ctaButton */
+    color : white;
+    padding : 0.4rem;
+    border-radius : 0.5rem;
+    position:relative;
+    font-size: 1.1rem;
+    overflow: hidden;
+    background-color: transparent;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    transition : radial-gradient 1s ease-out;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif; 
+    margin-top: 1rem;
+    align-self: center;
+    padding-left: 2rem; padding-right: 2rem; 
+
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+
+}
+
+.submitBtn:hover {
+    background-color: rgb(0, 162, 255);
+}
+
+.submitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.submitBtn > .glass {
+    opacity: 0;
+}
+
+.submitBtn > span {
+    z-index: 2;
+    position: relative;
+    /* padding: 0.4rem; Removed padding from text, handled by button padding now */
+}
+
+/* Glass effect */
+.glass{
+    position:absolute;
+    top:0;
+    right:0;
+    height:100%;
+    width : 100%;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.058) 0% 60%, rgba(255, 255, 255, 0.118));
+    border-width: 2px 0 0 1px;
+    border-left-color: rgba(255, 255, 255, 0.09);
+    border-top-color: rgba(255, 255, 255, 0.111);
+    border-style: solid;
+    box-sizing: border-box;
+    z-index: 3;
+    pointer-events: none; /* Ensure clicks go through if needed, though button handles it */
+}
+
+/* Hover Background Animation */
+.buttonHoverBG{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+19,003cad+49,00a2e1+80 */
+    background: radial-gradient(circle at center,  rgb(0, 0, 0) 0%,rgb(0, 0, 0) 15%,rgba(0, 61, 173, 0) 49%,rgba(0, 161, 225, 0) 80%); 
+    width:20rem;
+    height:20rem;
+    z-index: 1;
+    right : 0;
+    border-radius: 50%;
+    transform : translate(5rem, -10rem) scale(0);
+    position : absolute;
+    /* right : 25%; top:50%; Centering might need adjustment for full width button */
+    top: 50%; left: 50%; /* Center the origin */
+    transition : transform 0s ease-out;
+}
+.submitBtn:hover{
+    text-shadow: 0 0 4px white; /*rgba(0, 162, 255, 0.771)*/
+    cursor: pointer;
+}
+.submitBtn:hover > .buttonHoverBG {
+    /* transform: translate(10rem, -10rem) scale(1.4); Origin was tailored for specific button size. */
+    transform: translate(-50%, -50%) scale(1.5); /* Center expand */
+    transition-duration: 0.6s;
+}
+
+.errorContainer {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    width: fit-content;
+    margin: auto;
+}
+
+.errorText {
+    color: #ff6b6b;
+    margin: 0;
+    font-size: 0.9rem;
+    text-align: center;
+    font-family: 'Open Sans';
+
+}

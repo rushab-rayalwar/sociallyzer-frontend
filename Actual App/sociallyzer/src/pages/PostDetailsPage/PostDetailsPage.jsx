@@ -12,10 +12,9 @@ import { useDispatch } from "react-redux";
 
 // local imports
 import styles from "./PostDetailsPage.module.css";
-import postPic from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
-import postOwnerPic from "../../assets/dummyPosts/Screenshot 2024-03-20 002014.jpg";
 import Comment from "../../components/Comment/Comment";
 import ToastNotification from "../../components/ToastNotification/ToastNotification";
+import postOwnerPic from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 //redux related imports
 import {commentAdded, commentRemoved, likeToggled} from "../../redux/features/posts/postActions.js";
 
@@ -98,7 +97,6 @@ export default function PostDetailsPage(){
     }
     async function handlePostComment(e){
         e.preventDefault();
-
         const tempId = `temp-${Date.now()}`;
         let newComment = {
             _id : tempId,
@@ -133,6 +131,7 @@ export default function PostDetailsPage(){
                 });
                 return {isLoading : false, data : newCommentsArray}
             });
+            commentRef.current.value = '';
         } catch (error) {
             console.log("REJECTED - ERROR CREATING NEW COMMENT", error);
             setPostComments(postComments=>{

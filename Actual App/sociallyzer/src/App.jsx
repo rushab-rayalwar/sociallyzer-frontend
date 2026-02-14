@@ -15,6 +15,8 @@ import FriendsPage from "./pages/FriendsPage/FriendsPage.jsx";
 import SavedPostsPage from "./pages/SavedPostsPage/SavedPostsPage.jsx";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import store from "./redux/store.js";
+import AuthInitializer from "./components/AuthInitializer/AuthInitializer.jsx";
+import AddPost from "./pages/AddPostPage/AddPostPage.jsx";
 
 export function App(){
 
@@ -53,13 +55,18 @@ export function App(){
       ]
     },
     {
+      path:"/add-post", element:<AddPost/>
+    },
+    {
       path:"*", element : <HomePage/>
     }
   ]);
   return(
     <>
       <Provider store={store}>
-        <RouterProvider router={router}></RouterProvider>
+        <AuthInitializer>
+          <RouterProvider router={router}></RouterProvider>
+        </AuthInitializer>
       </Provider>
     </>
   )

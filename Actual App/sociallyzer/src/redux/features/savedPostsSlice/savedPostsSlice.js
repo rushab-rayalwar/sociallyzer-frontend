@@ -43,8 +43,9 @@ const savedPostsSlice = createSlice({
             })
             // comment
             .addCase(commentAdded, (state, action)=>{
+                console.log("Comment added in savedPosts slice");
                 state.data = state.data.map(p=>{
-                    if( String(p._id) === String(action.payload._id) ){
+                    if( String(p._id) === String(action.payload) ){
                         return {
                             ...p,
                             commentsCount : p.commentsCount+1

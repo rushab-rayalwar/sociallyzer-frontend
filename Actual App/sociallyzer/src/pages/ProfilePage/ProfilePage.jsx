@@ -14,7 +14,7 @@ import styles from "./ProfilePage.module.css";
 import image from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import ProfilePageComponentInGrid from "../../components/ProfilePagePostInGrid/ProfilePageComponentInGrid.jsx";
 // related to redux
-import fetchUserPosts from "../../redux/features/userPosts/userPostsThunk.js";
+import {fetchUserPosts} from "../../redux/features/userPosts/userPostsThunk.js";
 
 export default function ProfilePage(){
 
