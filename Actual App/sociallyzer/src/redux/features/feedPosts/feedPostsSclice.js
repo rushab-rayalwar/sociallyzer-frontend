@@ -7,7 +7,8 @@ import { likeToggled, saveToggled } from "../posts/postActions.js";
 const INITIAL_STATE = {
     data : [],
     loading : false,
-    errors: []
+    errors: [],
+    hasMore: true
 }
 
 const feedPostsSlice = createSlice({
@@ -28,7 +29,14 @@ const feedPostsSlice = createSlice({
             })
             .addCase(fetchFeedPosts.fulfilled, (state, action)=>{
                 console.log("FULFILLED", action.payload);
-                state.data =[...state.data, ...action.payload];
+                if(action.payload.length === 0){
+                    state.hasMore = false;
+                } else {
+                    state.hasMore = true;
+                    action.payload.forEach(p=>{
+                        state.data.push(p);
+                    })
+                }
                 state.loading = false;
                 state.errors = [];
             })
