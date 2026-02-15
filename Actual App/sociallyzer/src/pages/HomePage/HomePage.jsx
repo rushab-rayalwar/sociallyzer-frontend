@@ -18,7 +18,7 @@ import Post from "../../components/Post/Post.jsx";
 import PostDetailsPage from "../PostDetailsPage/PostDetailsPage.jsx";
 import Header from "../../components/Header/Header.jsx";
 // redux related
-import fetchFeedPosts from "../../redux/features/feedPosts/filterPostsThunk.js";
+import fetchFeedPosts from "../../redux/features/feedPosts/feedPostsThunk.js";
 
 // images / svgs
 import icon from "../../assets/icons/icon.svg";
@@ -32,6 +32,7 @@ export default function HomePage(){ // NOTE the state logic here
     const hovering = useRef(false);
     const timeout = useRef(null);
     const filterIconRef = useRef();
+    const lastPostRef = useRef();
 
     const [visible, setVisible] = useState(false); // Controls the visibility of the FeedFilterOptions component
     const [widthOfFooter, setWidthOfFooter] = useState("fit-content");
@@ -45,8 +46,24 @@ export default function HomePage(){ // NOTE the state logic here
     useEffect(()=>{
         if(posts.length == 0){
             dispatch(fetchFeedPosts());
+        } else {
+            const observer = new IntersectionObserver(
+                (entries)=>{
+                    const lastPostEntry = entries[0];
+                    if(lastPostEntry.isIntersecting){
+                        console.log("Last post visible")
+                        let cursor = posts[posts.length-1].createdAt;
+                        dispatch(fetchFeedPosts(cursor));
+                    }
+                },
+                {
+                    threshold : 0.5,
+                    root : null,
+                }
+            );
+            observer.observe(lastPostRef.current);
         }
-    },[dispatch]);
+    },[dispatch, posts.length]);
 
     function cursorEntered(){
         hovering.current = true;
@@ -60,7 +77,7 @@ export default function HomePage(){ // NOTE the state logic here
             if(!hovering.current){
                 setVisible(false);
                 setTimeout(()=>{ // NOTE : this delays the change in width of the footer to wait for the fade out animation
-                    setWidthOfFooter("fit-content");
+                    setWidthOfFooter("fit-content");    
                 },300);
             }
         }, 300);
@@ -76,7 +93,10 @@ export default function HomePage(){ // NOTE the state logic here
                         <div className={styles.prePosts}></div>
                         <div className={styles.posts}>
                                 {posts.length > 0 && !feedPostsState.loading &&
-                                    posts.map(p=>{
+                                    posts.map((p, index, array)=>{
+                                        if(index == array.length-1){
+                                            return <Post data={p} key={p._id} observerRef={lastPostRef}></Post>
+                                        }
                                         return <Post data={p} key={p._id}></Post>
                                     })
                                 }
@@ -84,7 +104,7 @@ export default function HomePage(){ // NOTE the state logic here
                                     feedPostsState.loading && <div className={styles.loadingCard}>LOADING !</div>
                                 } */}
                                 <AnimatePresence mode="await">
-                                    {feedPostsState.loading && <motion.div className={styles.loadingCard}
+                                    {posts.length == 0 && feedPostsState.loading && <motion.div className={styles.loadingCard}
                                     initial={{opacity:0, y:"-10%"}}
                                     animate={{opacity:1, y:"0%"}}
                                     exit={{opacity:0, y:"-10%"}}

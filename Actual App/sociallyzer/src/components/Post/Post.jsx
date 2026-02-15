@@ -37,8 +37,8 @@ function formatTime(dateInput) {
     return `${time} ${day} ${datePart}`;
 }
 
-export default function Post({data}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
-    let {userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt, _id, isLiked, isBookmarked} = data;
+export default function Post({data, observerRef}){ // if the visibility field is not present in the data fetched from the backend, the Post is visible to the user. Information about the visibility of a post is provided only to the owner of the post
+    let { userId, userName, content, image=null, likesCount, commentsCount, recentComment, visibility="visible", createdAt, _id, isLiked, isBookmarked} = data;
     let formattedTimeOfCreation = formatTime(createdAt);
 
     const [isSaving, setIsSaving] = useState(false); // NOTE THIS : these flags avoid sending requests when a similar request already mid flight
@@ -102,7 +102,7 @@ export default function Post({data}){ // if the visibility field is not present 
 
     return(
         <>
-            <motion.div className={styles.post}
+            <motion.div className={styles.post} ref={observerRef}
             initial={{filter:"blur(0.5rem)", opacity:0, scale:0.97 }}
             animate={{filter:"blur(0)", opacity:1, scale:1}}
             transition={{

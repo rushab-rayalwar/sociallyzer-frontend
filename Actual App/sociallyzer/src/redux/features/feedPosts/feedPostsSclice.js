@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import fetchFeedPosts from "./filterPostsThunk";
+import fetchFeedPosts from "./feedPostsThunk.js";
 import { commentAdded, commentRemoved } from "../posts/postActions.js";
 import { likeToggled, saveToggled } from "../posts/postActions.js";
 
@@ -14,17 +14,6 @@ const feedPostsSlice = createSlice({
     name : "feedPosts",
     initialState : INITIAL_STATE,
     reducers : {
-        // toggleSaveInFeedSliceOptimistic : (state, action)=>{
-        //     state.data = state.data.map(p=>{
-        //         if(String(p._id) === String(action.payload)){
-        //             return{
-        //                 ...p,
-        //                 isBookmarked : !p.isBookmarked
-        //             }
-        //         }
-        //         return p;
-        //     })
-        // }
     },
     extraReducers : (builder)=>{
         builder
@@ -39,7 +28,7 @@ const feedPostsSlice = createSlice({
             })
             .addCase(fetchFeedPosts.fulfilled, (state, action)=>{
                 console.log("FULFILLED", action.payload);
-                state.data = action.payload;
+                state.data =[...state.data, ...action.payload];
                 state.loading = false;
                 state.errors = [];
             })

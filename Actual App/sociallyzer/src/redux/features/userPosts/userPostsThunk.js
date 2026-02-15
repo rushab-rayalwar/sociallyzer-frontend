@@ -3,7 +3,9 @@ import axios from "axios";
 
 export const fetchUserPosts = createAsyncThunk("userPosts/fetch", async (_, thunkAPI)=>{
     try{
-        let response = await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/posts",{withCredentials:true});
+        
+        let url = `${import.meta.env.VITE_BACKEND_URL}/api/posts`
+        let response = await axios.get(url,{withCredentials:true});
         let data = response.data;
         return data.data;
     } catch(error){

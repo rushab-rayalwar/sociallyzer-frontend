@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./AddPost.module.css";
@@ -22,6 +22,7 @@ export default function AddPost(){
     }); 
 
     const fileInputRef = useRef();
+    const lastPostRef = useRef(null);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

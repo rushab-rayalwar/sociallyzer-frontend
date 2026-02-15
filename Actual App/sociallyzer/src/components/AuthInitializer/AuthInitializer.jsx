@@ -10,7 +10,6 @@ export default function AuthInitializer({children}) {
         async function getAuthInfo(){
             let response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/auth`,{withCredentials:true});
             if(response.data.success){
-                console.log("User Data", response.data);
                 dispatch(addUserDetails(response.data.data));
             }
         }

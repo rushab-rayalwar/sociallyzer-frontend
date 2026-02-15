@@ -2,9 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
 
-const fetchFeedPosts = createAsyncThunk("feedPosts", async (_, thunkAPI)=>{
+const fetchFeedPosts = createAsyncThunk("feedPosts", async (cursor=null, thunkAPI)=>{
     try {
-        let res = await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/feed/",{withCredentials:true});
+        let url = !cursor ? `${import.meta.env.VITE_BACKEND_URL}/api/feed` : `${import.meta.env.VITE_BACKEND_URL}/api/feed?cursor=${cursor}`; // cursor is a date string
+        let res = await axios.get(url, {withCredentials:true});
         let dataReceived = res.data;
         return dataReceived.data;
     } catch(error) {
