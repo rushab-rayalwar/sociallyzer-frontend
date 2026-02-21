@@ -21,10 +21,17 @@ export default function FriendshipCard({name, friendsInCommon, enableBlur, toggl
     }
 
     const variants = {
-        right : {
-            opacity : 1, x:0, y:0, filter: "blur(0)"
+        hidden : {
+            opacity : 0, x:"0%", y:0, filter: "blur(0rem)"
         },
-        left : {
+
+        findFriends : {
+            opacity : 0, x:"5%", y:0, filter: "blur(0.3rem)"
+        },
+        friendships : {
+            opacity : 1, x:"0%", y:0, filter: "blur(0rem)"
+        },
+        requests : {
             opacity : 0, x:"5%", y:0, filter: "blur(0.3rem)"
         }
     }

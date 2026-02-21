@@ -122,6 +122,17 @@ header (top) : 4
     color : rgba(255,255,255,0.681);
 }
 
+/* Friends Search */
+.friendsSearch{
+    position : absolute; left:100%; top:0;
+    width : 28rem; height : 20rem;
+    /* background-color: aqua; */
+    margin:2rem 0 0 2rem;
+    border-width: 0 0 0 1px;
+    border-color: rgba(255, 255, 255, 0.095);
+    border-style: solid;
+}
+
 /* POSTS FEED */
 .feed{
     width : 60rem; max-width: 100%; margin:auto; height:fit-content;
@@ -135,7 +146,7 @@ header (top) : 4
     height : 2rem;
 }
 .posts{
-    display: flex; flex-direction: column; align-items: center;
+    display: flex; flex-direction: column; align-items: center; position : relative; z-index: 1;
 }
 .description{
     font-family: 'Open Sans';

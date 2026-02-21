@@ -31,8 +31,6 @@
     background-color: rgba(24,24,24,0.78);
     z-index : 4;
 }
-.headerContainer{
-}
 .userName > span {
     color:white;
 }
@@ -60,9 +58,6 @@
 }
 .title > span > img {
     margin-right:0.5rem;
-}
-.title{
-
 }
 
 .body{
@@ -116,4 +111,47 @@
 .selected{
     background-color: rgba(255,255,255,0.05);
     box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+}
+
+/* search bar */
+.searchBar{
+    height: 3rem;
+    width: inherit;
+    background-color: rgba(255,255,255,0.05);
+    border-radius: 0.5rem;
+    position: fixed; z-index: 1;
+    max-width : calc(100% - 2rem);
+    width : 58rem;
+    backdrop-filter: blur(1rem);
+}
+.searchBar input{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: "Work Sans";
+    font-size: 1rem;
+    padding-left:1rem;
+    position: relative; z-index: 0;
+}
+.searchBarIconContainer{
+    height: 100%;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; z-index: 1;
+    right: 0; top:0;
+}
+.searchBarIcon{
+    color: white;
+}
+.divider{
+    height:3rem;
+}
+.friendsFinder{
+    position: relative !important;
 }

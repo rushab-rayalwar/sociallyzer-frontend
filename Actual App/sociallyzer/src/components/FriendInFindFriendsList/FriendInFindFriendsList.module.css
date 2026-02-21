@@ -1,0 +1,70 @@
+.noBlurCard{
+    z-index: 3;
+}
+.blurCard{
+    z-index: 2;
+}
+.noBlurCard, .blurCard{
+}
+
+.friendRequest{
+    display: flex;
+    width: 100%;
+    /* background-color: rgb(41, 44, 44); */
+    /* margin-bottom: 1.5rem; */
+    justify-content: space-between; align-items: center;
+    padding:1rem; margin-bottom:0.5rem;
+    box-sizing: border-box;
+    border-radius: 1rem;
+}
+.friendRequest:hover{
+    background-color: rgba(255,255,255,0.01);
+    cursor: pointer;
+} 
+.left{
+    display:flex;
+}
+.profilePic{
+    display:flex; align-items: center;
+    justify-content: center;
+}
+.profilePic > img {
+    height:2rem; width:2rem;
+    border-radius: 50%;
+    margin-right:0.5rem;
+}
+.nameAndMutuals{
+    color:white;
+    height:100;
+    display: flex; flex-direction: column; justify-content: center;
+}
+.name{
+    font-family: "Work Sans";
+}
+.mutuals{
+    font-family: "Source Sans 3";
+    color: var(--secondary-text-color);
+}
+.right{
+    display:flex;
+}
+.acceptButton{
+    background-color: var(--cta-button-color);
+}
+.deleteButton{
+}
+.button{
+    color:white;
+    padding:0.5rem;
+    margin-right:0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Work Sans";
+}
+.acceptButton:hover{
+    background-color: var(--cta-button-hover-color);
+}
+.deleteButton:hover{
+    background-color: rgba(255,255,255,0.15);;
+}

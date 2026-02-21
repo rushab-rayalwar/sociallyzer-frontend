@@ -13,7 +13,6 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./HomePage.module.css";
 import FeedFilterOptions from "../../components/FeedFilterOptions/FeedFilterOptions.jsx";
 import Navbar from "../../components/Navbar/Navbar.jsx";
-import FriendSuggestions from "../../components/FriendSuggestions/FriendSuggestions.jsx";
 import Post from "../../components/Post/Post.jsx";
 import PostDetailsPage from "../PostDetailsPage/PostDetailsPage.jsx";
 import Header from "../../components/Header/Header.jsx";
@@ -26,7 +25,6 @@ import postIMG1 from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 import postIMG2 from "../../assets/dummyPosts/Screenshot 2024-03-20 002014.jpg";
 import postIMG3 from "../../assets/dummyPosts/zdzszgh.png";
 import filterIcon from "../../assets/icons/filter.svg";
-
 
 export default function HomePage(){ // NOTE the state logic here
     const hovering = useRef(false);
@@ -43,7 +41,7 @@ export default function HomePage(){ // NOTE the state logic here
     const dispatch = useDispatch();
 
     const observer = useRef();
-    const lastPostRef = useCallback(node => { // NOTE THIS
+    const lastPostRef = useCallback(node => { // NOTE THIS : useCallback is used to prevent re creation of the observer on every render
         if (feedPostsState.loading) return;
         if (observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver(entries => {
