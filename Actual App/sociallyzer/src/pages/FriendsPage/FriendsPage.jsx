@@ -1,6 +1,7 @@
 //external imports
 import {motion} from "framer-motion";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 //local imports
 import styles from "./FriendsPage.module.css";
@@ -23,11 +24,35 @@ export default function FriendsPage(){
     const [tab, setTab] = useState("findFriends"); // findFriends - requests - friendships
     const [prevTab, setPrevTab] = useState("hidden");
     const [focus, setFocus] = useState(null); //  Represents the list item under focus, in the friendships tab. An element is under focus when the user clicks on the dropdown menu of that element
-    const [containerState, setContainerState] = useState('xchidden');
+    const [containerState, setContainerState] = useState('hidden');
+    const [searchResults, setSearchResults] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(()=>{
         setContainerState('firstMount');
     }, []);
+    useEffect(()=>{
+        async function fetchUsers(query = null){
+            try{
+                let response;
+                if(!query){
+                    response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users`,{withCredentials:true});
+                } else {
+                    response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users?search=${query}`,{withCredentials:true});
+                }
+                let data = response.data.data; // response.data.data = {users: [], page: 1, totalUsers: 1, limit: 10, totalPages: 1}
+                setSearchResults(data);
+            }
+            catch(err){
+                console.log("Could not fetch users -",err);
+            }
+        }
+        if(searchQuery == ""){
+            fetchUsers();
+        } else {
+            fetchUsers(searchQuery);
+        }
+    }, [searchQuery]);
 
     function toggleFocus(id){
         if(id === focus) setFocus(null);
@@ -50,6 +75,10 @@ export default function FriendsPage(){
         setPrevTab(tab);
         setContainerState('findFriends');
         setTab('findFriends');
+    }
+
+    function handleSearch(e){
+        setSearchQuery(e.target.value);
     }
 
     const containerVariants = { //  these variants apply to both the requests container and the friendships container
@@ -103,17 +132,18 @@ export default function FriendsPage(){
                         animate = {containerState}
                         >
                             <div className={styles.searchBar}>
-                                <input type="text" placeholder="Search" />
+                                <input type="text" placeholder="Search" onChange={handleSearch}/>
                                 <div className={styles.searchBarIconContainer}>
                                     <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchBarIcon}/>
                                 </div>
                             </div>
                             <div className={styles.divider}></div>
-                            {users.map((u,i)=>{
+                            {searchResults.users && searchResults.users.length > 0 && searchResults.users.map((u,i)=>{
                                 return (
-                                    <FriendInFindFriendsList name={u} friendsInCommon='5' key={i} />
+                                    <FriendInFindFriendsList name={u} friendsInCommon='5' key={i} user={u}/>
                                 )
-                            })}                            
+                            })}
+                            {searchResults.users && searchResults.users.length == 0 && <div className={styles.noResults}>No users found</div>}                            
                         </motion.div>}
                         {tab=="requests" && <motion.div className={`${styles.bodyMain} ${styles.requests}`}
                         variants = {containerVariants}
