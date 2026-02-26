@@ -16,7 +16,9 @@ import Comment from "../../components/Comment/Comment";
 import ToastNotification from "../../components/ToastNotification/ToastNotification";
 import postOwnerPic from "../../assets/dummyPosts/Screenshot 2024-02-15 013817.jpg";
 //redux related imports
-import {commentAdded, commentRemoved, likeToggled} from "../../redux/features/posts/postActions.js";
+import {commentAdded, commentRemoved, likeToggled, saveToggled} from "../../redux/features/posts/postActions.js";
+import { toggleSavedPostInSavedPostSliceOptimistic } from "../../redux/features/savedPostsSlice/savedPostsSlice.js";
+import fetchSavedPosts from "../../redux/features/savedPostsSlice/savedPostsThunk.js";
 
 export default function PostDetailsPage(){
 
@@ -24,6 +26,7 @@ export default function PostDetailsPage(){
 
     const [postData, setPostData] = useState({isLoading:false, data:null});
     const [postComments, setPostComments] = useState({isLoading:false, data:null});
+    const [isSaving, setIsSaving] = useState(false);
 
     const postInfoDivRef = useRef();
     const commentRef = useRef();
@@ -144,6 +147,29 @@ export default function PostDetailsPage(){
             dispatch(commentRemoved(postId));
         }
     }
+    async function toggleSaveOptimistic(){
+        if(isSaving) return;
+        console.log("REQUEST PENDING");
+        setIsSaving(true);
+        dispatch(saveToggled(postData.data._id)); // global action
+        dispatch(toggleSavedPostInSavedPostSliceOptimistic(postData.data));
+        setPostData(postData=>({...postData, data:{...postData.data, isBookmarked : !postData.data.isBookmarked}})) // this updates the UI optimistically
+
+        axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/saved-posts/${postData.data._id}`,null,{withCredentials:true})
+        .then(response=>{
+            console.log("Success", response.data);
+            // isBookmarked property of the post in the feedPosts slice is now in sync with real state and is no more optimistic
+        })
+        .catch(error=>{
+            console.log('Error executing toggle save request', error);
+            dispatch(saveToggled(postData.data._id)); // global action
+            dispatch(toggleSavedPostInSavedPostSliceOptimistic({...postData.data, isBookmarked : !postData.data.isBookmarked}));
+            setPostData(postData=>({...postData, data:{...postData.data, isBookmarked : !postData.data.isBookmarked}}))
+        })
+        .finally(()=>{
+            setIsSaving(false);
+        });
+    }
     return (
         <>  
             {
@@ -163,7 +189,7 @@ export default function PostDetailsPage(){
                             <div className={styles.navButton} onClick={closePostDetails}>
                                 <FontAwesomeIcon className={styles.xMark} icon={faXmark} />
                             </div>
-                            <div className={styles.navButton}>
+                            <div className={styles.navButton} onClick={toggleSaveOptimistic}>
                                 <FontAwesomeIcon className={postData.data && postData.data.isBookmarked ? styles.bookmarked : styles.notBookmarked} icon={faBookmark} />
                             </div>
                             <AnimatePresence>

@@ -1,5 +1,6 @@
 //external imports
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 // local imports
 import styles from "./FriendInFindFriendsList.module.css";
@@ -12,9 +13,10 @@ export default function FriendInFindFriendsList({name, friendsInCommon, enableBl
         requests : {opacity:0, filter:'blur(0.3rem)', y:"0", x:'-5%', scale:1},
         friendships : {opacity:0, filter:'blur(0.3rem)', y:"0", x:'-5%', scale:1}
     }
+    const navigate = useNavigate();
     return(
         <>
-            <motion.div onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop} className={enableBlur ? `${styles.blurCard} ${styles.friendRequest}` : `${styles.noBlurCard} ${styles.friendRequest}`} 
+            <motion.div onMouseEnter={handleHovering} onMouseLeave={handleHoveringStop} className={enableBlur ? `${styles.blurCard} ${styles.friendRequest}` : `${styles.noBlurCard} ${styles.friendRequest}`} onClick={navigate(`/user/${user._id}`)}
             variants={variants}
             transition={{scale:{duration:0.5, ease:"easeOut"}, opacity:{duration:0.5, ease:"easeOut"}, y:{ type:"spring", stiffness:50, damping:10}, x:{duration:0.5, ease:"easeOut"}, filter:{duration:0.5, ease:"easeOut"}}}
             >

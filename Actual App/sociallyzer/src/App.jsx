@@ -17,6 +17,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage.jsx";
 import store from "./redux/store.js";
 import AuthInitializer from "./components/AuthInitializer/AuthInitializer.jsx";
 import AddPost from "./pages/AddPostPage/AddPostPage.jsx";
+import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 
 export function App(){
 
@@ -56,6 +57,9 @@ export function App(){
     },
     {
       path:"/add-post", element:<AddPost/>
+    },
+    {
+      path:"/user/:userId", element:<UserProfile/>
     },
     {
       path:"*", element : <HomePage/>

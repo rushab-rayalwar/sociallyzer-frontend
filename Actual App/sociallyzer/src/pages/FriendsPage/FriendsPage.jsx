@@ -143,7 +143,7 @@ export default function FriendsPage(){
                                     <FriendInFindFriendsList name={u} friendsInCommon='5' key={i} user={u}/>
                                 )
                             })}
-                            {searchResults.users && searchResults.users.length == 0 && <div className={styles.noResults}>No users found</div>}                            
+                            {searchResults.users && searchResults.users.length == 0 && <div className={styles.noResults}>No users found</div>}
                         </motion.div>}
                         {tab=="requests" && <motion.div className={`${styles.bodyMain} ${styles.requests}`}
                         variants = {containerVariants}

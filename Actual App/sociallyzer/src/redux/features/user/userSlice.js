@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     email : "",
     name : "",
     _id : "",
+    profilePic : "",
     loggingIn : false,
     errors : []
 }
@@ -25,6 +26,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.name = action.payload.name;
             state._id = action.payload._id;
+            state.profilePic = action.payload.profilePictureURL;
         }
     },
     extraReducers : builder => {
@@ -35,6 +37,7 @@ const userSlice = createSlice({
                 state.email = action.payload.email;
                 state.name = action.payload.name;
                 state._id = action.payload._id;
+                state.profilePic = action.payload.profilePictureURL;
                 state.loggingIn = false;
                 state.errors = [];
             })
@@ -44,6 +47,7 @@ const userSlice = createSlice({
                 state.email = "";
                 state.name = "";
                 state._id = "";
+                state.profilePic = "";
                 state.loggingIn = false;
                 console.log("Action.payload in .rejected", action.payload);
                 // NOTE THIS :
